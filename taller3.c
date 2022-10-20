@@ -61,7 +61,7 @@ int main(){
         struct message childMsg;
         while(1){
             read(fd[0],&childMsg,sizeof(struct message));
-            printf("mensaje: %s\n",childMsg.id);
+            printf("mensaje: %d\n",childMsg.id);
 
             //if(strcmp(childMsg.text, "salir") == 0){
                     //break;
