@@ -15,7 +15,7 @@ int main(){
     char mensaje2[100];
     char id[100];
     char time[100];
-    char comando[1024];
+    
     for (int p = 0; p < sensorNum; ++p) pipe(fd[p]);
 
     for ( i = 0; i < sensorNum; i++)
@@ -30,11 +30,11 @@ int main(){
        for (int h = 0; h < sensorNum; ++h) close(fd[h][0]);
         while(1){
             printf("Ingrese el texto del sensor:\n");
-            scanf("%s",mensaje2);
+            gets(mensaje2);
             if(strcmp(mensaje2,"salir")==0){
                 for (size_t j = 0; j < sensorNum; j++)
                 {
-                    comando="";
+                    char *comando[1024];
                     strcat(comando,mensaje2);
                     strcat(comando,"/");
                     strcat(comando,"123");
