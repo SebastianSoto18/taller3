@@ -67,9 +67,9 @@ int main(){
         char *delimitador = "/";
 
         while((n=read(fd[i][0],&mensaje,sizeof(mensaje)))>0){
-                orden=strtok(mensaje,delimitador);
-                id=strtok(NULL,delimitador);
-                time=strtok(NULL,delimitador);
+                *orden=strtok(mensaje,delimitador);
+                *id=strtok(NULL,delimitador);
+                *time=strtok(NULL,delimitador);
                 printf("El mensaje es: %s\n",orden);
                 printf("El id es: %s\n",id);
                 printf("El tiempo es: %s\n",time);
