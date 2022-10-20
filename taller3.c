@@ -63,7 +63,7 @@ int main(){
             strcat(comando,time);
             strcat(buff,comando);
             buff[strlen(buff)-1] = '\0';
-            for(int g=0;g<sensorNum;++g)write(fd[[g][1],buff,sizeof(buff));
+            for(int g=0;g<sensorNum;++g)write(fd[g][1],buff,sizeof(buff));
 
         }
 
