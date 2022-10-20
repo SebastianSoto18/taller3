@@ -34,6 +34,7 @@ int main(){
     {
         if(fork()==0){
             printf("Soy el proceso hijo %d y mi padre es %d\n",getpid(),getppid());
+            pause();
             break;
         }
     }
@@ -81,6 +82,7 @@ int main(){
             write(fd[atoi(id)][1],buff,sizeof(buff));
             kill(pid, SIGUSR1);
             printf("3");
+            pause();
         }
 
         for (int h = 0; h < sensorNum; ++h) wait(NULL);
@@ -105,8 +107,9 @@ int main(){
                     printf("orden recibida [%s]\n",orden);
                     sleep(atoi(time));
                     printf("orden ejecutada\n");
+                    kill(root, SIGUSR1);
                 } 
-                    
+                pause(); 
             }
     } 
 
