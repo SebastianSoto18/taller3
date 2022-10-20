@@ -13,7 +13,7 @@ int main(){
     pid_t root=getpid();
     printf("Ingrese el numero de sensores a crear: \n");
     scanf("%d",&sensorNum);
-    int fd[sensorNum][2];
+    int fd[sensorNum][2], n;
     char mensaje2[100];
     char id[100];
     char time[100];
@@ -45,6 +45,8 @@ int main(){
                     write(fd[j][1],comando,sizeof(comando));
                 }
                 printf("Saliendo del programa\n");
+                for (int h = 0; h < sensorNum; ++h) close(fd[h][1]);
+                for (int h = 0; h < sensorNum; ++h) wait(NULL);
                 break;
             }
             printf("Ingrese el id del sensor: \n");
@@ -58,26 +60,24 @@ int main(){
             strcat(comando,id);
             strcat(comando,"/");
             strcat(comando,time);
-
+            comando[strlen(comando)-1] = '\0';
             write(fd[atoi(id)][1],comando,sizeof(comando));
-            wait(NULL);
 
         }
-        for (int h = 0; h < sensorNum; ++h) close(fd[h][1]);
-        for (int h = 0; h < sensorNum; ++h) wait(NULL);
 
     }else{
         for (int d = 0; d < sensorNum; ++d) close(fd[d][1]);
 
         char mensaje[1024];
-        int n=0;
+
         char *delimitador = "/";
 
         while((n=read(fd[i][0],&mensaje,sizeof(mensaje)))>0){
+                mensaje2[n] = '\0';
                 char *orden=strtok(mensaje,delimitador);
                 char *id=strtok(NULL,delimitador);
                 char *time=strtok(NULL,delimitador);
-                printf("%d",atoi(id));
+
                 if(strcmp(orden,"salir")==0){
                     exit(0);
                 }
