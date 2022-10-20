@@ -32,7 +32,7 @@ int main(){
        for (int h = 0; h < sensorNum; ++h) close(fd[h][0]);
         while(1){
             printf("Ingrese el texto del sensor:\n");
-            scanf(mensaje2);    
+            scanf("%s",mensaje2);    
             if(strcmp(mensaje2,"salir")==0){
                 for (size_t j = 0; j < sensorNum; j++)
                 {
@@ -49,9 +49,9 @@ int main(){
                 break;
             }
             //printf("Ingrese el id del sensor: \n");
-            //scanf("%d",id);
+            //scanf("%s",id);
             //printf("Ingrese el tiempo de espera del sensor:\n");
-            //scanf("%d",time);
+            //scanf("%s",time);
 
         }
         //close(fd[1]);
