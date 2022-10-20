@@ -99,8 +99,8 @@ int main(){
                 if(strcmp(orden,"salir")==0){
                     exit(0);
                 }
-                print("%s",id);
-                print("%d",i);
+                printf("%s",id);
+                printf("%d",i);
                 if(atoi(id)==i){
                     printf("orden recibida [%s]\n",orden);
                     sleep(atoi(time));
