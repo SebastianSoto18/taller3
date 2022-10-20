@@ -90,8 +90,7 @@ int main(){
 
       
 
-        while((n=read(fd[i][0],buff, MAX_READ)) >0){
-                pause(); 
+        while((n=read(fd[i][0],buff, MAX_READ)) >0){ 
                 buff[n] = EOL;
                 char *orden=strtok(buff,delimitador);
                 char *id=strtok(NULL,delimitador);
