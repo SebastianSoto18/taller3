@@ -7,16 +7,33 @@
 
 #define MAX_READ 1024
 #define EOL '\0'
+int i=0;
 char buff[MAX_READ];
 
 void *old;
 void manejador (int sig){
+                int n=0;
+                char *delimitador = "/";
+                n=read(fd[i][0],buff, MAX_READ
+                buff[n] = EOL;
+                char *orden=strtok(buff,delimitador);
+                char *id=strtok(NULL,delimitador);
+                char *time=strtok(NULL,delimitador);
 
+                if(strcmp(orden,"salir")==0){
+                    exit(0);
+                }
+
+                if(atoi(id)==i){
+                    printf("orden recibida [%s]\n",orden);
+                    sleep(atoi(time));
+                    printf("orden ejecutada\n");
+                } 
 }
 
 int main(){
     int sensorNum=0;
-    int i=0;
+    
     int pid=0;
     pid_t root=getpid();
     printf("Ingrese el numero de sensores a crear: \n");
@@ -85,26 +102,9 @@ int main(){
 
     }else{
         for (int d = 0; d < sensorNum; ++d) close(fd[d][1]);
-        char *delimitador = "/";
-
-      
-
-        while((n=read(fd[i][0],buff, MAX_READ)) >0){
-                buff[n] = EOL;
-                char *orden=strtok(buff,delimitador);
-                char *id=strtok(NULL,delimitador);
-                char *time=strtok(NULL,delimitador);
-
-                if(strcmp(orden,"salir")==0){
-                    exit(0);
-                }
-
-                if(atoi(id)==i){
-                    printf("orden recibida [%s]\n",orden);
-                    sleep(atoi(time));
-                    printf("orden ejecutada\n");
-                } 
-                pause();
+        
+        while(1){
+                pause();  
         }
     } 
 
