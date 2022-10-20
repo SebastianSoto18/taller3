@@ -33,7 +33,8 @@ int main(){
     {
         if(fork()==0){
             printf("Soy el proceso hijo %d y mi padre es %d\n",getpid(),getppid());
-            pause();
+
+            system("pause");
             break;
         }
     }
@@ -66,10 +67,11 @@ int main(){
                     }
             printf("Ingrese el id del sensor: \n");
             scanf("%s",id);
+            kill(atoi(id), SIGUSR1);
+            scanf("%s",id);
             printf("Ingrese el tiempo de espera del sensor:\n");
             scanf("%s",time);
 
-            kill(atoi(id), SIGUSR1);
             char comando[1024]="";
             strcat(comando,mensaje2);
             strcat(comando,"/");
@@ -103,7 +105,7 @@ int main(){
                     printf("orden ejecutada\n");
                 }
 
-                pause();
+                system("pause");
                 
         }
     } 
