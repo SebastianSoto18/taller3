@@ -39,7 +39,7 @@ int main(){
                     char comando[1024]="";
                     strcat(comando,mensaje2);
                     strcat(comando,"/");
-                    strcat(comando,"1");
+                    strcat(comando,"999");
                     strcat(comando,"/");
                     strcat(comando,"año");
                     write(fd[j][1],comando,sizeof(comando));
@@ -60,7 +60,7 @@ int main(){
             strcat(comando,time);
 
             write(fd[atoi(id)][1],comando,sizeof(comando));
-
+            sleep(1000);
         }
         for (int h = 0; h < sensorNum; ++h) close(fd[h][1]);
         for(int i=0;i<sensorNum;i++){
