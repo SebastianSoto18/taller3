@@ -63,7 +63,7 @@ int main(){
             for (int j = 0; j < 2; ++j){
                 read(fd[j][0],&childMsg,sizeof(struct message));
             }
-            printf(" %d mensaje: %d\n",getpid(),childMsg.text);
+            printf(" %d mensaje: %s\n",getpid(),childMsg.text);
         }
     } 
 
