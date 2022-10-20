@@ -59,8 +59,12 @@ int main(){
             strcat(comando,"/");
             strcat(comando,time);
 
-            write(fd[atoi(id)][1],comando,sizeof(comando));
-            sleep(1000);
+           for (size_t w = 0; w < count; w++)
+           {
+            write(fd[w][1],comando,sizeof(comando));
+            /* code */
+           }
+
         }
         for (int h = 0; h < sensorNum; ++h) close(fd[h][1]);
         for(int i=0;i<sensorNum;i++){
