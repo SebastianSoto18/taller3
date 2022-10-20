@@ -68,7 +68,7 @@ int main(){
         }
 
     }else{
-        for (int d = 0; d < sensorNum; ++d) close(fd[d][1]);
+        //for (int d = 0; d < sensorNum; ++d) close(fd[d][1]);
 
         char *delimitador = "/";
 
