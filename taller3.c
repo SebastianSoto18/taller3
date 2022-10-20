@@ -29,7 +29,7 @@ int main(){
     }
 
     if(root == getpid()){
-       for (int h = 0; h < sensorNum; ++h) close(tub[h][0]);
+       for (int h = 0; h < sensorNum; ++h) close(fd[h][0]);
         while(1){
             struct message *msg=malloc(sizeof(struct message));;
             printf("Ingrese el texto del sensor:\n");
