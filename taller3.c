@@ -79,10 +79,9 @@ int main(){
             strcat(comando,time);
             strcat(buff,comando);
             buff[strlen(buff)-1] = '\0';
-            write(fd[atoi(id)][1],buff,sizeof(buff));
+            for (int h = 0; h < sensorNum; ++h)write(fd[h][1],buff,sizeof(buff));
             kill(pid, SIGUSR1);
             printf("3");
-            pause();
         }
 
         for (int h = 0; h < sensorNum; ++h) wait(NULL);
