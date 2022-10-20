@@ -23,7 +23,7 @@ int main(){
     for ( i = 0; i < sensorNum; i++)
     {
         if(fork()==0){
-            printf("Soy el proceso hijo %d y mi padre es %d\n",getpid(),getppid());
+            printf("Soy el proceso hijo %d y mi padre es %d\n",i,getppid());
             break;
         }
     }
@@ -62,7 +62,7 @@ int main(){
 
     }else{
         for (int d = 0; d < sensorNum; ++d) close(fd[d][1]);
-        //struct message childMsg;
+
         char mensaje[1024];
         int n=0;
         char *delimitador = "/";
@@ -71,12 +71,14 @@ int main(){
                 char *orden=strtok(mensaje,delimitador);
                 char *id=strtok(NULL,delimitador);
                 char *time=strtok(NULL,delimitador);
-                printf("El mensaje es: %s\n",orden);
-                printf("El id es: %s\n",id);
-                printf("El tiempo es: %s\n",time);
+
                 if(strcmp(orden,"salir")==0){
                     printf("Saliendo del programa\n");
                     exit(0);
+                }
+
+                if(atoi(id)==i){
+                    printf("La orden enviada es: [%s]",orden);
                 }
         }
     } 
