@@ -41,7 +41,7 @@ int main(){
                 {
                     write(fd[j][1],&msg,sizeof(struct message));
                 }
-                printf("Saliendo del programa\n");
+                printf("Saliendo del programa padre\n");
                 break;
             }
             printf("Ingrese el id del sensor: \n");
@@ -65,6 +65,7 @@ int main(){
 
         while(1){
                 n=read(fd[i][0],&childMsg,sizeof(struct message));
+                printf("%s",childMsg.text);
                 if(strcmp(childMsg.text,"salir")==0){
                     printf("Saliendo del programa\n");
                     exit(0);
