@@ -59,14 +59,15 @@ int main(){
 
     }else{
         close(fd[1]);
+        struct message childMsg;
         while(1){
-            read(fd[0],&msg,sizeof(msg));
+            read(fd[0],&childMsg,sizeof(struct message));
 
-            if(strcmp(msg.text, "salir") != 0){
+            if(strcmp(childMsg.text, "salir") != 0){
                     break;
             }
-            if(msg.id == id){
-                printf("ID: %d, Time: %d, Text: %s\n",msg.id,msg.time,msg.text);
+            if(childMsg.id == id){
+                printf("ID: %d, Time: %d, Text: %s\n",childMsg.id,childMsg.time,childMsg.text);
             }
         }
     } 
