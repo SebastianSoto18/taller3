@@ -63,8 +63,8 @@ int main(){
         char mensaje[100];
         int n=0;
         int j=0;
-        while((n=read(fd[j][0],&mensaje,sizeof(mensaje)))>0){
-
+        while(1){
+                n=read(fd[i][0],&mensaje,sizeof(mensaje));
                 if(strcmp(mensaje,"salir")==0){
                     printf("Saliendo del programa\n");
                     exit(0);
