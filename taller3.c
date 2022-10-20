@@ -52,7 +52,7 @@ int main(){
             free(msg);
         }
         close(fd[1]);
-        printf("Padre terminado\n");
+        printf("Se ha terminado el programa\n");
         for(int i=0;i<sensorNum;i++){
             wait(NULL);
         }
@@ -66,7 +66,8 @@ int main(){
             if(strcmp(childMsg.text, "salir") != 0){
                     break;
             }
-            if(childMsg.id == id){
+            printf("mensaje: %s\n",childMsg.text);
+            if(childMsg.id == getpid()){
                 printf("ID: %d, Time: %d, Text: %s\n",childMsg.id,childMsg.time,childMsg.text);
             }
         }
