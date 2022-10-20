@@ -106,11 +106,8 @@ int main(){
                     printf("orden ejecutada\n");
                     printf("1");
                 } 
-                changeState+=1;
-                if(changeState%2==0){
-                    printf("2");
                     pause();
-                }
+                
                 
                 
             }
