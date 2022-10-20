@@ -49,7 +49,6 @@ int main(){
             printf("Ingrese el tiempo de espera del sensor:\n");
             scanf("%d",&msg->time);
             write(fd[1],&msg,sizeof(struct message));
-            free(msg);
         }
         close(fd[1]);
         printf("Se ha terminado el programa\n");
@@ -62,11 +61,11 @@ int main(){
         struct message childMsg;
         while(1){
             read(fd[0],&childMsg,sizeof(struct message));
+            printf("mensaje: %s\n",childMsg.text);
 
             if(strcmp(childMsg.text, "salir") != 0){
                     break;
             }
-            printf("mensaje: %s\n",childMsg.text);
             if(childMsg.id == getpid()){
                 printf("ID: %d, Time: %d, Text: %s\n",childMsg.id,childMsg.time,childMsg.text);
             }
