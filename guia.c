@@ -30,12 +30,9 @@ int main(){
       do{        
          fgets(buff, MAX_READ, stdin );         
          if(strlen(buff)>1){
-            printf("[%d]write-->:%s\n",getpid(),buff);
+            buff[strlen(buff)-1] = '\0';
+            //printf("[%d]write-->:%s\n",getpid(),buff);
             write(fd[1], buff, strlen(buff));
-            for (size_t i = 0; i < 5; i++)
-            {
-                write(fd[1], buff, strlen(buff));
-            }
          }
        }while(strcmp(buff,"salir") !=0);
       close(fd[1]);
@@ -45,6 +42,7 @@ int main(){
    else{
          close(fd[1]);         
          while( (n=read(fd[0],buff, MAX_READ)) >0 ){
+            buff[n] = '\0';
             printf("[%d]read<--:%s\n",getpid(),buff);                       
           }
       }
