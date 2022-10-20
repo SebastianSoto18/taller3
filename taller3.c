@@ -65,7 +65,7 @@ int main(){
                         break;
                     }
             printf("Ingrese el id del sensor: \n");
-            scanf("%s",&pid);
+            scanf("%d",&pid);
            
             scanf("%s",id);
             printf("Ingrese el tiempo de espera del sensor:\n");
