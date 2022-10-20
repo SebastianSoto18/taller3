@@ -72,7 +72,7 @@ int main(){
 
         char *delimitador = "/";
 
-        while((n=read(fd[0],buff, MAX_READ)) >0){
+        while((n=read(fd[i][0],buff, MAX_READ)) >0){
                 buff[n] = '\0';
                 char *orden=strtok(buff,delimitador);
                 char *id=strtok(NULL,delimitador);
