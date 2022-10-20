@@ -39,9 +39,10 @@ int main(){
             if(strcmp(mensaje2,"salir")==0){
                 for (size_t j = 0; i < sensorNum; i++)
                 {
+                    printf("enviando mensaje de salida");
                     write(fd[j][1],mensaje2,sizeof(mensaje2));
                 }
-            
+                printf("Saliendo del programa\n");
                 break;
             }
             //printf("Ingrese el id del sensor: \n");
