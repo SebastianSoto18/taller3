@@ -78,7 +78,7 @@ int main(){
                 char *orden=strtok(mensaje,delimitador);
                 char *id=strtok(NULL,delimitador);
                 char *time=strtok(NULL,delimitador);
-
+                printf("%d",atoi(id));
                 if(strcmp(orden,"salir")==0){
                     exit(0);
                 }
