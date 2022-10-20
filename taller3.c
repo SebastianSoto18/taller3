@@ -64,7 +64,7 @@ int main(){
         char orden[100];
         char id[100];
         char time[100];
-        char delimitador = "/";
+        char *delimitador = "/";
 
         while((n=read(fd[i][0],&mensaje,sizeof(mensaje)))>0){
                 orden=strtok(mensaje,delimitador);
