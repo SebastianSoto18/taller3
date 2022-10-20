@@ -81,6 +81,7 @@ int main(){
             buff[strlen(buff)-1] = '\0';
             write(fd[atoi(id)][1],buff,sizeof(buff));
             kill(pid, SIGUSR1);
+            print("3");
         }
 
     }else{
@@ -103,9 +104,11 @@ int main(){
                     printf("orden recibida [%s]\n",orden);
                     sleep(atoi(time));
                     printf("orden ejecutada\n");
+                    print("1");
                 } 
                 changeState+=1;
                 if(changeState%2==0){
+                    print("2");
                     pause();
                 }
                 
