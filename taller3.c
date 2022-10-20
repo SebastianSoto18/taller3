@@ -61,15 +61,12 @@ int main(){
         //struct message childMsg;
         char mensaje[1024];
         int n=0;
-        char orden[100];
-        char id[100];
-        char time[100];
         char *delimitador = "/";
 
         while((n=read(fd[i][0],&mensaje,sizeof(mensaje)))>0){
-                *orden=strtok(mensaje,delimitador);
-                *id=strtok(NULL,delimitador);
-                *time=strtok(NULL,delimitador);
+                char *orden=strtok(mensaje,delimitador);
+                char *id=strtok(NULL,delimitador);
+                char *time=strtok(NULL,delimitador);
                 printf("El mensaje es: %s\n",orden);
                 printf("El id es: %s\n",id);
                 printf("El tiempo es: %s\n",time);
