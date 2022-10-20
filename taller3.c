@@ -56,7 +56,6 @@ int main(){
                         }
                         printf("Saliendo del programa\n");
                         for (int h = 0; h < sensorNum; ++h) close(fd[h][1]);
-                        for (int h = 0; h < sensorNum; ++h) wait(NULL);
 
                         if(signal(SIGUSR1, old) == SIG_ERR){
                             perror("signal: ");
@@ -84,6 +83,7 @@ int main(){
             printf("3");
         }
 
+        for (int h = 0; h < sensorNum; ++h) wait(NULL);
     }else{
         for (int d = 0; d < sensorNum; ++d) close(fd[d][1]);
         char *delimitador = "/";
