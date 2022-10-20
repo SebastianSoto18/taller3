@@ -39,7 +39,7 @@ int main(){
                     char comando[1024]="";
                     strcat(comando,mensaje2);
                     strcat(comando,"/");
-                    strcat(comando,"123");
+                    strcat(comando,"1");
                     strcat(comando,"/");
                     strcat(comando,"año");
                     printf("%s\n",comando);
