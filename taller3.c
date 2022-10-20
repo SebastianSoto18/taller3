@@ -17,6 +17,7 @@ void manejador (int sig){
 int main(){
     int sensorNum=0;
     int i=0;
+    int pid=0;
     pid_t root=getpid();
     printf("Ingrese el numero de sensores a crear: \n");
     scanf("%d",&sensorNum);
@@ -86,6 +87,8 @@ int main(){
         for (int d = 0; d < sensorNum; ++d) close(fd[d][1]);
         char *delimitador = "/";
 
+      
+
         while((n=read(fd[i][0],buff, MAX_READ)) >0){
                 pause();
                 buff[n] = EOL;
@@ -101,7 +104,7 @@ int main(){
                     printf("orden recibida [%s]\n",orden);
                     sleep(atoi(time));
                     printf("orden ejecutada\n");
-                }  
+                } 
         }
     } 
 
