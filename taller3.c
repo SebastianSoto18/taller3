@@ -105,12 +105,9 @@ int main(){
                     printf("orden recibida [%s]\n",orden);
                     sleep(atoi(time));
                     printf("orden ejecutada\n");
-                    printf("1");
+                    pause(); 
                 } 
-                    pause();
-                
-                
-                
+                    
             }
     } 
 
