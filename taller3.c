@@ -35,14 +35,14 @@ int main(){
 
     if(pid==0){
         while(1){
-            printf("Ingrese el texto del sensor %d: \n");
+            printf("Ingrese el texto del sensor:\n");
             scanf("%s",msg.text);
             if(strcmp(msg.text,"salir")==0){
                 break;
             }
             printf("Ingrese el id del sensor: \n");
             scanf("%d",&msg.id);
-            printf("Ingrese el tiempo de espera del sensor %d: \n");
+            printf("Ingrese el tiempo de espera del sensor:\n");
             scanf("%d",&msg.time);
             write(fd[1],&msg,sizeof(struct message));
         }
