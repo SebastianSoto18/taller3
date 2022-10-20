@@ -81,7 +81,7 @@ int main(){
                 if(strcmp(orden,"salir")==0){
                     exit(0);
                 }
-                printf("tumama");
+
                 if(atoi(id)==i){
                     printf("La orden enviada es: [%s]",orden);
                 }
