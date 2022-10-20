@@ -30,9 +30,13 @@ int main(){
       do{        
          fgets(buff, MAX_READ, stdin );         
          if(strlen(buff)>1){
+            for (size_t i = 0; i < 5; i++)
+            {
             buff[strlen(buff)-1] = '\0';
             //printf("[%d]write-->:%s\n",getpid(),buff);
             write(fd[1], buff, strlen(buff));
+            }
+            
          }
        }while(strcmp(buff,"salir") !=0);
       close(fd[1]);
