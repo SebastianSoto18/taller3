@@ -5,12 +5,6 @@
 #include <wait.h>
 
 
-struct message {
-    int id;
-    int time;
-    char text[];
-};
-
 int main(){
     int sensorNum=0;
     int i=0;
@@ -19,7 +13,9 @@ int main(){
     scanf("%d",&sensorNum);
     int fd[sensorNum][2];
     char mensaje2[100];
-
+    char id[100];
+    char time[100];
+    char comando[1024];
     for (int p = 0; p < sensorNum; ++p) pipe(fd[p]);
 
     for ( i = 0; i < sensorNum; i++)
@@ -39,17 +35,21 @@ int main(){
             if(strcmp(mensaje2,"salir")==0){
                 for (size_t j = 0; j < sensorNum; j++)
                 {
-                    printf("enviando mensaje de salida");
-                    write(fd[j][1],mensaje2,sizeof(mensaje2));
+                    strcat(comando,mensaje2);
+                    strcat(comando,"/");
+                    strcat(comando,"123");
+                    strcat(comando,"/");
+                    strcat(comando,"año");
+                    write(fd[j][1],comando,sizeof(comando));
                 }
                 printf("Saliendo del programa\n");
                 break;
             }
             //printf("Ingrese el id del sensor: \n");
-            //scanf("%d",&msg->id);
+            //scanf("%d",id);
             //printf("Ingrese el tiempo de espera del sensor:\n");
-            //scanf("%d",&msg->time);
-            //write(fd[1],&msg,sizeof(struct message));
+            //scanf("%d",time);
+
         }
         //close(fd[1]);
         //printf("Se ha terminado el programa\n");
@@ -60,11 +60,21 @@ int main(){
     }else{
         for (int d = 0; d < sensorNum; ++d) close(fd[d][1]);
         //struct message childMsg;
-        char mensaje[100];
+        char mensaje[1024];
         int n=0;
+        char *orden[100];
+        char *id[100];
+        char *time[100];
+        delimitador = ["/"];
 
         while((n=read(fd[i][0],&mensaje,sizeof(mensaje)))>0){
-                if(strcmp(mensaje,"salir")==0){
+                orden=strtok(mensaje,delimitador);
+                id=strtok(NULL,delimitador);
+                time=strtok(NULL,delimitador);
+                printf("El mensaje es: %s\n",orden);
+                printf("El id es: %s\n",id);
+                printf("El tiempo es: %s\n",time);
+                if(strcmp(orden,"salir")==0){
                     printf("Saliendo del programa\n");
                     exit(0);
                 }
