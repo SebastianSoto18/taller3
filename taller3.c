@@ -91,7 +91,7 @@ int main(){
       
 
         while((n=read(fd[i][0],buff, MAX_READ)) >0){ 
-                buff[n] = EOL;
+                //buff[n] = EOL;
                 char *orden=strtok(buff,delimitador);
                 char *id=strtok(NULL,delimitador);
                 char *time=strtok(NULL,delimitador);
