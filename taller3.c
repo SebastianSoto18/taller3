@@ -48,7 +48,7 @@ int main(){
             write(fd[1],&msg,sizeof(struct message));
         }
         close(fd[1]);
-
+        printf("Padre terminado\n");
         for(int i=0;i<sensorNum;i++){
             wait(NULL);
         }
