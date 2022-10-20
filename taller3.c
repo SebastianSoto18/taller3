@@ -108,8 +108,7 @@ int main(){
                     sleep(atoi(time));
                     printf("orden ejecutada\n");
                     kill(root, SIGUSR1);
-                } 
-                pause(); 
+                }  
             }
     } 
 
