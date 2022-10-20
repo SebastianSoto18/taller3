@@ -6,8 +6,8 @@
 
 
 struct message {
-    int id;
-    int time;
+    int id=0;
+    int time=0;
     char text[];
 };
 
@@ -35,26 +35,22 @@ int main(){
         while(1){
             struct message *msg=malloc(sizeof(struct message));;
             printf("Ingrese el texto del sensor:\n");
-            scanf("%s",mensaje2);
-            if(strcmp(mensaje2,"salir")==0){
+            scanf("%s",msg->text);
+            if(strcmp(msg->text,"salir")==0){
                 for (size_t j = 0; j < sensorNum; j++)
                 {
-                    printf("enviando mensaje de salida");
-                    write(fd[j][1],mensaje2,sizeof(mensaje2));
+                    write(fd[j][1],&msg,sizeof(struct message));
                 }
                 printf("Saliendo del programa\n");
                 break;
             }
-              for (size_t j = 0; j < sensorNum; j++)
-                {
-                    printf("enviando mensaje de salida");
-                    write(fd[j][1],mensaje2,sizeof(mensaje2));
+            printf("Ingrese el id del sensor: \n");
+            scanf("%d",&msg->id);
+            printf("Ingrese el tiempo de espera del sensor:\n");
+            scanf("%d",&msg->time);
+              for (size_t j = 0; j < sensorNum; j++){
+                    write(fd[j][1],&msg,sizeof(struct message));
                 }
-            //printf("Ingrese el id del sensor: \n");
-            //scanf("%d",&msg->id);
-            //printf("Ingrese el tiempo de espera del sensor:\n");
-            //scanf("%d",&msg->time);
-            //write(fd[1],&msg,sizeof(struct message));
         }
         //close(fd[1]);
         //printf("Se ha terminado el programa\n");
@@ -64,18 +60,14 @@ int main(){
 
     }else{
         for (int d = 0; d < sensorNum; ++d) close(fd[d][1]);
-        //struct message childMsg;
-        char mensaje[100];
+        struct message childMsg;
         int n=0;
 
         while(1){
-                n=read(fd[i][0],&mensaje,sizeof(mensaje));
-                if(strcmp(mensaje,"salir")==0){
+                n=read(fd[i][0],&childMsg,sizeof(struct message));
+                if(strcmp(childMsg.text,"salir")==0){
                     printf("Saliendo del programa\n");
                     exit(0);
-                }else{
-                    printf(" %d  El mensaje es: %s\n",getpid(),mensaje);
-                    sleep(100000000);
                 }
         }
     } 
