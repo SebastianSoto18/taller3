@@ -6,8 +6,8 @@
 
 
 struct message {
-    int id=0;
-    int time=0;
+    int id;
+    int time;
     char text[];
 };
 
