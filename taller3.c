@@ -33,8 +33,6 @@ int main(){
     {
         if(fork()==0){
             printf("Soy el proceso hijo %d y mi padre es %d\n",getpid(),getppid());
-
-            pause();
             break;
         }
     }
@@ -89,7 +87,7 @@ int main(){
         char *delimitador = "/";
 
         while((n=read(fd[i][0],buff, MAX_READ)) >0){
-                
+                pause();
                 buff[n] = EOL;
                 char *orden=strtok(buff,delimitador);
                 char *id=strtok(NULL,delimitador);
@@ -100,13 +98,10 @@ int main(){
                 }
 
                 if(atoi(id)==i){
-                    printf("orden recivida [%s]\n",orden);
+                    printf("orden recibida [%s]\n",orden);
                     sleep(atoi(time));
                     printf("orden ejecutada\n");
-                }
-
-                pause();
-                
+                }  
         }
     } 
 
