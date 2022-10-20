@@ -72,8 +72,8 @@ int main(){
 
         char *delimitador = "/";
 
-        while((n=read(fd[i][0],&mensaje,sizeof(mensaje)))>0){
-                mensaje2[n] = '\0';
+        while((n=read(fd[i][0],mensaje,sizeof(mensaje)))>0){
+                mensaje[n] = '\0';
                 char *orden=strtok(mensaje,delimitador);
                 char *id=strtok(NULL,delimitador);
                 char *time=strtok(NULL,delimitador);
@@ -87,5 +87,5 @@ int main(){
         }
     } 
 
-    return 0;
+    return EXIT_SUCCESS;
 }
