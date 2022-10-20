@@ -34,7 +34,7 @@ int main(){
             if(strcmp(mensaje2,"salir")==0){
                 for (size_t j = 0; j < sensorNum; j++)
                 {
-                    char *comando[1024];
+                    char comando[1024];
                     strcat(comando,mensaje2);
                     strcat(comando,"/");
                     strcat(comando,"123");
@@ -42,6 +42,7 @@ int main(){
                     strcat(comando,"año");
                     printf("%s\n",comando);
                     write(fd[j][1],comando,sizeof(comando));
+                    free(comando);
                 }
                 printf("Saliendo del programa\n");
                 break;
