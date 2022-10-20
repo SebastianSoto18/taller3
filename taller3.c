@@ -76,7 +76,8 @@ int main(){
                     printf("Saliendo del programa\n");
                     exit(0);
                 }
-
+                printf("%d",i);
+                printf("%s",id);
                 if(atoi(id)==i){
                     printf("La orden enviada es: [%s]",orden);
                 }
