@@ -49,8 +49,8 @@ int main(){
             printf("Ingrese el tiempo de espera del sensor:\n");
             scanf("%d",&msg->time);
             write(fd[1],&msg,sizeof(struct message));
+            free(msg);
         }
-        free(msg);
         close(fd[1]);
         printf("Padre terminado\n");
         for(int i=0;i<sensorNum;i++){
