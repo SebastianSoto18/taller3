@@ -103,6 +103,7 @@ int main(){
                     printf("orden recibida [%s]\n",orden);
                     sleep(atoi(time));
                     printf("orden ejecutada\n");
+                    kill(getppid(),SIGUSR1);
                 } 
                 changeState+=1;
                 if(changeState%2==0){
