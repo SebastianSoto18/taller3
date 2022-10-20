@@ -61,14 +61,14 @@ int main(){
         struct message childMsg;
         while(1){
             read(fd[0],&childMsg,sizeof(struct message));
-            printf("mensaje: %s\n",childMsg.text);
+            printf("mensaje: %s\n",childMsg.id);
 
-            if(strcmp(childMsg.text, "salir") != 0){
-                    break;
-            }
-            if(childMsg.id == getpid()){
-                printf("ID: %d, Time: %d, Text: %s\n",childMsg.id,childMsg.time,childMsg.text);
-            }
+            //if(strcmp(childMsg.text, "salir") == 0){
+                    //break;
+            //}
+            //if(childMsg.id == getpid()){
+                //printf("ID: %d, Time: %d, Text: %s\n",childMsg.id,childMsg.time,childMsg.text);
+            //}
         }
     } 
 
