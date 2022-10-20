@@ -4,6 +4,8 @@
 #include <string.h>
 #include <wait.h>
 
+#define MAX_READ 500
+
 
 int main(){
     int sensorNum=0;
@@ -30,7 +32,7 @@ int main(){
        for (int h = 0; h < sensorNum; ++h) close(fd[h][0]);
         while(1){
             printf("Ingrese el texto del sensor:\n");
-            fgets(mensaje2);
+            fgets(buff, MAX_READ, stdin );    
             if(strcmp(mensaje2,"salir")==0){
                 for (size_t j = 0; j < sensorNum; j++)
                 {
