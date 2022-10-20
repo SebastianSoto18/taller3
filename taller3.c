@@ -32,7 +32,7 @@ int main(){
     if(root == getpid()){
        for (int h = 0; h < sensorNum; ++h) close(fd[h][0]);
         while(1){
-            printf("Ingrese el texto del sensor:\n");
+            printf("Ingrese la orden para el sensor:\n");
             scanf("%s",mensaje2);    
             if(strcmp(mensaje2,"salir")==0){
                 for (size_t j = 0; j < sensorNum; j++)
@@ -68,7 +68,7 @@ int main(){
         }
 
     }else{
-        //for (int d = 0; d < sensorNum; ++d) close(fd[d][1]);
+        for (int d = 0; d < sensorNum; ++d) close(fd[d][1]);
 
         char *delimitador = "/";
 
@@ -81,6 +81,7 @@ int main(){
                 if(strcmp(orden,"salir")==0){
                     exit(0);
                 }
+                printf("tumama");
                 if(atoi(id)==i){
                     printf("La orden enviada es: [%s]",orden);
                 }
