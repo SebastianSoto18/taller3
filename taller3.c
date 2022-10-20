@@ -48,14 +48,22 @@ int main(){
                 printf("Saliendo del programa\n");
                 break;
             }
-            //printf("Ingrese el id del sensor: \n");
-            //scanf("%s",id);
-            //printf("Ingrese el tiempo de espera del sensor:\n");
-            //scanf("%s",time);
+            printf("Ingrese el id del sensor: \n");
+            scanf("%s",id);
+            printf("Ingrese el tiempo de espera del sensor:\n");
+            scanf("%s",time);
+
+            char comando[1024]="";
+            strcat(comando,mensaje2);
+            strcat(comando,"/");
+            strcat(comando,id);
+            strcat(comando,"/");
+            strcat(comando,time);
+
+            write(fd[atoi(id)][1],comando,sizeof(comando));
 
         }
-        //close(fd[1]);
-        //printf("Se ha terminado el programa\n");
+        for (int h = 0; h < sensorNum; ++h) close(fd[h][1]);
         for(int i=0;i<sensorNum;i++){
             wait(NULL);
         }
@@ -72,14 +80,11 @@ int main(){
                 char *id=strtok(NULL,delimitador);
                 char *time=strtok(NULL,delimitador);
 
-                printf("%d",i);
-                printf("%s",id);
+                if(strcmp(orden,"salir")==0){
+                    exit(0);
+                }
                 if(atoi(id)==i){
                     printf("La orden enviada es: [%s]",orden);
-                }
-                if(strcmp(orden,"salir")==0){
-                    printf("Saliendo del programa\n");
-                    exit(0);
                 }
         }
     } 
