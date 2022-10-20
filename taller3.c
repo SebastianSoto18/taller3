@@ -34,7 +34,7 @@ int main(){
             if(strcmp(mensaje2,"salir")==0){
                 for (size_t j = 0; j < sensorNum; j++)
                 {
-                    comando=[];
+                    comando="";
                     strcat(comando,mensaje2);
                     strcat(comando,"/");
                     strcat(comando,"123");
