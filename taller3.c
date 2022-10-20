@@ -9,6 +9,7 @@
 #define EOL '\0'
 int i=0;
 char buff[MAX_READ];
+int fd[][];
 
 void *old;
 void manejador (int sig){
