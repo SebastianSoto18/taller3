@@ -45,6 +45,11 @@ int main(){
                 printf("Saliendo del programa\n");
                 break;
             }
+              for (size_t j = 0; j < sensorNum; j++)
+                {
+                    printf("enviando mensaje de salida");
+                    write(fd[j][1],mensaje2,sizeof(mensaje2));
+                }
             //printf("Ingrese el id del sensor: \n");
             //scanf("%d",&msg->id);
             //printf("Ingrese el tiempo de espera del sensor:\n");
