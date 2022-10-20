@@ -15,7 +15,6 @@ int main(){
     int fd[2];
     int pid;
     int id=0;
-    struct message msg;
     pipe(fd);
     int sensorNum=0;
 
@@ -36,20 +35,22 @@ int main(){
     if(pid!=0){
         close(fd[0]);
         while(1){
+            struct message *msg=malloc(sizeof(struct message));;
             printf("Ingrese el texto del sensor:\n");
-            scanf("%s",msg.text);
-            if(strcmp(msg.text,"salir")==0){
-                msg.id=1;
-                msg.time=0;
+            scanf("%s",msg->text);
+            if(strcmp(msg->text,"salir")==0){
+                msg->id=1;
+                msg->time=0;
                 write(fd[1],&msg,sizeof(msg));
                 break;
             }
             printf("Ingrese el id del sensor: \n");
-            scanf("%d",&msg.id);
+            scanf("%d",&msg->id);
             printf("Ingrese el tiempo de espera del sensor:\n");
-            scanf("%d",&msg.time);
+            scanf("%d",&msg->time);
             write(fd[1],&msg,sizeof(struct message));
         }
+        free(msg);
         close(fd[1]);
         printf("Padre terminado\n");
         for(int i=0;i<sensorNum;i++){
