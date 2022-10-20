@@ -63,17 +63,16 @@ int main(){
             strcat(comando,time);
             strcat(buff,comando);
             buff[strlen(buff)-1] = '\0';
-            for(int g=0;g<sensorNum;++g)write(fd[g][1],buff,sizeof(buff));
+            write(fd[atoi(id)][1],buff,sizeof(buff));
 
         }
 
     }else{
         for (int d = 0; d < sensorNum; ++d) close(fd[d][1]);
-        int j=0;
         char *delimitador = "/";
 
-        while((n=read(fd[j][0],buff, MAX_READ)) >0){
-                buff[n] = '\0';
+        while((n=read(fd[i][0],buff, MAX_READ)) >0){
+                buff[n] = EOL;
                 char *orden=strtok(buff,delimitador);
                 char *id=strtok(NULL,delimitador);
                 char *time=strtok(NULL,delimitador);
@@ -83,9 +82,10 @@ int main(){
                 }
 
                 if(atoi(id)==i){
-                    printf("La orden enviada es: [%s]",orden);
+                    printf("orden recivida [%s]\n",orden);
+                    sleep(atoi(time));
+                    printf("orden ejecutada\n");
                 }
-                j++;
         }
     } 
 
