@@ -65,10 +65,11 @@ int main(){
         int j=0;
         while((n=read(fd[j][0],&mensaje,sizeof(mensaje)))>0){
 
-            printf(" %d mensaje: %s\n",getpid(),mensaje);
-            if(strcmp(mensaje,"salir")==0){
-                break;
-            }
+                if(strcmp(mensaje,"salir")==0){
+                    printf("Saliendo del programa\n");
+                    exit(0);
+                }
+            
             j++;
         }
     } 
