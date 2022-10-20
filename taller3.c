@@ -57,7 +57,7 @@ int main(){
         }
 
     }else{
-        for (int d = 0; d < sensorNum; ++d) close(tub[d][1]);
+        for (int d = 0; d < sensorNum; ++d) close(fd[d][1]);
         struct message childMsg;
         while(1){
             for (int j = 0; j < 2; ++j){
