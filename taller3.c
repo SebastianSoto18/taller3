@@ -62,15 +62,16 @@ int main(){
         //struct message childMsg;
         char mensaje[100];
         int n=0;
-        int j=0;
+
         while(1){
                 n=read(fd[i][0],&mensaje,sizeof(mensaje));
                 if(strcmp(mensaje,"salir")==0){
                     printf("Saliendo del programa\n");
                     exit(0);
+                }else{
+                    printf(" %d  El mensaje es: %s\n",getpid(),mensaje);
+                    sleep(100000000);
                 }
-            
-            j++;
         }
     } 
 
