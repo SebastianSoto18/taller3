@@ -18,12 +18,14 @@ int main(){
     printf("Ingrese el numero de sensores a crear: \n");
     scanf("%d",&sensorNum);
     int fd[sensorNum][2];
+    char mensaje2[100];
 
     for (int p = 0; p < sensorNum; ++p) pipe(fd[p]);
 
     for ( i = 0; i < sensorNum; i++)
     {
         if(fork()==0){
+            printf("Soy el proceso hijo %d y mi padre es %d\n",getpid(),getppid());
             break;
         }
     }
@@ -33,13 +35,11 @@ int main(){
         while(1){
             struct message *msg=malloc(sizeof(struct message));;
             printf("Ingrese el texto del sensor:\n");
-            scanf("%s",msg->text);
-            if(strcmp(msg->text,"salir")==0){
-                msg->id=1;
-                msg->time=0;
+            scanf("%s",mensaje2);
+            if(strcmp(mensaje2,"salir")==0){
                 for (size_t j = 0; i < sensorNum; i++)
                 {
-                    write(fd[j][1],&msg,sizeof(struct message));
+                    write(fd[j][1],mensaje2,sizeof(mensaje2));
                 }
             
                 break;
@@ -58,12 +58,16 @@ int main(){
 
     }else{
         for (int d = 0; d < sensorNum; ++d) close(fd[d][1]);
-        struct message childMsg;
+        //struct message childMsg;
+        char mensaje[100];
         while(1){
-            for (int j = 0; j < 2; ++j){
-                read(fd[j][0],&childMsg,sizeof(struct message));
+            for (int j = 0; j < sensorNum; ++j){
+                read(fd[j][0],&mensaje,sizeof(mensaje));
             }
-            printf(" %d mensaje: %s\n",getpid(),childMsg.text);
+            printf(" %d mensaje: %s\n",getpid(),mensaje);
+            if(strcmp(mensaje,"salir")==0){
+                break;
+            }
         }
     } 
 
