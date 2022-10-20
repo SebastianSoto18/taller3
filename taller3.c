@@ -11,7 +11,7 @@ char buff[MAX_READ];
 
 void *old;
 void manejador (int sig){
-
+    printf("Señal %d recibida", sig);
 }
 
 int main(){
@@ -100,8 +100,7 @@ int main(){
                 if(strcmp(orden,"salir")==0){
                     exit(0);
                 }
-                printf("%s",id);
-                printf("%d",i);
+
                 if(atoi(id)==i){
                     printf("orden recibida [%s]\n",orden);
                     sleep(atoi(time));
