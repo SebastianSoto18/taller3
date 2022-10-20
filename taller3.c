@@ -33,7 +33,7 @@ int main(){
         while(1){
             struct message *msg=malloc(sizeof(struct message));;
             printf("Ingrese el texto del sensor:\n");
-            scanf("%s",&msg->text);
+            scanf("%s",msg->text);
             if(strcmp(msg->text,"salir")==0){
                 msg->id=1;
                 msg->time=0;
@@ -44,14 +44,14 @@ int main(){
             
                 break;
             }
-            printf("Ingrese el id del sensor: \n");
-            scanf("%d",&msg->id);
-            printf("Ingrese el tiempo de espera del sensor:\n");
-            scanf("%d",&msg->time);
-            write(fd[1],&msg,sizeof(struct message));
+            //printf("Ingrese el id del sensor: \n");
+            //scanf("%d",&msg->id);
+            //printf("Ingrese el tiempo de espera del sensor:\n");
+            //scanf("%d",&msg->time);
+            //write(fd[1],&msg,sizeof(struct message));
         }
-        close(fd[1]);
-        printf("Se ha terminado el programa\n");
+        //close(fd[1]);
+        //printf("Se ha terminado el programa\n");
         for(int i=0;i<sensorNum;i++){
             wait(NULL);
         }
@@ -63,7 +63,7 @@ int main(){
             for (int j = 0; j < 2; ++j){
                 read(fd[j][0],&childMsg,sizeof(struct message));
             }
-            printf("mensaje: %d\n",childMsg.text);
+            printf(" %d mensaje: %d\n",getpid(),childMsg.text);
         }
     } 
 
