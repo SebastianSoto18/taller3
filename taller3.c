@@ -39,6 +39,9 @@ int main(){
             printf("Ingrese el texto del sensor:\n");
             scanf("%s",msg.text);
             if(strcmp(msg.text,"salir")==0){
+                msg.id=1;
+                msg.time=0;
+                write(fd[1],&msg,sizeof(msg));
                 break;
             }
             printf("Ingrese el id del sensor: \n");
@@ -58,11 +61,11 @@ int main(){
         while(1){
             read(fd[0],&msg,sizeof(msg));
 
+            if(strcmp(msg.text, "salir") != 0){
+                    break;
+            }
             if(msg.id == id){
                 printf("ID: %d, Time: %d, Text: %s\n",msg.id,msg.time,msg.text);
-                if(strcmp(msg.text, "salir") != 0){
-                         break;
-                    }
             }
         }
     } 
