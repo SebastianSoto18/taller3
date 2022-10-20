@@ -33,7 +33,7 @@ int main(){
     for ( i = 0; i < sensorNum; i++)
     {
         if(fork()==0){
-            printf("Soy el proceso hijo %d y mi padre es %d\n",getpid(),getppid());
+            printf("Soy el proceso hijo numero %d y mi ID es %d\n",i,getpid()));
             pause();
             break;
         }
@@ -66,7 +66,7 @@ int main(){
                     }
             printf("Ingrese el id del sensor: \n");
             scanf("%d",&pid);
-           
+            printf("Ingrese el numero del sensor: \n");
             scanf("%s",id);
             printf("Ingrese el tiempo de espera del sensor:\n");
             scanf("%s",time);
