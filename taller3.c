@@ -34,7 +34,7 @@ int main(){
         if(fork()==0){
             printf("Soy el proceso hijo %d y mi padre es %d\n",getpid(),getppid());
 
-            system("pause");
+            pause();
             break;
         }
     }
@@ -105,7 +105,7 @@ int main(){
                     printf("orden ejecutada\n");
                 }
 
-                system("pause");
+                pause();
                 
         }
     } 
