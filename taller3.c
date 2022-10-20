@@ -89,10 +89,10 @@ int main(){
         for (int d = 0; d < sensorNum; ++d) close(fd[d][1]);
         char *delimitador = "/";
 
-      
+        int j=0;
 
-        while((n=read(fd[i][0],buff, MAX_READ)) >0){ 
-                //buff[n] = EOL;
+        while((n=read(fd[j][0],buff, MAX_READ)) >0){ 
+                buff[n] = EOL;
                 char *orden=strtok(buff,delimitador);
                 char *id=strtok(NULL,delimitador);
                 char *time=strtok(NULL,delimitador);
@@ -106,7 +106,9 @@ int main(){
                     sleep(atoi(time));
                     printf("orden ejecutada\n");
                     kill(root, SIGUSR1);
+                    pause();
                 }  
+                j++;
             }
     } 
 
