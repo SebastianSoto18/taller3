@@ -45,7 +45,6 @@ int main(){
    else{
          close(fd[1]);         
          while( (n=read(fd[0],buff, MAX_READ)) >0 ){
-            buff[n] = '\0';
             printf("[%d]read<--:%s\n",getpid(),buff);                       
           }
       }
