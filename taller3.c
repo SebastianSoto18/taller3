@@ -42,7 +42,6 @@ int main(){
                     strcat(comando,"1");
                     strcat(comando,"/");
                     strcat(comando,"año");
-                    printf("%s\n",comando);
                     write(fd[j][1],comando,sizeof(comando));
                 }
                 printf("Saliendo del programa\n");
