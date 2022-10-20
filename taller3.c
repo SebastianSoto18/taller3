@@ -33,7 +33,8 @@ int main(){
         }
     }
 
-    if(pid==0){
+    if(pid!=0){
+        close(fd[0]);
         while(1){
             printf("Ingrese el texto del sensor:\n");
             scanf("%s",msg.text);
@@ -46,12 +47,14 @@ int main(){
             scanf("%d",&msg.time);
             write(fd[1],&msg,sizeof(struct message));
         }
+        close(fd[1]);
 
         for(int i=0;i<sensorNum;i++){
             wait(NULL);
         }
 
     }else{
+        close(fd[1]);
         while(1){
             read(fd[0],&msg,sizeof(msg));
 
@@ -61,7 +64,7 @@ int main(){
                          break;
                     }
             }
-        }  
+        }
     } 
 
     return 0;
