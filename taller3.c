@@ -4,8 +4,9 @@
 #include <string.h>
 #include <wait.h>
 
-#define MAX_READ 500
-
+#define MAX_READ 1024
+#define EOL '\0'
+char buff[MAX_READ];
 
 int main(){
     int sensorNum=0;
@@ -60,21 +61,20 @@ int main(){
             strcat(comando,id);
             strcat(comando,"/");
             strcat(comando,time);
-            comando[strlen(comando)-1] = '\0';
-            write(fd[atoi(id)][1],comando,sizeof(comando));
+            strcat(buff,comando);
+            buff[strlen(buff)-1] = '\0';
+            write(fd[atoi(id)][1],buff,sizeof(buff));
 
         }
 
     }else{
         for (int d = 0; d < sensorNum; ++d) close(fd[d][1]);
 
-        char mensaje[1024];
-
         char *delimitador = "/";
 
-        while((n=read(fd[i][0],mensaje,sizeof(mensaje)))>0){
-                mensaje[n] = '\0';
-                char *orden=strtok(mensaje,delimitador);
+        while((n=read(fd[0],buff, MAX_READ)) >0){
+                buff[n] = '\0';
+                char *orden=strtok(buff,delimitador);
                 char *id=strtok(NULL,delimitador);
                 char *time=strtok(NULL,delimitador);
 
