@@ -87,10 +87,11 @@ int main(){
     }else{
         for (int d = 0; d < sensorNum; ++d) close(fd[d][1]);
         char *delimitador = "/";
-        int changeState=0;
+
       
 
         while((n=read(fd[i][0],buff, MAX_READ)) >0){
+                pause(); 
                 buff[n] = EOL;
                 char *orden=strtok(buff,delimitador);
                 char *id=strtok(NULL,delimitador);
@@ -105,7 +106,6 @@ int main(){
                     printf("orden recibida [%s]\n",orden);
                     sleep(atoi(time));
                     printf("orden ejecutada\n");
-                    pause(); 
                 } 
                     
             }
