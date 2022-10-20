@@ -33,7 +33,7 @@ int main(){
     for ( i = 0; i < sensorNum; i++)
     {
         if(fork()==0){
-            printf("Soy el proceso hijo numero %d y mi ID es %d\n",i,getpid()));
+            printf("Soy el proceso hijo numero %d y mi ID es %d\n",i,getpid());
             pause();
             break;
         }
