@@ -30,7 +30,7 @@ int main(){
        for (int h = 0; h < sensorNum; ++h) close(fd[h][0]);
         while(1){
             printf("Ingrese el texto del sensor:\n");
-            gets(mensaje2);
+            fgets(mensaje2);
             if(strcmp(mensaje2,"salir")==0){
                 for (size_t j = 0; j < sensorNum; j++)
                 {
