@@ -65,8 +65,8 @@ int main(){
                         break;
                     }
             printf("Ingrese el id del sensor: \n");
-            scanf("%s",id);
-            kill(atoi(id), SIGUSR1);
+            scanf("%s",&pid);
+           
             scanf("%s",id);
             printf("Ingrese el tiempo de espera del sensor:\n");
             scanf("%s",time);
@@ -80,7 +80,7 @@ int main(){
             strcat(buff,comando);
             buff[strlen(buff)-1] = '\0';
             write(fd[atoi(id)][1],buff,sizeof(buff));
-
+            kill(pid, SIGUSR1);
         }
 
     }else{
@@ -90,7 +90,6 @@ int main(){
       
 
         while((n=read(fd[i][0],buff, MAX_READ)) >0){
-                pause();
                 buff[n] = EOL;
                 char *orden=strtok(buff,delimitador);
                 char *id=strtok(NULL,delimitador);
@@ -105,6 +104,7 @@ int main(){
                     sleep(atoi(time));
                     printf("orden ejecutada\n");
                 } 
+                pause();
         }
     } 
 
