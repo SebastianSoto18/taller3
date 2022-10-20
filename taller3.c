@@ -37,7 +37,7 @@ int main(){
             printf("Ingrese el texto del sensor:\n");
             scanf("%s",mensaje2);
             if(strcmp(mensaje2,"salir")==0){
-                for (size_t j = 0; i < sensorNum; i++)
+                for (size_t j = 0; j < sensorNum; j++)
                 {
                     printf("enviando mensaje de salida");
                     write(fd[j][1],mensaje2,sizeof(mensaje2));
