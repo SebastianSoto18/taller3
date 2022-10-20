@@ -59,7 +59,7 @@ int main(){
             strcat(comando,"/");
             strcat(comando,time);
 
-           for (size_t w = 0; w < count; w++)
+           for (size_t w = 0; w < sensorNum; w++)
            {
             write(fd[w][1],comando,sizeof(comando));
             /* code */
