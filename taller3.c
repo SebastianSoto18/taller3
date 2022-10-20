@@ -11,7 +11,7 @@ char buff[MAX_READ];
 
 void *old;
 void manejador (int sig){
-    printf("Señal %d recibida", sig);
+
 }
 
 int main(){
@@ -79,9 +79,8 @@ int main(){
             strcat(comando,time);
             strcat(buff,comando);
             buff[strlen(buff)-1] = '\0';
-            for (int h = 0; h < sensorNum; ++h)write(fd[h][1],buff,sizeof(buff));
+            write(fd[id][1],buff,sizeof(buff));
             kill(pid, SIGUSR1);
-            printf("3");
         }
 
         for (int h = 0; h < sensorNum; ++h) wait(NULL);
@@ -89,9 +88,7 @@ int main(){
         for (int d = 0; d < sensorNum; ++d) close(fd[d][1]);
         char *delimitador = "/";
 
-        int j=0;
-
-        while((n=read(fd[j][0],buff, MAX_READ)) >0){ 
+        while((n=read(fd[i][0],buff, MAX_READ)) >0){ 
                 buff[n] = EOL;
                 char *orden=strtok(buff,delimitador);
                 char *id=strtok(NULL,delimitador);
@@ -108,7 +105,7 @@ int main(){
                     kill(root, SIGUSR1);
                     pause();
                 }  
-                j++;
+
             }
     } 
 
