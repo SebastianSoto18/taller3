@@ -17,9 +17,9 @@ int main(int argc, char **argv){
     struct Data dato;
 
     int maxtub, **mtub, idx, n,FA,CA,FB,CB;
-    bool flag = true;
+    int  flag = 1;
     int i=0;
-    maxtub=3
+    maxtub=3;
 
     do{
     printf("Ingrese la cantidad de filas de la primera matriz: ");
@@ -36,8 +36,8 @@ int main(int argc, char **argv){
         printf("Ingrese nuevamente los datos\n");
     }
     else{
-        flag=false;
-
+        flag=0;
+    }
     }while(flag);
    
    int matrizA[FA][CA];
@@ -78,10 +78,10 @@ int main(int argc, char **argv){
 
     mtub = (int **)calloc(maxtub,sizeof(int *));
 
-    for(int f = 0; f < maxtub; f++)
+    for(int f = 0; f <= maxtub; f++)
         mtub[f] = (int *) calloc(2, sizeof(int));
         
-    for(int tub = 0; tub < maxtub; tub++) pipe(mtub[tub]);
+    for(int tub = 0; tub <= maxtub; tub++) pipe(mtub[tub]);
 
 
 
@@ -103,7 +103,7 @@ int main(int argc, char **argv){
             matrizC[dato.x][dato.y] = dato.val;
         }
                 
-
+        close(mtub[idx][0]);
         for(int tub = 0; tub < maxtub; tub++)
             close(mtub[tub][0]);
 
