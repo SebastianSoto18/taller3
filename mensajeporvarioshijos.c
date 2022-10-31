@@ -62,9 +62,10 @@ int main(){
             close(mtub[tub][1]);
         }
          
-         while( (n=read(mtub[0][0],buff, MAX_READ)) >0 ){
+         while( (n=read(mtub[idx][0],buff, MAX_READ)) >0 ){
             buff[n] = '\0';
-            printf("[%d]read<--:%s\n",getpid(),buff);                       
+            printf("[%d]read<--:%s\n",getpid(),buff);
+            write(mtub[idx+1][1], buff, strlen(buff));                       
           }
 
         printf("[%d] termino\n", getpid());
