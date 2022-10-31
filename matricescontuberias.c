@@ -110,6 +110,14 @@ int main(int argc, char **argv){
         for(int chld = 0; chld < maxtub; chld++)
             wait(NULL);
         printf("termino padre\n");
+
+        printf("La matriz resultante es:\n");
+        for(int i=0;i<FA;i++){
+            for(int j=0;j<CB;j++){
+                printf("%d ",matrizC[i][j]);
+            }
+            printf("\n");
+        }
     }
     else{ //codigo hijo
     printf("[%d] hijo %d\n", getpid(), idx);
