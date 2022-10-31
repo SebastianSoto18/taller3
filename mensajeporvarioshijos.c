@@ -62,7 +62,7 @@ int main(){
             close(mtub[tub][1]);
         }
          
-         while( (n=read(fd[0],buff, MAX_READ)) >0 ){
+         while( (n=read(mtub[0][0],buff, MAX_READ)) >0 ){
             buff[n] = '\0';
             printf("[%d]read<--:%s\n",getpid(),buff);                       
           }
