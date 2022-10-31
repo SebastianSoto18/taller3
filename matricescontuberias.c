@@ -123,7 +123,7 @@ int main(int argc, char **argv){
 
         for (size_t i = 0; i < FA*CB; i++)
         {
-           printf("x: %d y: %d val: %d",almacen[i].x,almacen[i].y,almacen[i].val);
+           printf("x: %d y: %d val: %d \n",almacen[i].x,almacen[i].y,almacen[i].val);
         }
         
     }
