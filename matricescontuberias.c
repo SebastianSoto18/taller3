@@ -95,7 +95,6 @@ int main(int argc, char **argv){
             close(mtub[tub][1]);
             
         while ((n=read(mtub[3][0], &dato, sizeof(struct Data))) > 0){
-            printf("dato.x: %d, dato.y: %d, dato.val: %d\n",dato.x,dato.y,dato.val);
             matrizC[dato.x][dato.y] = dato.val;
             i++;
             if(i==FA*CB){
@@ -173,7 +172,7 @@ int main(int argc, char **argv){
                     dato.val+=matrizA[i][k]*matrizB[k][i];
                     
                 }
-                
+                printf("dato.x: %d, dato.y: %d, dato.val: %d\n",dato.x,dato.y,dato.val);
                 write(mtub[3][1], &dato, sizeof(struct Data));
             }
         break;
