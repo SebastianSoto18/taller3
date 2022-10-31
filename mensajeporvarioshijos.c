@@ -39,9 +39,7 @@ int main(){
             printf("[%d]write-->:%s\n",getpid(),buff);
             if(strcmp(buff,"salir")==0){
                 printf("Saliendo del programa\n");
-                for(int tub = 0; tub <= maxtub; tub++){
-                     write(mtub[tub][1], buff, strlen(buff)+1);
-                }
+                write(mtub[0][1], buff, strlen(buff)+1);
                 break;
              }
              write(mtub[0][1], buff, strlen(buff)+1);
