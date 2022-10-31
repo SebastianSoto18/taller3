@@ -5,13 +5,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define EOL '\0'
+char message[100];
 
 int main(){
 
 
     int maxtub, **mtub, idx, n;
 
-    char message[100];
 
     scanf("%d", &maxtub);
     
@@ -33,6 +34,7 @@ int main(){
         do{
             printf("ingrese el mensaje:\n");
             scanf("%s",message);
+            message[strlen(message)-1] = '\0';
             
             write(mtub[0][1], &message, strlen(message));
 
@@ -54,8 +56,6 @@ int main(){
     }
     else{ //codigo hijo
 
-    char messageR[100];
-
     printf("[%d] hijo %d\n", getpid(), idx);
     close(mtub[idx][1]);
     close(mtub[idx+1][0]);
@@ -66,8 +66,9 @@ int main(){
                 close(mtub[tub][1]);
         }
 
-        while ((n=read(mtub[idx][0], &messageR, strlen(messageR))) > 0){
-            printf("%d recibido: %s\n", getpid(), messageR);
+        while ((n=read(mtub[idx][0], message, strlen(message))) > 0){
+            message[n] = '\0';
+            printf("%d recibido: %s\n", getpid(), message);
             //write(mtub[idx+1][1], &messageR, strlen(messageR));
         }
 
