@@ -95,8 +95,18 @@ int main(int argc, char **argv){
             close(mtub[tub][1]);
         struct Data almacen[FA*CB];
 
+        for (int i = 0; i < CA; i++)
+        {
+            for (int j = 0; i < FB; j++)
+            {
+                matrizC[i][j] = 0;
+            }
+            
+        }
         while ((n=read(mtub[3][0], &dato, sizeof(struct Data))) > 0){
             almacen[i] = dato;
+            matrizC[dato.x][dato.y] = dato.val;
+            printf("El valor de la posicion [%d][%d] es: %d",dato.x,dato.y,dato.val);
             i++;
             if(i==FA*CB){
                 break;
@@ -111,22 +121,6 @@ int main(int argc, char **argv){
             wait(NULL);
         printf("termino padre\n");
 
-
-
-        for (int i = 0; i < CA; i++)
-        {
-            for (int j = 0; i < FB; j++)
-            {
-                matrizC[i][j] = 0;
-            }
-            
-        }
-        
-        for (int i = 0; i < FA*CB; i++)
-        {
-           matrizC[almacen[i].x][almacen[i].y]=almacen[i].val;
-           printf("%d\n",matrizC[almacen[i].x][almacen[i].y]);
-        }
 
         printf("La matriz resultante es:\n");
         for(int i=0;i<FA;i++){
