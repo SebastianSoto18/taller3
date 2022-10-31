@@ -37,7 +37,9 @@ int main(){
          if(strlen(buff)>1){
             buff[strlen(buff)-1] = '\0';
             printf("[%d]write-->:%s\n",getpid(),buff);
-            write(mtub[0][1], buff, strlen(buff));
+            if(strcmp(buff,"salir")==0){
+                printf("Saliendo del programa\n");
+                break;
          }
        }while(strcmp(buff,"salir") !=0);
 
