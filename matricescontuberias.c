@@ -111,13 +111,7 @@ int main(int argc, char **argv){
             wait(NULL);
         printf("termino padre\n");
 
-        printf("La matriz resultante es:\n");
-        for(int i=0;i<FA;i++){
-            for(int j=0;j<CB;j++){
-                printf("%d ",matrizC[i][j]);
-            }
-            printf("\n");
-        }
+
 
         for (size_t i = 0; i < CA; i++)
         {
@@ -128,11 +122,18 @@ int main(int argc, char **argv){
             
         }
         
-
         for (size_t i = 0; i < FA*CB; i++)
         {
            matrizC[almacen[i].x][almacen[i].y]=almacen[i].val;
            printf("%d\n",matrizC[almacen[i].x][almacen[i].y]);
+        }
+
+        printf("La matriz resultante es:\n");
+        for(int i=0;i<FA;i++){
+            for(int j=0;j<CB;j++){
+                printf("%d ",matrizC[i][j]);
+            }
+            printf("\n");
         }
         
     }
