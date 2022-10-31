@@ -93,18 +93,10 @@ int main(int argc, char **argv){
         printf("[%d] padre\n", getpid());
         for(int tub = 0; tub < maxtub; tub++)
             close(mtub[tub][1]);
-        struct Data almacen[FA*CB];
 
-        for (int i = 0; i < CA; i++)
-        {
-            for (int j = 0; i < FB; j++)
-            {
-                matrizC[i][j] = 0;
-            }
-            
-        }
+
+
         while ((n=read(mtub[3][0], &dato, sizeof(struct Data))) > 0){
-            almacen[i] = dato;
             matrizC[dato.x][dato.y] = dato.val;
             printf("El valor de la posicion [%d][%d] es: %d",dato.x,dato.y,dato.val);
             i++;
