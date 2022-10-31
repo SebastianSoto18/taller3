@@ -8,7 +8,7 @@
 struct Data{
     int x;
     int y;
-    double val;
+    int val;
 };
 
 
