@@ -141,7 +141,7 @@ int main(int argc, char **argv){
                 for(int k=0;k<CA;k++){
                     dato.val+=matrizA[i][k]*matrizB[k][j];
                 }
-            sleep(0.05);
+            sleep(0.15);
                 printf("El hijo %d envia el dato %d %d %d\n",idx,dato.x,dato.y,dato.val);
             write(mtub[3][1], &dato, sizeof(struct Data));
             }
