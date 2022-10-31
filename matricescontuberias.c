@@ -141,6 +141,7 @@ int main(int argc, char **argv){
                 dato.val=0;
                 for(int k=0;k<CA;k++){
                     dato.val+=matrizA[i][k]*matrizB[k][j];
+                    printf("dato.val: %d\n",dato.val);
                 }
             write(mtub[3][1], &dato, sizeof(struct Data));
             }
@@ -155,6 +156,7 @@ int main(int argc, char **argv){
                 dato.val=0;
                 for(int k=0;k<CA;k++){
                     dato.val+=matrizA[i][k]*matrizB[k][j];
+                    printf("dato.val: %d\n",dato.val);
                 }
             write(mtub[3][1], &dato, sizeof(struct Data));
             }
@@ -168,6 +170,7 @@ int main(int argc, char **argv){
                 dato.val=0;
                 for(int k=0;k<CA;k++){
                     dato.val+=matrizA[i][k]*matrizB[k][i];
+                    printf("dato.val: %d\n",dato.val);
                 }
                 write(mtub[3][1], &dato, sizeof(struct Data));
             }
