@@ -5,8 +5,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define MAX_READ 256
 #define EOL '\0'
-char message[100];
+char buff[MAX_READ];
 
 int main(){
 
@@ -31,19 +32,14 @@ int main(){
     if(idx == maxtub){ //codigo padre
         printf("[%d] padre\n", getpid());
             
-        do{
-            printf("ingrese el mensaje:\n");
-            scanf("%s",message);
-            message[strlen(message)-1] = '\0';
-            
-            write(mtub[0][1], &message, strlen(message));
-
-            while((n = read(mtub[maxtub][0], &message, strlen(message))) > 0){
-                printf("%d recibido: %s\n",getpid(), message);
-                break;
-            }
-            
-        }while(strcmp(message, "end") !=0);
+        do{        
+         fgets(buff, MAX_READ, stdin );         
+         if(strlen(buff)>1){
+            buff[strlen(buff)-1] = '\0';
+            printf("[%d]write-->:%s\n",getpid(),buff);
+            write(mtub[0][1], buff, strlen(buff));
+         }
+       }while(strcmp(buff,"salir") !=0);
 
         for(int tub = 0; tub < maxtub; tub++){
             close(mtub[tub][1]);
@@ -62,17 +58,16 @@ int main(){
 
 
         for(int tub = idx+2; tub < maxtub; tub ++){
-                close(mtub[tub][0]);
-                close(mtub[tub][1]);
+            close(mtub[tub][0]);
+            close(mtub[tub][1]);
         }
-
-        while ((n=read(mtub[idx][0], message, strlen(message))) > 0){
-            message[n] = '\0';
-            printf("%d recibido: %s\n", getpid(), message);
-            //write(mtub[idx+1][1], &messageR, strlen(messageR));
-        }
+         
+         while( (n=read(fd[0],buff, MAX_READ)) >0 ){
+            buff[n] = '\0';
+            printf("[%d]read<--:%s\n",getpid(),buff);                       
+          }
 
         printf("[%d] termino\n", getpid());
     }
-
+    return EXIT_SUCCESS;
 }
