@@ -97,6 +97,8 @@ int main(int argc, char **argv){
         while ((n=read(mtub[3][0], &dato, sizeof(struct Data))) > 0){
             if(FA*CB < i ){
                 i++;
+            }else{
+                break;
             }
             printf("dato.x: %d, dato.y: %d, dato.val: %d\n",dato.x,dato.y,dato.val);
             matrizC[dato.x][dato.y] = dato.val;
