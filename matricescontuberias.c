@@ -170,5 +170,6 @@ int main(int argc, char **argv){
 
         printf("[%d] termino\n", getpid());
     }
+    }
     return 0;
 }
