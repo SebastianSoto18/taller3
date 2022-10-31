@@ -142,9 +142,7 @@ int main(int argc, char **argv){
                     dato.val+=matrizA[i][k]*matrizB[k][j];
                 }
             sleep(0.05);
-                 printf("dato.val: %d\n",dato.val);
-                printf("dato.x: %d\n",dato.x);
-                printf("dato.y: %d\n",dato.y);
+                printf("El hijo %d envia el dato %d %d %d\n",idx,dato.x,dato.y,dato.val);
             write(mtub[3][1], &dato, sizeof(struct Data));
             }
         }
@@ -161,9 +159,7 @@ int main(int argc, char **argv){
                     dato.val+=matrizA[i][k]*matrizB[k][j];
                 }
            sleep(0.05);
-                           printf("dato.val: %d\n",dato.val);
-                printf("dato.x: %d\n",dato.x);
-                printf("dato.y: %d\n",dato.y);
+            printf("El hijo %d envia el dato %d %d %d\n",idx,dato.x,dato.y,dato.val);
             write(mtub[3][1], &dato, sizeof(struct Data));
             }
         }
@@ -179,9 +175,7 @@ int main(int argc, char **argv){
                     
                 }
                 sleep(0.5);
-                printf("dato.val: %d\n",dato.val);
-                printf("dato.x: %d\n",dato.x);
-                printf("dato.y: %d\n",dato.y);
+                printf("El hijo %d envia el dato %d %d %d\n",idx,dato.x,dato.y,dato.val);
                 write(mtub[3][1], &dato, sizeof(struct Data));
             }
         break;
