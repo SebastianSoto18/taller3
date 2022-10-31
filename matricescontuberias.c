@@ -98,7 +98,7 @@ int main(int argc, char **argv){
 
         while ((n=read(mtub[3][0], &dato, sizeof(struct Data))) > 0){
             matrizC[dato.x][dato.y] = dato.val;
-            printf("El valor de la posicion [%d][%d] es: %d",dato.x,dato.y,dato.val);
+            printf("El valor de la posicion [%d][%d] es: %d\n",dato.x,dato.y,dato.val);
             i++;
             if(i==FA*CB){
                 break;
