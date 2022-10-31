@@ -134,22 +134,23 @@ int main(int argc, char **argv){
        {
        case 0:
         for(int i=1;i<FA;i++){
-            for(int j=0;j<CB;j++){
+            for(int j=0;j<CB-1;j++){
 
                 dato.x=i;
                 dato.y=j;
                 dato.val=0;
                 for(int k=0;k<CA;k++){
                     dato.val+=matrizA[i][k]*matrizB[k][j];
-                    printf("dato.val: %d\n",dato.val);
                 }
+                printf("dato.x: %d, dato.y: %d, dato.val: %d\n",dato.x,dato.y,dato.val);
             write(mtub[3][1], &dato, sizeof(struct Data));
             }
         }
         break;
 
          case 1:
-        for(int i=0;i<FA;i++){
+         
+        for(int i=0;i<FA-1;i++){
             for(int j=1;j<CB;j++){
                 dato.x=i;
                 dato.y=j;
@@ -157,7 +158,7 @@ int main(int argc, char **argv){
                 for(int k=0;k<CA;k++){
                     dato.val+=matrizA[i][k]*matrizB[k][j];
                 }
-                printf("dato.val: %d\n",dato.val);
+           printf("dato.x: %d, dato.y: %d, dato.val: %d\n",dato.x,dato.y,dato.val);
             write(mtub[3][1], &dato, sizeof(struct Data));
             }
         }
@@ -172,7 +173,7 @@ int main(int argc, char **argv){
                     dato.val+=matrizA[i][k]*matrizB[k][i];
                     
                 }
-                printf("dato.val: %d\n",dato.val);
+                printf("dato.x: %d, dato.y: %d, dato.val: %d\n",dato.x,dato.y,dato.val);
                 write(mtub[3][1], &dato, sizeof(struct Data));
             }
         break;
