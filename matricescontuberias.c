@@ -93,9 +93,12 @@ int main(int argc, char **argv){
         printf("[%d] padre\n", getpid());
         for(int tub = 0; tub < maxtub; tub++)
             close(mtub[tub][1]);
-            
+        struct Data almacen[FA*CB];
+
         while ((n=read(mtub[3][0], &dato, sizeof(struct Data))) > 0){
+
             matrizC[dato.x][dato.y] = dato.val;
+            almacen[i] = dato;
             i++;
             if(i==FA*CB){
                 break;
@@ -117,6 +120,12 @@ int main(int argc, char **argv){
             }
             printf("\n");
         }
+
+        for (size_t i = 0; i < FA*CB; i++)
+        {
+           printf("x: %d y: %d val: %d",almacen[i].x,almacen[i].y,almacen[i].val);
+        }
+        
     }
     else{ //codigo hijo
     printf("[%d] hijo %d\n", getpid(), idx);
@@ -141,8 +150,7 @@ int main(int argc, char **argv){
                 for(int k=0;k<CA;k++){
                     dato.val+=matrizA[i][k]*matrizB[k][j];
                 }
-            sleep(0.15);
-                printf("El hijo %d envia el dato %d %d %d\n",idx,dato.x,dato.y,dato.val);
+            printf("El hijo %d envia el dato %d %d %d\n",idx,dato.x,dato.y,dato.val);
             write(mtub[3][1], &dato, sizeof(struct Data));
             }
         }
@@ -158,7 +166,6 @@ int main(int argc, char **argv){
                 for(int k=0;k<CA;k++){
                     dato.val+=matrizA[i][k]*matrizB[k][j];
                 }
-           sleep(0.05);
             printf("El hijo %d envia el dato %d %d %d\n",idx,dato.x,dato.y,dato.val);
             write(mtub[3][1], &dato, sizeof(struct Data));
             }
@@ -174,7 +181,6 @@ int main(int argc, char **argv){
                     dato.val+=matrizA[i][k]*matrizB[k][i];
                     
                 }
-                sleep(0.005);
                 printf("El hijo %d envia el dato %d %d %d\n",idx,dato.x,dato.y,dato.val);
                 write(mtub[3][1], &dato, sizeof(struct Data));
             }
