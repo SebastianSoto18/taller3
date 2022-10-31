@@ -68,8 +68,7 @@ int main(){
 
         while ((n=read(mtub[idx][0], &messageR, strlen(messageR))) > 0){
             printf("%d recibido: %s\n", getpid(), messageR);
-            pause();
-            write(mtub[idx+1][1], &messageR, strlen(messageR));
+            //write(mtub[idx+1][1], &messageR, strlen(messageR));
         }
 
         printf("[%d] termino\n", getpid());
