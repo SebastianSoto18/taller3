@@ -100,7 +100,7 @@ int main(int argc, char **argv){
             matrizC[dato.x][dato.y] = dato.val;
             printf("El valor de la posicion [%d][%d] es: %d\n",dato.x,dato.y,dato.val);
             i++;
-            if((i+10)==FA*CB){
+            if((i+3)==FA*CB){
                 break;
             }
         }
