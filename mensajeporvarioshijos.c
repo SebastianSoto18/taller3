@@ -41,7 +41,9 @@ int main(){
                 printf("Saliendo del programa\n");
                 break;
              }
-       }}while(strcmp(buff,"salir") !=0);
+             write(mtub[0][1], buff, strlen(buff)+1);
+       }
+       }while(strcmp(buff,"salir") !=0);
 
         for(int tub = 0; tub < maxtub; tub++){
             close(mtub[tub][1]);
