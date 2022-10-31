@@ -96,8 +96,6 @@ int main(int argc, char **argv){
         struct Data almacen[FA*CB];
 
         while ((n=read(mtub[3][0], &dato, sizeof(struct Data))) > 0){
-
-            matrizC[dato.x][dato.y] = dato.val;
             almacen[i] = dato;
             i++;
             if(i==FA*CB){
@@ -121,9 +119,20 @@ int main(int argc, char **argv){
             printf("\n");
         }
 
+        for (size_t i = 0; i < CA; i++)
+        {
+            for (size_t j = 0; i < FB; j++)
+            {
+                matrizC[i][j] = 0;
+            }
+            
+        }
+        
+
         for (size_t i = 0; i < FA*CB; i++)
         {
-           printf("x: %d y: %d val: %d \n",almacen[i].x,almacen[i].y,almacen[i].val);
+           matrizC[almacen[i].x][almacen[i].y]=almacen[i].val;
+           printf("%d\n",matrizC[almacen[i].x][almacen[i].y]);
         }
         
     }
