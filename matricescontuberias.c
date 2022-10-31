@@ -113,16 +113,16 @@ int main(int argc, char **argv){
 
 
 
-        for (size_t i = 0; i < CA; i++)
+        for (int i = 0; i < CA; i++)
         {
-            for (size_t j = 0; i < FB; j++)
+            for (int j = 0; i < FB; j++)
             {
                 matrizC[i][j] = 0;
             }
             
         }
         
-        for (size_t i = 0; i < FA*CB; i++)
+        for (int i = 0; i < FA*CB; i++)
         {
            matrizC[almacen[i].x][almacen[i].y]=almacen[i].val;
            printf("%d\n",matrizC[almacen[i].x][almacen[i].y]);
