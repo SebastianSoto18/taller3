@@ -172,7 +172,7 @@ int main(int argc, char **argv){
                     dato.val+=matrizA[i][k]*matrizB[k][i];
                     
                 }
-                sleep(0.05);
+                sleep(0.5);
                 write(mtub[3][1], &dato, sizeof(struct Data));
             }
         break;
