@@ -40,8 +40,8 @@ int main(){
             if(strcmp(buff,"salir")==0){
                 printf("Saliendo del programa\n");
                 break;
-         }
-       }while(strcmp(buff,"salir") !=0);
+             }
+       }}while(strcmp(buff,"salir") !=0);
 
         for(int tub = 0; tub < maxtub; tub++){
             close(mtub[tub][1]);
@@ -67,6 +67,10 @@ int main(){
          while( (n=read(mtub[idx][0],buff, MAX_READ)) >0 ){
             buff[n] = '\0';
             printf("[%d]read<--:%s\n",getpid(),buff);
+            if(strcmp(buff,"salir")==0){
+                printf("Saliendo del programa\n");
+                break;
+             }
             write(mtub[idx+1][1], buff, strlen(buff));                       
           }
 
