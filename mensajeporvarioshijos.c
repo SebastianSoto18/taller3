@@ -66,7 +66,7 @@ int main(){
                 close(mtub[tub][1]);
         }
 
-        while (((n=read(mtub[idx][0], &messageR, strlen(messageR)) > 0){
+        while ((n=read(mtub[idx][0], &messageR, strlen(messageR))) > 0){
             printf("%d recibido: %s\n", getpid(), messageR);
 
             if(strcmp(message, "end") == 0) break;
