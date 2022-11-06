@@ -2,9 +2,9 @@
 #include <pthread.h>
 
 void *funcion_hilo(void *param);
-
+//compilar hilos gcc -o hilos.c hilos -lpthread
 int sum ;
-pthread_mutex_t mutex = PTHREAD_WTEX INITIALIZER;
+pthread_mutex_t mutex = PTHREAD_WTEX_INITIALIZER;
 
 int main(){
     int i;
