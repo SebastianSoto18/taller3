@@ -9,7 +9,7 @@ void *funcion_hilo(void *param);
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 int **matrisA;
 int **matrisB;
-int **matrisC;
+int ***matrisC;
 struct possition{
     int x;
     int y;
@@ -24,7 +24,7 @@ int main(){
  
     matrisA = (int **)malloc(3*sizeof(int *));
     matrisB = (int **)malloc(3*sizeof(int *));
-    matrisC = (int **)malloc(3*sizeof(int *));
+    matrisC = (int ***)malloc(3*sizeof(int **));
 
     for(i=0;i<3;i++){
         matrisA[i] = (int *)malloc(3*sizeof(int));
@@ -101,7 +101,7 @@ void *funcion_hilo(void *param){
     printf("Hilo [%lu] dato[%d | %d | %d]\n", pthread_self(), pos->x, pos->y, suma);
 
     pthread_mutex_lock(&mutex);
-    *matrisC[pos->x][pos->y]=suma;
+    matrisC[pos->x][pos->y]=suma;
     pthread_mutex_unlock(&mutex);
 
     pthread_exit(0);
