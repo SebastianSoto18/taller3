@@ -14,14 +14,14 @@ int **matrisC; */
 int matrisA[3][3];
 int matrisB[3][3];
 int matrisC[3][3];
-
+int i;
 struct possition{
     int x;
     int y;
 };
 
 int main(){
-    int i=0;
+    i=0;
     int child;
     child=9;
     pthread_t tid[child];
@@ -70,6 +70,7 @@ int main(){
             struct possition pos;
             pos.x=f;
             pos.y=c;
+            printf("posicion %d %d\n",pos.x,pos.y);
             pthread_create(&tid[i], NULL, funcion_hilo, (void*)&pos);
             i++;
             }
@@ -99,7 +100,7 @@ int main(){
 void *funcion_hilo(void *param){
     int suma=0;
     struct possition* pos = (struct possition *)param;
-
+    printf("%d\n",i);    
     pthread_mutex_lock(&mutex);
     for(int i=0;i<3;i++){
         suma+=matrisA[pos->x][i]*matrisB[i][pos->y];
@@ -109,6 +110,5 @@ void *funcion_hilo(void *param){
 
     pthread_mutex_unlock(&mutex);
     matrisC[pos->x][pos->y]=suma;
-
     pthread_exit(0);
 }
