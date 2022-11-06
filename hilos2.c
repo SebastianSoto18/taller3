@@ -20,6 +20,8 @@ int main(){
     int child;
     child=9;
     pthread_t tid[child];
+    struct possition pos;
+ 
     
 
     for(int f=0;f<3;f++){
@@ -54,11 +56,9 @@ int main(){
 
     for(int f=0;f<3;f++){
         for(int c=0;c<3;c++){
-            struct possition *pos = malloc(sizeof(struct possition));
-            pos->x=f;
-            pos->y=c;
-            pthread_create(&tid[i], NULL, funcion_hilo, (void*)pos);
-            i++;
+            pos.x=f;
+            pos.y=c;
+            pthread_create(&tid[i], NULL, funcion_hilo, (void*)&pos);
         }
     }
 
@@ -82,7 +82,7 @@ int main(){
 
 void *funcion_hilo(void *param){
     int suma=0;
-    struct possition *pos = (struct possition *)param;
+    struct possition* pos = (struct possition *)param;
 
     for(int i=0;i<3;i++){
         suma+=matrisA[pos->x][i]*matrisB[i][pos->y];
