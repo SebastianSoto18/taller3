@@ -89,9 +89,9 @@ int main(){
     }
 
     pthread_mutex_destroy(&mutex); 
-    free(matrisA);
+  /*   free(matrisA);
     free(matrisB);
-    free(matrisC);
+    free(matrisC); */
     return 0;
 }
 
