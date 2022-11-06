@@ -1,20 +1,48 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <pthread.h>
 
 void *funcion_hilo(void *param);
 //compilar hilos gcc -o hilos.c hilos -lpthread
 int sum ;
+int matrisA[3][3];
+int matrisB[3][3];
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 int res;
+
 int main(){
     int i;
-    pthread_t tid;
 
+    int child;
+    child=9;
     sum=0;
     res=200;
-    printf("Creacion previa a los hijos sum=%d\n",sum);
+    pthread_t tid[child];
+    
 
-    pthread_create(&tid, NULL, funcion_hilo, NULL);
+    for(f=0;f<3;f++){
+        for(c=0;c<3;c++){
+            matrisA[f][c]=rand()%10;
+            matrisB[f][c]=rand()%10;
+        }
+    }
+
+     for(f=0;f<3;f++){
+        for(c=0;c<3;c++){
+            printf("%d ",matrisA[f][c]);
+        }
+        printf("\n");
+    }
+
+     for(f=0;f<3;f++){
+        for(c=0;c<3;c++){
+            printf("%d ",matrisB[f][c]);
+        }
+        printf("\n");
+    }
+
+   
+/*     pthread_create(&tid, NULL, funcion_hilo, NULL);
 
     for(i=0;i<100;i++){
         pthread_mutex_lock(&mutex);
@@ -27,7 +55,8 @@ int main(){
     pthread_join(tid, NULL);
     printf("Suma total=%d\n",sum);
     printf("Resta total=%d\n",res);
-    pthread_mutex_destroy(&mutex);
+    pthread_mutex_destroy(&mutex); */
+
     return 0;
 }
 
