@@ -5,11 +5,11 @@
 void *funcion_hilo(void *param);
 //compilar hilos gcc -o hilos.c hilos -lpthread
 
-int matrisA[3][3];
-int matrisB[3][3];
-int matrisC[3][3];
-pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+int **matrisA;
+int **matrisB;
+int **matrisC;
 struct possition{
     int x;
     int y;
@@ -22,7 +22,16 @@ int main(){
     pthread_t tid[child];
 
  
-    
+    matrisA = (int **)malloc(3*sizeof(int *));
+    matrisB = (int **)malloc(3*sizeof(int *));
+    matrisC = (int **)malloc(3*sizeof(int *));
+
+    for(i=0;i<3;i++){
+        matrisA[i] = (int *)malloc(3*sizeof(int));
+        matrisB[i] = (int *)malloc(3*sizeof(int));
+        matrisC[i] = (int *)malloc(3*sizeof(int));
+    }
+
 
     for(int f=0;f<3;f++){
         for(int c=0;c<3;c++){
