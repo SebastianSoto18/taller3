@@ -24,7 +24,7 @@ int main(){
  
     matrisA = (int **)malloc(3*sizeof(int *));
     matrisB = (int **)malloc(3*sizeof(int *));
-    matrisC = (int ***)malloc(3*sizeof(int **));
+    matrisC = (int ***)malloc(3*sizeof(int *));
 
     for(i=0;i<3;i++){
         matrisA[i] = (int *)malloc(3*sizeof(int));
