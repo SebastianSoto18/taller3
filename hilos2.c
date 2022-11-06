@@ -97,7 +97,7 @@ void *funcion_hilo(void *param){
     printf("Hilo [%lu] dato[%d | %d | %d]\n", pthread_self(), pos->x, pos->y, suma);
 
     pthread_mutex_lock(&mutex);
-    matrisC[0][0]=suma;
+    matrisA[0][0]=suma;
     pthread_mutex_unlock(&mutex);
 
     pthread_exit(0);
