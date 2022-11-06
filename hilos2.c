@@ -81,7 +81,9 @@ int main(){
     }
 
     pthread_mutex_destroy(&mutex); 
-
+    free(matrisA);
+    free(matrisB);
+    free(matrisC);
     return 0;
 }
 
@@ -97,7 +99,7 @@ void *funcion_hilo(void *param){
     printf("Hilo [%lu] dato[%d | %d | %d]\n", pthread_self(), pos->x, pos->y, suma);
 
     pthread_mutex_lock(&mutex);
-    matrisA[0][0]=suma;
+    matrisC[0][0]=suma;
     pthread_mutex_unlock(&mutex);
 
     pthread_exit(0);
