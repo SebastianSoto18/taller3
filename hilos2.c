@@ -78,7 +78,7 @@ int main(){
     }
 
    
-    for(int f=0;f<3;f++){
+    for(int f=0;f<child;f++){
             pthread_join(tid[f], NULL);
     }
 
