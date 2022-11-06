@@ -40,11 +40,6 @@ int main(){
         }
     }
 
-    /*  for(int f=0;f<3;f++){
-        for(int c=0;c<3;c++){
-            matrisC[f][c]=0;
-        }
-    } */
 
      for(int f=0;f<3;f++){
         for(int c=0;c<3;c++){
@@ -102,7 +97,7 @@ void *funcion_hilo(void *param){
     printf("Hilo [%lu] dato[%d | %d | %d]\n", pthread_self(), pos->x, pos->y, suma);
 
     pthread_mutex_lock(&mutex);
-    matrisC[pos->x][pos->y]=suma;
+    matrisC[0][0]=suma;
     pthread_mutex_unlock(&mutex);
 
     pthread_exit(0);
