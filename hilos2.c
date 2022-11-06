@@ -4,19 +4,21 @@
 
 void *funcion_hilo(void *param);
 //compilar hilos gcc -o hilos.c hilos -lpthread
-int sum ;
+
 int matrisA[3][3];
 int matrisB[3][3];
+int matrisC[3][3];
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
-int res;
+
+struct possition{
+    int x;
+    int y;
+};
 
 int main(){
     int i;
-
     int child;
     child=9;
-    sum=0;
-    res=200;
     pthread_t tid[child];
     
 
@@ -24,6 +26,12 @@ int main(){
         for(int c=0;c<3;c++){
             matrisA[f][c]=rand()%10;
             matrisB[f][c]=rand()%10;
+        }
+    }
+
+     for(int f=0;f<3;f++){
+        for(int c=0;c<3;c++){
+            matrisC[f][c]=0;
         }
     }
 
@@ -44,35 +52,47 @@ int main(){
         printf("\n");
     }
 
-   
-/*     pthread_create(&tid, NULL, funcion_hilo, NULL);
-
-    for(i=0;i<100;i++){
-        pthread_mutex_lock(&mutex);
-        sum++;
-        pthread_mutex_unlock(&mutex);
-        pthread_mutex_lock(&mutex);
-        res--;
-        pthread_mutex_unlock(&mutex);
+    for(int f=0;f<3;f++){
+        for(int c=0;c<3;c++){
+            struct possition *pos = malloc(sizeof(struct possition));
+            pos->x=f;
+            pos->y=c;
+            pthread_create(&tid[i], NULL, funcion_hilo, (void*)pos);
+            i++;
+        }
     }
-    pthread_join(tid, NULL);
-    printf("Suma total=%d\n",sum);
-    printf("Resta total=%d\n",res);
-    pthread_mutex_destroy(&mutex); */
+
+   
+    for(int f=0;f<3;f++){
+            pthread_join(tid[f], NULL);
+    }
+
+    for(int f=0;f<3;f++){
+        for(int c=0;c<3;c++){
+            printf("%d ",matrisC[f][c]);
+        }
+        printf("\n");
+    }
+
+    pthread_mutex_destroy(&mutex); 
 
     return 0;
 }
 
 
 void *funcion_hilo(void *param){
-    int i;
-    for(i=0;i<100;i++){
-        pthread_mutex_lock(&mutex);
-        sum++;
-        pthread_mutex_unlock(&mutex);
-        pthread_mutex_lock(&mutex);
-        res--;
-        pthread_mutex_unlock(&mutex);
+    int suma=0;
+    struct possition *pos = (struct possition *)param;
+
+    for(int i=0;i<3;i++){
+        suma+=matrisA[pos->x][i]*matrisB[i][pos->y];
     }
+
+    printf("Hilo [%lu] dato[%d | %d | %d]\n", pthread_self(), pos->x, pos->y, suma);
+
+    pthread_mutex_lock(&mutex);
+    matrisC[pos->x][pos->y]=suma;
+    pthread_mutex_unlock(&mutex);
+
     pthread_exit(0);
 }
