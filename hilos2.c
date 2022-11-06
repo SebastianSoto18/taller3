@@ -4,7 +4,7 @@
 void *funcion_hilo(void *param);
 //compilar hilos gcc -o hilos.c hilos -lpthread
 int sum ;
-pthread_mutex_t mutex = PTHREAD_WTEX_INITIALIZER;
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 int main(){
     int i;
