@@ -19,6 +19,8 @@ int main(){
     for(i=0;i<100;i++){
         pthread_mutex_lock(&mutex);
         sum++;
+        pthread_mutex_unlock(&mutex);
+        pthread_mutex_lock(&mutex);
         res--;
         pthread_mutex_unlock(&mutex);
     }
@@ -35,6 +37,8 @@ void *funcion_hilo(void *param){
     for(i=0;i<100;i++){
         pthread_mutex_lock(&mutex);
         sum++;
+        pthread_mutex_unlock(&mutex);
+        pthread_mutex_lock(&mutex);
         res--;
         pthread_mutex_unlock(&mutex);
     }
