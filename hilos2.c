@@ -20,22 +20,22 @@ int main(){
     pthread_t tid[child];
     
 
-    for(f=0;f<3;f++){
-        for(c=0;c<3;c++){
+    for(int f=0;f<3;f++){
+        for(int c=0;c<3;c++){
             matrisA[f][c]=rand()%10;
             matrisB[f][c]=rand()%10;
         }
     }
 
-     for(f=0;f<3;f++){
-        for(c=0;c<3;c++){
+     for(int f=0;f<3;f++){
+        for(int c=0;c<3;c++){
             printf("%d ",matrisA[f][c]);
         }
         printf("\n");
     }
 
-     for(f=0;f<3;f++){
-        for(c=0;c<3;c++){
+     for(int f=0;f<3;f++){
+        for(int c=0;c<3;c++){
             printf("%d ",matrisB[f][c]);
         }
         printf("\n");
