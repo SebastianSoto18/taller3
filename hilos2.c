@@ -95,13 +95,13 @@ void *funcion_hilo(void *param){
     int suma=0;
     struct possition* pos = (struct possition *)param;
 
+    pthread_mutex_lock(&mutex);
     for(int i=0;i<3;i++){
         suma+=matrisA[pos->x][i]*matrisB[i][pos->y];
     }
 
     printf("Hilo [%lu] dato[%d | %d | %d]\n", pthread_self(), pos->x, pos->y, suma);
 
-    pthread_mutex_lock(&mutex);
     matrisC[0][0]=suma;
     pthread_mutex_unlock(&mutex);
 
