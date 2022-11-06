@@ -25,7 +25,7 @@ int main(){
     int child;
     child=9;
     pthread_t tid[child];
-
+    struct possition pos;
  
     /* matrisA = (int **)malloc(3*sizeof(int *));
     matrisB = (int **)malloc(3*sizeof(int *));
@@ -67,7 +67,7 @@ int main(){
     for(int f=0;f<3;f++){
         for(int c=0;c<3;c++){
             if(i<child){
-            struct possition pos;
+            
             pos.x=f;
             pos.y=c;
             printf("posicion %d %d\n",pos.x,pos.y);
