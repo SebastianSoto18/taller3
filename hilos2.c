@@ -20,7 +20,7 @@ int main(){
     int child;
     child=9;
     pthread_t tid[child];
-    struct possition pos;
+
  
     
 
@@ -56,6 +56,7 @@ int main(){
 
     for(int f=0;f<3;f++){
         for(int c=0;c<3;c++){
+            struct possition pos;
             pos.x=f;
             pos.y=c;
             pthread_create(&tid[i], NULL, funcion_hilo, (void*)&pos);
