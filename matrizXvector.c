@@ -152,12 +152,12 @@ void *funcion_hilo_sin_asignar(void *param){
                 suma+=matrisA[i][j]*vector[j];
             }
              printf("El hilo %d realizo la tarea en la fila %d y el resultado es: %d \n",pos->x+1,i,suma);
-            //resultado[i]=suma;
-            //suma=0;
+             resultado[i]=suma;
+             suma=0;
         }
         pthread_mutex_unlock(&mutex);
-        //i++;
-        break;
+        i++;
+
     }
     pthread_exit(0);
 }
