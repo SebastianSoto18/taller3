@@ -105,10 +105,10 @@ int main(){
         pthread_join(tid[i],NULL);
     }
 
-   /*  printf("Resultado: \n");
+   printf("Resultado: \n");
     for(int i=0;i<size;i++){
         printf("%d \n",resultado[i]);
-    } */
+    } 
 
     return 0;
 
@@ -152,7 +152,7 @@ void *funcion_hilo_sin_asignar(void *param){
                 suma+=matrisA[i][j]*vector[j];
             }
              printf("El hilo %d realizo la tarea en la fila %d y el resultado es: %d \n",pos->x+1,i,suma);
-            resultado[i]=suma;
+            //resultado[i]=suma;
             suma=0;
         }
         pthread_mutex_unlock(&mutex);
