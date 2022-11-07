@@ -112,6 +112,7 @@ void *Contar_Digito_hilo(void *param){
     int digito=p->digito;
     int id=p->id;
     int contador=0;
+    printf("El hilo %d esta contando desde %d hasta %d\n",id,inicio,final);
     for (int i = inicio; i < final; i++){
         printf("Hilo %d: %d\n",id,vector[i]);
         if(vector[i]==digito){
