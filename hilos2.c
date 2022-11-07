@@ -26,7 +26,7 @@ int main(){
     child=9;
     pthread_t tid[child];
     struct possition pos;
-    possition casillas[child];
+    struct possition casillas[child];
  
     /* matrisA = (int **)malloc(3*sizeof(int *));
     matrisB = (int **)malloc(3*sizeof(int *));
