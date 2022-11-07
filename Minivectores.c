@@ -93,7 +93,7 @@ int main(){
             parametros[i].final=segmentos;
         }else{
             parametros[i].inicio=i*segmentos;
-            parametros[i].final=2+parametros[i].inicio;
+            parametros[i].final=segmentos+parametros[i].inicio;
         }
         parametros[i].digito=digito;
         parametros[i].id=i;
