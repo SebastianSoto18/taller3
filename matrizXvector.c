@@ -156,7 +156,8 @@ void *funcion_hilo_sin_asignar(void *param){
             //suma=0;
         }
         pthread_mutex_unlock(&mutex);
-        i++;
+        //i++;
+        break;
     }
     pthread_exit(0);
 }
