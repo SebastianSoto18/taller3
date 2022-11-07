@@ -23,6 +23,7 @@ int main(){
     int cantidadDeElementosInt;
     int cantidadDeHilos;
     int segmentos;
+    int esImpar=1;
     int digito=0;
     int bandera=1;
     char num[100];
@@ -31,6 +32,10 @@ int main(){
     fscanf(archivo,"%s", &cantidadDeElementos);
 
     cantidadDeElementosInt=atoi(cantidadDeElementos);
+
+    if(cantidadDeElementosInt%2==0){
+        esImpar=0;
+    }
 
     /*Inicializando el vector que contendra los elementos*/
     vector = (int*)malloc(sizeof(int)*cantidadDeElementosInt);
@@ -42,14 +47,25 @@ int main(){
         vector[i]=atoi(num);
     }
 
+
+
     do{
         printf("Ingrese la cantidad de hilos que desea utilizar: \n");
         scanf("%d",&cantidadDeHilos);
-        if(cantidadDeElementosInt%cantidadDeHilos==0){
-            segmentos=cantidadDeElementosInt/cantidadDeHilos;
+        if(esImpar){
+            if((cantidadDeElementosInt+1)%cantidadDeHilos==0){
+            segmentos=(cantidadDeElementosInt+1)/cantidadDeHilos;
             bandera=0;
+            }else{
+                printf("La cantidad de hilos debe ser divisible entre la cantidad de elementos\n");
+            }
         }else{
-            printf("La cantidad de hilos debe ser divisible entre la cantidad de elementos\n");
+            if(cantidadDeElementosInt%cantidadDeHilos==0){
+                segmentos=cantidadDeElementosInt/cantidadDeHilos;
+                bandera=0;
+            }else{
+                printf("La cantidad de hilos debe ser divisible entre la cantidad de elementos\n");
+            }
         }
     }while (bandera);
     bandera=1;
@@ -81,6 +97,10 @@ int main(){
         }
         parametros[i].digito=digito;
         parametros[i].id=i;
+
+        if(i==cantidadDeHilos-1 && esImpar){
+            parametros[i].final=parametros[i].final-1;
+        }
     }
 
     /*Creando los hilos*/
