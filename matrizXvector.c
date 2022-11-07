@@ -57,12 +57,12 @@ int main(){
 
     for(int i=0;i<size;i++){
         for(int j=0;j<size;j++){
-            matrisA[i][j] = rand()%20;
+            matrisA[i][j] = rand()%200;
         }
     }
 
     for(int i=0;i<size;i++){
-        vector[i] = rand()%20;
+        vector[i] = rand()%200;
     }
 
     for(int i=0;i<size;i++){
