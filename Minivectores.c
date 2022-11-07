@@ -13,6 +13,7 @@ struct parametros{
 
 int *vector;
 int *repetidosPorHilo;
+int contadorGlobal=0;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 int main(){
@@ -25,21 +26,22 @@ int main(){
     int digito=0;
     int bandera=1;
     char num[100];
+
+    /*Obteniendo numero de elementos de la primera linea del archivo*/
     fscanf(archivo,"%s", &cantidadDeElementos);
+
     cantidadDeElementosInt=atoi(cantidadDeElementos);
+
+    /*Inicializando el vector que contendra los elementos*/
     vector = (int*)malloc(sizeof(int)*cantidadDeElementosInt);
     
+    /*Cargue de numeros en el vector*/
     for (int i = 0; i <cantidadDeElementosInt; i++)
     {
         fscanf(archivo,"%s", &num);
         vector[i]=atoi(num);
     }
 
-    for (int i = 0; i < cantidadDeElementosInt; i++)
-    {
-        printf("%d \n",vector[i]);
-    }
-    
     do{
         printf("Ingrese la cantidad de hilos que desea utilizar: \n");
         scanf("%d",&cantidadDeHilos);
@@ -52,6 +54,7 @@ int main(){
     }while (bandera);
     bandera=1;
     
+    /*Inicializando el vector que contiene los hilos*/
     pthread_t tid[cantidadDeHilos];
     repetidosPorHilo = (int*)malloc(sizeof(int)*cantidadDeHilos);
 
@@ -67,6 +70,7 @@ int main(){
         }
     }while(bandera);
 
+    /*Generando las estructuras que se le pasaran al metodo que contara los digitos segun el segmento*/
     for (int i = 0; i < cantidadDeHilos; i++){
         if(i==0){
             parametros[i].inicio=0;
@@ -79,9 +83,43 @@ int main(){
         parametros[i].id=i;
     }
 
-    for(int i=0;i<cantidadDeHilos;i++){
-        printf("inicio: %d final: %d digito: %d id: %d \n",parametros[i].inicio,parametros[i].final,parametros[i].digito,parametros[i].id);
+    /*Creando los hilos*/
+    for (int  i = 0; i < cantidadDeHilos; i++){
+        pthread_create(&tid[i],NULL,Contar_Digito_hilo,(void *)&parametros[i]);
     }
     
+    /*Esperando terminacion de los hilos*/
+    for (int  i = 0; i < cantidadDeHilos; i++){
+        pthread_join(tid[i],NULL);
+    }
+
+    /*Imprimiendo los resultados*/
+    if(contadorGlobal==0){
+        printf("El digito %d no se repite en el vector\n",digito);
+        exit(0);
+    }else{
+        for(int i=0;i<cantidadDeHilos;i++){
+            printf("El hilo %d encontro %d el digitos %d\n",i,repetidosPorHilo[i],digito);
+        }
+    }
     return 0;
+}
+
+void *Contar_Digito_hilo(void *param){
+    struct parametros *p = (struct parametros *)param;
+    int inicio=p->inicio;
+    int final=p->final;
+    int digito=p->digito;
+    int id=p->id;
+    int contador=0;
+    for (int i = inicio; i < final; i++){
+        if(vector[i]==digito){
+            contador++;
+        }
+    }
+    pthread_mutex_lock(&mutex);
+    repetidosPorHilo[id]=contador;
+    contadorGlobal+=contador;
+    pthread_mutex_unlock(&mutex);
+    pthread_exit(0);
 }
