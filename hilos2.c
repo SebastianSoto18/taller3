@@ -26,6 +26,7 @@ int main(){
     child=9;
     pthread_t tid[child];
     struct possition pos;
+    possition casillas[child];
  
     /* matrisA = (int **)malloc(3*sizeof(int *));
     matrisB = (int **)malloc(3*sizeof(int *));
@@ -67,17 +68,20 @@ int main(){
     for(int f=0;f<3;f++){
         for(int c=0;c<3;c++){
             if(i<child){
-            
             pos.x=f;
             pos.y=c;
             printf("posicion %d %d\n",pos.x,pos.y);
-            pthread_create(&tid[i], NULL, funcion_hilo, (void*)&pos);
+            casillas[i]=pos;
             i++;
             }
         }
     }
 
-   
+    for(int f=0;f<child;f++){
+        printf("posicion %d %d\n",casillas[f].x,casillas[f].y);
+    }
+
+   exit(0);
     for(int f=0;f<child;f++){
             pthread_join(tid[f], NULL);
     }
@@ -99,16 +103,16 @@ int main(){
 
 void *funcion_hilo(void *param){
     int suma=0;
-    struct possition* pos = (struct possition *)param;
+    struct possition* poss = (struct possition *)param;
     printf("%d\n",i);    
-    pthread_mutex_lock(&mutex);
     for(int i=0;i<3;i++){
-        suma+=matrisA[pos->x][i]*matrisB[i][pos->y];
+        suma+=matrisA[poss->x][i]*matrisB[i][poss->y];
     }
 
-    printf("Hilo [%lu] dato[%d | %d | %d]\n", pthread_self(), pos->x, pos->y, suma);
+    printf("Hilo [%lu] dato[%d | %d | %d]\n", pthread_self(), poss->x, poss->y, suma);
 
+    pthread_mutex_lock(&mutex);
+    matrisC[poss->x][poss->y]=suma;
     pthread_mutex_unlock(&mutex);
-    matrisC[pos->x][pos->y]=suma;
     pthread_exit(0);
 }
