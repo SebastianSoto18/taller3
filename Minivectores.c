@@ -54,22 +54,22 @@ int main(){
         scanf("%d",&cantidadDeHilos);
         if(esImpar){
             /*Si la bandeja esta encendida, se asume que el elemento tiene un elemento de mas para hacer mas facil la particion de los segmentos*/
-            if((cantidadDeElementosInt+1)%cantidadDeHilos==0){
+            if((cantidadDeElementosInt+1)%cantidadDeHilos==0 && cantidadDeElementosInt>=cantidadDeHilos){
                 segmentos=(cantidadDeElementosInt+1)/cantidadDeHilos;
-                bandera=0;
+                break;
             }else{
                 printf("La cantidad de hilos debe ser divisible entre la cantidad de elementos\n");
             }
         }else{
-            if(cantidadDeElementosInt%cantidadDeHilos==0){
+            if(cantidadDeElementosInt%cantidadDeHilos==0 && cantidadDeElementosInt>=cantidadDeHilos){
                 segmentos=cantidadDeElementosInt/cantidadDeHilos;
-                bandera=0;
+                break;
             }else{
                 printf("La cantidad de hilos debe ser divisible entre la cantidad de elementos\n");
             }
         }
     }while (bandera);
-    bandera=1;
+
     
     /*Inicializando el vector que contiene los hilos*/
     pthread_t tid[cantidadDeHilos];
@@ -83,7 +83,7 @@ int main(){
         if(digito<0){
             printf("El digito debe ser mayor a 0\n");
         }else{
-            bandera=0;
+           break;
         }
     }while(bandera);
 
