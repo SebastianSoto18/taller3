@@ -113,6 +113,7 @@ void *Contar_Digito_hilo(void *param){
     int id=p->id;
     int contador=0;
     for (int i = inicio; i < final; i++){
+        printf("Hilo %d: %d\n",id,vector[i]);
         if(vector[i]==digito){
             contador++;
         }
