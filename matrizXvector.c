@@ -49,6 +49,9 @@ int main(){
             matrisA[i] = rand()%20;
         }
     }
+     for(int i=0;i<size;i++){
+        matrisA[i] = (int *)malloc(size*sizeof(int));
+    }
 
     for(int i=0;i<size;i++){
         vector[i] = rand()%20;
