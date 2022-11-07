@@ -80,7 +80,7 @@ int main(){
     }
 
     for(int i=0;i<cantidadDeHilos;i++){
-        printf("inicio: %d final: %d digito: %d \n",parametros[i].inicio,parametros[i].final,parametros[i].digito);
+        printf("inicio: %d final: %d digito: %d id: %d \n",parametros[i].inicio,parametros[i].final,parametros[i].digito,parametros[i].id);
     }
     
     return 0;
