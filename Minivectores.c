@@ -25,7 +25,7 @@ int main(){
 
     for (int i = 0; i < atoi(cantidadDeElementos); i++)
     {
-        fscanf(archivo,"%d", &num);
+        fscanf(archivo,"%s", &num);
         printf("%d\n ",atoi(num));
     }
     
