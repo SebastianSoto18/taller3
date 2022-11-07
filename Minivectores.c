@@ -17,7 +17,7 @@ int *repetidosPorHilo;
 int main(){
     FILE *archivo;
     archivo=fopen("test.txt","r");
-    char cantidadDeElementos[2];
+    char cantidadDeElementos[100];
     int cantidadDeElementosInt;
     char num[100];
     fscanf(archivo,"%s", &cantidadDeElementos);
