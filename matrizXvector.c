@@ -11,9 +11,10 @@ int **matrisA;
 int *vector;
 int *resultado;
 int *asignado;
+int size;
 
 int main(){
-    int size=0;
+
     int child;
 
 
@@ -47,7 +48,7 @@ int main(){
      for(int i=0;i<size;i++){
         matrisA[i] = (int *)malloc(size*sizeof(int));
     }
-    
+
     for(int i=0;i<size;i++){
         for(int j=0;j<size;j++){
             matrisA[i][j] = rand()%20;
@@ -75,6 +76,35 @@ int main(){
         printf("%d ",vector[i]);
     }
 
+    printf("\n");
+
+    if(child==size){
+        for(int i=0;i<size;i++){
+            pthread_create(&tid[i],NULL,funcion_hilo_todos_asignados,(void *)&i);
+        }
+    }
+
+    for(int i=0;i<size;i++){
+        pthread_join(tid[i],NULL);
+    }
+
+    printf("Resultado: \n");
+    for(int i=0;i<size;i++){
+        printf("%d \n",resultado[i]);
+    }
+
     return 0;
 
+}
+
+
+void *funcion_hilo_todos_asignados(void *param){
+    int *pos = (int *)param;
+    int suma=0;
+    for(int i=0;i<size;i++){
+        suma+=matrisA[*pos][i]*vector[i];
+    }
+    resultado[*pos]=suma;
+    printf("El hilo %d realizo la tarea y el resultado es: %d \n",*pos,suma);
+    pthread_exit(0);
 }
