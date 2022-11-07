@@ -23,11 +23,17 @@ int main(){
     fscanf(archivo,"%s", &cantidadDeElementos);
     cantidadDeElementosInt=atoi(cantidadDeElementos);
     vector = (int*)malloc(sizeof(int)*cantidadDeElementosInt);
-    printf("%d",cantidadDeElementosInt);
+ 
     for (int i = 0; i <cantidadDeElementosInt; i++)
     {
         fscanf(archivo,"%s", &num);
-        printf("%d\n ",atoi(num));
+        vector[i]=atoi(num);
     }
+
+    for (int i = 0; i < cantidadDeElementosInt; i++)
+    {
+        printf("%d \n",vector[i]);
+    }
+    
     
 }
