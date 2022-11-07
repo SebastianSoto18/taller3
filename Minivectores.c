@@ -117,8 +117,8 @@ void *Contar_Digito_hilo(void *param){
             contador++;
         }
     }
-    pthread_mutex_lock(&mutex);
     repetidosPorHilo[id]=contador;
+    pthread_mutex_lock(&mutex);
     contadorGlobal+=contador;
     pthread_mutex_unlock(&mutex);
     pthread_exit(0);
