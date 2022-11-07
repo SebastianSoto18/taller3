@@ -101,8 +101,7 @@ int main(){
 
 void *funcion_hilo(void *param){
     int suma=0;
-    struct possition* poss = (struct possition *)param;
-    printf("%d\n",i);    
+    struct possition* poss = (struct possition *)param;  
     for(int i=0;i<3;i++){
         suma+=matrisA[poss->x][i]*matrisB[i][poss->y];
     }
