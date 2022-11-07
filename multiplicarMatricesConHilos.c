@@ -70,15 +70,10 @@ int main(){
             if(i<child){
             pos.x=f;
             pos.y=c;
-            printf("posicion %d %d\n",pos.x,pos.y);
             casillas[i]=pos;
             i++;
             }
         }
-    }
-
-    for(int f=0;f<child;f++){
-        printf("posicion %d %d\n",casillas[f].x,casillas[f].y);
     }
 
     for(int f=0;f<child;f++){
