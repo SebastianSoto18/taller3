@@ -13,6 +13,10 @@ int *resultado;
 int *asignado;
 int size;
 
+struct possition{
+    int x;
+};
+
 int main(){
 
     int child;
@@ -78,9 +82,15 @@ int main(){
 
     printf("\n");
 
+    struct possition pos[child];
+
+    for(int i=0;i<child;i++){
+        pos[i].x = i;
+    }
+
     if(child==size){
         for(int i=0;i<size;i++){
-            pthread_create(&tid[i],NULL,funcion_hilo_todos_asignados,(void *)&i);
+            pthread_create(&tid[i],NULL,funcion_hilo_todos_asignados,(void *)&pos[i]);
         }
     }
 
@@ -99,12 +109,12 @@ int main(){
 
 
 void *funcion_hilo_todos_asignados(void *param){
-    int *pos = (int *)param;
+    struct possition *pos = (struct possition *)param;
     int suma=0;
     for(int i=0;i<size;i++){
-        suma+=matrisA[pos][i]*vector[i];
+        suma+=matrisA[pos->x][i]*vector[i];
     }
     resultado[*pos]=suma;
-    printf("El hilo %d realizo la tarea y el resultado es: %d \n",*pos,suma);
+    printf("El hilo %d realizo la tarea y el resultado es: %d \n",pos->x,suma);
     pthread_exit(0);
 }
