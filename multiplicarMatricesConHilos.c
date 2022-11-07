@@ -27,7 +27,7 @@ int main(){
     pthread_t tid[child];
     struct possition pos;
     struct possition casillas[child];
- 
+    //matrices reservando memoria dinamicamente 
     /* matrisA = (int **)malloc(3*sizeof(int *));
     matrisB = (int **)malloc(3*sizeof(int *));
     matrisC = (int **)malloc(3*sizeof(int *));
@@ -87,7 +87,8 @@ int main(){
     for(int f=0;f<child;f++){
             pthread_join(tid[f], NULL);
     }
-
+     printf("\n");
+    printf("matris C\n");
     for(int f=0;f<3;f++){
         for(int c=0;c<3;c++){
             printf("%d ",matrisC[f][c]);
@@ -111,10 +112,8 @@ void *funcion_hilo(void *param){
         suma+=matrisA[poss->x][i]*matrisB[i][poss->y];
     }
 
-    printf("Hilo [%lu] dato[%d | %d | %d]\n", pthread_self(), poss->x, poss->y, suma);
-
-    pthread_mutex_lock(&mutex);
+    //pthread_mutex_lock(&mutex);
     matrisC[poss->x][poss->y]=suma;
-    pthread_mutex_unlock(&mutex);
+    //pthread_mutex_unlock(&mutex);
     pthread_exit(0);
 }
