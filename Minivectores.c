@@ -52,6 +52,11 @@ int main(){
     do{
         printf("Ingrese la cantidad de hilos que desea utilizar: \n");
         scanf("%d",&cantidadDeHilos);
+
+        if(cantidadDeHilos == cantidadDeElementosInt){
+           segmentos=1;
+           break;
+        }
         if(esImpar){
             /*Si la bandeja esta encendida, se asume que el elemento tiene un elemento de mas para hacer mas facil la particion de los segmentos*/
             if((cantidadDeElementosInt+1)%cantidadDeHilos==0 && cantidadDeElementosInt>=cantidadDeHilos){
