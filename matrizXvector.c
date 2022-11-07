@@ -115,6 +115,6 @@ void *funcion_hilo_todos_asignados(void *param){
         suma+=matrisA[pos->x][i]*vector[i];
     }
     resultado[pos->x]=suma;
-    printf("El hilo %d realizo la tarea y el resultado es: %d \n",pos->x,suma);
+    printf("El hilo %d realizo la tarea y el resultado es: %d \n",pos->x+1,suma);
     pthread_exit(0);
 }
