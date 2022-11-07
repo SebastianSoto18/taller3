@@ -12,7 +12,7 @@ struct parametros{
 
 int *vector;
 int *repetidosPorHilo;
-
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 int main(){
     FILE *archivo;
