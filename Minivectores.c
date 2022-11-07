@@ -99,7 +99,7 @@ int main(){
         exit(0);
     }else{
         for(int i=0;i<cantidadDeHilos;i++){
-            printf("El hilo %d encontro %d el digitos %d\n",i,repetidosPorHilo[i],digito);
+            printf("El hilo %d encontro %d veces el digito %d\n",i,repetidosPorHilo[i],digito);
         }
     }
     return 0;
