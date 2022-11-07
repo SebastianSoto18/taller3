@@ -8,6 +8,7 @@ struct parametros{
     int inicio;
     int final;
     int digito;
+    int id;
 };
 
 int *vector;
@@ -70,12 +71,12 @@ int main(){
         if(i==0){
             parametros[i].inicio=0;
             parametros[i].final=segmentos;
-            parametros[i].digito=digito;
         }else{
             parametros[i].inicio=i*segmentos;
             parametros[i].final=2*parametros[i].inicio;
-            parametros[i].digito=digito;
         }
+        parametros[i].digito=digito;
+        parametros[i].id=i;
     }
 
     for(int i=0;i<cantidadDeHilos;i++){
