@@ -32,7 +32,7 @@ int main(){
     fscanf(archivo,"%s", &cantidadDeElementos);
 
     cantidadDeElementosInt=atoi(cantidadDeElementos);
-
+    /*Si la candidad de elementos es par, se apaga la bandera que indica lo contrario*/
     if(cantidadDeElementosInt%2==0){
         esImpar=0;
     }
@@ -53,9 +53,10 @@ int main(){
         printf("Ingrese la cantidad de hilos que desea utilizar: \n");
         scanf("%d",&cantidadDeHilos);
         if(esImpar){
+            /*Si la bandeja esta encendida, se asume que el elemento tiene un elemento de mas para hacer mas facil la particion de los segmentos*/
             if((cantidadDeElementosInt+1)%cantidadDeHilos==0){
-            segmentos=(cantidadDeElementosInt+1)/cantidadDeHilos;
-            bandera=0;
+                segmentos=(cantidadDeElementosInt+1)/cantidadDeHilos;
+                bandera=0;
             }else{
                 printf("La cantidad de hilos debe ser divisible entre la cantidad de elementos\n");
             }
@@ -99,6 +100,9 @@ int main(){
         parametros[i].id=i;
 
         if(i==cantidadDeHilos-1 && esImpar){
+            /*Si la bandera esta activa, el ultimo hilo contara hasta el elemento anterior,
+            debido a que por facilidades de operacion, se le asigno un elemento de mas a la hora de sacar los segmentos
+            */
             parametros[i].final=parametros[i].final-1;
         }
     }
@@ -138,7 +142,7 @@ void *Contar_Digito_hilo(void *param){
             contador++;
         }
     }
-    
+
     repetidosPorHilo[id]=contador;
     pthread_mutex_lock(&mutex);
     contadorGlobal+=contador;
