@@ -12,6 +12,7 @@ int *vector;
 int *resultado;
 int *asignado;
 int size;
+int asignados=0;
 
 struct possition{
     int x;
@@ -48,6 +49,7 @@ int main(){
     vector = (int *)malloc(size*sizeof(int));
     resultado = (int *)malloc(size*sizeof(int));
     asignado = (int *)malloc(size*sizeof(int));
+    asignados=child;
 
      for(int i=0;i<size;i++){
         matrisA[i] = (int *)malloc(size*sizeof(int));
@@ -92,6 +94,11 @@ int main(){
         for(int i=0;i<size;i++){
             pthread_create(&tid[i],NULL,funcion_hilo_todos_asignados,(void *)&pos[i]);
         }
+    }else{
+        for(int i=0;i<child;i++){
+            asignado[i] = 1;
+            pthread_create(&tid[i],NULL,funcion_hilo_sin_asignar,(void *)&pos[i]);
+        }
     }
 
     for(int i=0;i<size;i++){
@@ -116,5 +123,40 @@ void *funcion_hilo_todos_asignados(void *param){
     }
     resultado[pos->x]=suma;
     printf("El hilo %d realizo la tarea y el resultado es: %d \n",pos->x+1,suma);
+    pthread_exit(0);
+}
+
+void *funcion_hilo_sin_asignar(void *param){
+    struct possition *pos = (struct possition *)param;
+    int suma=0;
+    int i=0;
+
+    for(int j=0;j<size;j++){
+        suma+=matrisA[pos->x][j]*vector[j];
+    }
+
+    resultado[pos->x]=suma;
+    printf("El hilo %d realizo la tarea en la fila %d y el resultado es: %d \n",pos->x+1,pos->x,suma);
+    suma=0;
+    while(1){
+        pthread_mutex_lock(&mutex);
+        if(asignados==size){
+            pthread_mutex_unlock(&mutex);
+            break;
+        }
+        if(asignado[i]==0 && i!=pos->x){
+            asignado[i]=1;
+            asignados++;
+            pthread_mutex_unlock(&mutex);
+            for(int j=0;j<size;j++){
+                suma+=matrisA[i][j]*vector[j];
+            }
+             printf("El hilo %d realizo la tarea en la fila %d y el resultado es: %d \n",pos->x+1,i,suma);
+            resultado[i]=suma;
+            suma=0;
+        }
+        pthread_mutex_unlock(&mutex);
+        i++;
+    }
     pthread_exit(0);
 }
