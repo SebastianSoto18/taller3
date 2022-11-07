@@ -81,7 +81,9 @@ int main(){
         printf("posicion %d %d\n",casillas[f].x,casillas[f].y);
     }
 
-   exit(0);
+    for(int f=0;f<child;f++){
+        pthread_create(&tid[f],NULL,funcion_hilo,(void *)&casillas[f]);
+    }
     for(int f=0;f<child;f++){
             pthread_join(tid[f], NULL);
     }
