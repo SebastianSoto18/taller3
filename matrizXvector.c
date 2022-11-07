@@ -20,7 +20,7 @@ int main(){
     do{
         printf("Ingrese el tamaño de la matriz: \n");
         scanf("%d",&size);
-        if(size>1){
+        if(size<1){
             printf("El tamaño debe ser mayor a 0 y mayor a 1\n");
         }else{
             break;
