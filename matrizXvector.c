@@ -44,13 +44,14 @@ int main(){
     resultado = (int *)malloc(size*sizeof(int));
     asignado = (int *)malloc(size*sizeof(int));
 
-    for(int i=0;i<size;i++){
-        for(int j=0;j<size;j++){
-            matrisA[i] = rand()%20;
-        }
-    }
      for(int i=0;i<size;i++){
         matrisA[i] = (int *)malloc(size*sizeof(int));
+    }
+    
+    for(int i=0;i<size;i++){
+        for(int j=0;j<size;j++){
+            matrisA[i][j] = rand()%20;
+        }
     }
 
     for(int i=0;i<size;i++){
