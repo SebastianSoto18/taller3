@@ -94,22 +94,26 @@ int main(){
         for(int i=0;i<size;i++){
             pthread_create(&tid[i],NULL,funcion_hilo_todos_asignados,(void *)&pos[i]);
         }
+        for(int i=0;i<size;i++){
+            pthread_join(tid[i],NULL);
+        }
     }else{
         for(int i=0;i<child;i++){
             asignado[i] = 1;
             pthread_create(&tid[i],NULL,funcion_hilo_sin_asignar,(void *)&pos[i]);
         }
+        for(int i=0;i<child;i++){
+            pthread_join(tid[i],NULL);
+        }
     }
 
-    for(int i=0;i<size;i++){
-        pthread_join(tid[i],NULL);
-    }
 
-   /* printf("Resultado: \n");
+
+   printf("Resultado: \n");
     for(int i=0;i<size;i++){
         printf("%d \n",resultado[i]);
     } 
- */
+ 
     return 0;
 
 }
@@ -157,7 +161,7 @@ void *funcion_hilo_sin_asignar(void *param){
         }
         pthread_mutex_unlock(&mutex);
         i++;
-
     }
+
     pthread_exit(0);
 }
