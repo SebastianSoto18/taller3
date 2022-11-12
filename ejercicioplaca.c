@@ -15,21 +15,13 @@ int main(){
     fscanf(archivo,"%s", &filas);
     fscanf(archivo,"%s", &columnas);
 
-    int placa[atoi(filas)][atoi(columnas)];
 
-    for(int i=0;i<atoi(filas);i++){
-        for(int j=0;j<atoi(columnas);j++){
-            fscanf(archivo,"%s", &filas);
-            placa[i][j]=atoi(filas);
-        }
-    }
+    int filasInt = atoi(filas);
+    int columnasInt = atoi(columnas);
 
-    for(int i=0;i<atoi(filas);i++){
-        for(int j=0;j<atoi(columnas);j++){
-            printf("%d ",placa[i][j]);
-        }
-        printf("\n");
-    }
+   int placa[filasInt][columnasInt];
+
+
 
     fclose(archivo);
 
