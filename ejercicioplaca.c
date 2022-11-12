@@ -12,7 +12,7 @@ int main(){
 
     archivo = fopen("test2.txt","r");
     fscanf(archivo,"%s", &cadena);
-    char delimitador[] = "";
+    char delimitador[] = "  ";
     char *token = strtok(cadena, delimitador);
     if(token != NULL){
         while(token != NULL){
