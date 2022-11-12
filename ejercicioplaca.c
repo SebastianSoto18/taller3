@@ -8,7 +8,7 @@ int main(){
 
     char filas[256] ;
     char columnas[256];
-
+    char digito[256];
     FILE *archivo;
 
     archivo = fopen("test2.txt","r");
@@ -21,7 +21,12 @@ int main(){
 
    int placa[filasInt][columnasInt];
 
-
+    for(int i=0;i<filasInt;i++){
+        for(int j=0;j<columnasInt;j++){
+            fscanf(archivo,"%s", &digito);
+            placa[i][j]=atoi(digito);
+        }
+    }
 
     fclose(archivo);
 
