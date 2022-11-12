@@ -5,8 +5,14 @@
 
 
 int main(){
-    char cadena[] = "Hola,mundo,soy,una,cadena,separa,por,comas",
-    delimitador[] = ",";
+
+    char cadena[256] ;
+
+    FILE *archivo;
+
+    archivo = fopen("test2.txt","r");
+    fscanf(archivo,"%s", &cadena);
+    char delimitador[] = " ";
     char *token = strtok(cadena, delimitador);
     if(token != NULL){
         while(token != NULL){
