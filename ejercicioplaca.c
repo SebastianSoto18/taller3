@@ -12,7 +12,8 @@ int main(){
 
     archivo = fopen("test2.txt","r");
     fscanf(archivo,"%s", &cadena);
-    char delimitador[] = "  ";
+    printf("%s\n",cadena);
+    char delimitador[] = " ";
     char *token = strtok(cadena, delimitador);
     if(token != NULL){
         while(token != NULL){
@@ -21,4 +22,5 @@ int main(){
             token = strtok(NULL, delimitador);
         }
     }
+    fclose(archivo);
 }
