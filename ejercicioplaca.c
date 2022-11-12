@@ -6,27 +6,32 @@
 
 int main(){
 
-    char cadena[256] ;
+    char filas[256] ;
+    char columnas[256];
 
     FILE *archivo;
 
     archivo = fopen("test2.txt","r");
-    fscanf(archivo,"%s", &cadena);
-    printf("%s\n",cadena);
-    fscanf(archivo,"%s", &cadena);
-    printf("%s\n",cadena);
-        fscanf(archivo,"%s", &cadena);
-    printf("%s\n",cadena);
-    fscanf(archivo,"%s", &cadena);
-    printf("%s\n",cadena);
-    char delimitador[] = " ";
-    char *token = strtok(cadena, delimitador);
-    if(token != NULL){
-        while(token != NULL){
-            // Sólo en la primera pasamos la cadena; en las siguientes pasamos NULL
-            printf("Token: %s\n", token);
-            token = strtok(NULL, delimitador);
+    fscanf(archivo,"%s", &filas);
+    fscanf(archivo,"%s", &columnas);
+
+    int placa[atoi(filas)][atoi(columnas)];
+
+    for(int i=0;i<atoi(filas);i++){
+        for(int j=0;j<atoi(columnas);j++){
+            fscanf(archivo,"%s", &filas);
+            placa[i][j]=atoi(filas);
         }
     }
+
+    for(int i=0;i<atoi(filas);i++){
+        for(int j=0;j<atoi(columnas);j++){
+            printf("%d ",placa[i][j]);
+        }
+        printf("\n");
+    }
+
     fclose(archivo);
+
+    return 0;
 }
