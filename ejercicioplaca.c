@@ -28,6 +28,12 @@ int main(){
         }
     }
 
+    for(int i=0;i<filasInt;i++){
+        for(int j=0;j<columnasInt;j++){
+            printf("%d ",placa[i][j]);
+        }
+        printf("\n");
+    }
     fclose(archivo);
 
     return 0;
