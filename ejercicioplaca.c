@@ -15,6 +15,10 @@ int main(){
     printf("%s\n",cadena);
     fscanf(archivo,"%s", &cadena);
     printf("%s\n",cadena);
+        fscanf(archivo,"%s", &cadena);
+    printf("%s\n",cadena);
+    fscanf(archivo,"%s", &cadena);
+    printf("%s\n",cadena);
     char delimitador[] = " ";
     char *token = strtok(cadena, delimitador);
     if(token != NULL){
