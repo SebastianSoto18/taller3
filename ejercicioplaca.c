@@ -69,7 +69,7 @@ int main()
 
     } while (1);
 
-    int filasPorHilo = filasInt / hilos;
+    int filasPorHilo = (filasInt-2) / hilos;
 
     pthread_t hilosArray[hilos];
 
@@ -101,7 +101,7 @@ int main()
     for (int i = 0; i < hilos; i++)
     {
         if(i==0){
-            d[i].inicio = 0;
+            d[i].inicio = 1;
             
         }else{
              d[i].inicio = i * filasPorHilo;
@@ -157,7 +157,7 @@ void *funcionHilo(void *param)
 
     do{
         pthread_barrier_wait(&muro);
-        for(int i=inicio;i<fin;i++){
+        for(int i=;i<fin;i++){
             for(int j=1;j<columnasInt;j++){
                pthread_mutex_lock(&mutex);
                 placa[i][j]=(placa[i-1][j]+placa[i+1][j]+placa[i][j-1]+placa[i][j+1])/4;
