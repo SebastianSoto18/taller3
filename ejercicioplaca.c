@@ -109,6 +109,9 @@ int main()
         pthread_create(&hilosArray[i], NULL, (void *)funcionHilo, (void *)&d[i]);
     }
 
+    pthread_barrier_wait(&barrera);
+     pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
+
     while (t < iteraciones)
     {
         if (t == 0)
@@ -146,6 +149,7 @@ int main()
         t++;
         if (t == iteraciones)
         {
+            pthread_barrier_wait(&barrera);
             printf("sali principal\n");
             break;
         }
@@ -172,6 +176,8 @@ void *funcionHilo(void *param)
 
     while (1)
     {
+        pthread_barrier_wait(&barrera);
+           printf("saliendo2 de la barrera hilo en t %d\n", f);
         for (int i = inicio; i < fin; i++)
         {
             for (int j = 1; j < columnasInt - 1; j++)
@@ -188,8 +194,7 @@ void *funcionHilo(void *param)
             printf("sali hilo\n");
             break;
         }
-        printf("saliendo2 de la barrera hilo en t %d\n", f);
-        pthread_barrier_wait(&barrera);
+     
     }
 
     pthread_exit(NULL);
