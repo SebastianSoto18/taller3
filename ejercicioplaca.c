@@ -112,7 +112,7 @@ int main()
     }
 
     pthread_barrier_wait(&barrera);
-
+    printf("sali de espera padre \n");
      pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
      pthread_barrier_wait(&muro);
     while (t < iteraciones)
@@ -130,16 +130,16 @@ int main()
             t++;
             if (t == iteraciones)
             {
-              
+                printf("sali principal\n");
                 break;
             }
-
+            printf("esperando barrera principal\n");
              pthread_barrier_wait(&barrera);
-       
+             printf("saliendo de barrera principal\n");
             pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
-      
+            printf("esperando muro principal\n");
             pthread_barrier_wait(&muro);
-            
+            printf("saliendo de muro principal\n");
             pthread_barrier_init(&muro, NULL, hilosmasprincipal);
              
 
@@ -167,9 +167,9 @@ void *funcionHilo(void *param)
 
     while (1)
     {
-
+        printf("esperando en barrera\n");
         pthread_barrier_wait(&barrera);
-
+         printf("sali de espera barrera\n");
         for (int i = inicio; i < fin; i++)
         {
             for (int j = 1; j < columnasInt - 1; j++)
@@ -180,13 +180,13 @@ void *funcionHilo(void *param)
             }
         }
         f++;
-      
+        printf("esperando en muro\n");
          pthread_barrier_wait(&muro);
-       
+            printf("sali de espera muro\n");
         if(iteraciones == 1) break;
         if (f == iteraciones)
         {
-      
+            printf("sali hilo\n");
             break;
         }
     }
