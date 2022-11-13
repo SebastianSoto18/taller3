@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <string.h>
-
+#include <time.h>
 struct data
 {
     int inicio;
@@ -161,7 +161,8 @@ void *funcionHilo(void *param)
         }
         pthread_barrier_wait(&barrera);
         printf("saliendo de la barrera hilo en t %d\n",f);
-        sleep(0.05);
+       sleep(500);
+    
     f++;
     }while (f<iteraciones);
 
