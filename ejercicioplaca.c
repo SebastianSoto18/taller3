@@ -32,7 +32,7 @@ int main()
     fscanf(archivo, "%s", &filas);
     fscanf(archivo, "%s", &columnas);
 
-    pthread_barrier_init(&barrera, NULL, hilos+1);
+   
      filasInt = atoi(filas);
      columnasInt = atoi(columnas);
 
@@ -68,7 +68,7 @@ int main()
         }
 
     } while (1);
-
+     pthread_barrier_init(&barrera, NULL, hilos+1);
     int filasPorHilo = (filasInt-2) / hilos;
 
     pthread_t hilosArray[hilos];
@@ -117,7 +117,6 @@ int main()
         if(t==0){
             pthread_barrier_init(&muro, NULL, hilos);
         }else{
-
              pthread_barrier_init(&barrera, NULL, hilos+1);
              pthread_barrier_init(&muro, NULL, hilos);
         }
