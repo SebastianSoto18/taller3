@@ -102,7 +102,7 @@ int main()
     {
         if(i==0){
             d[i].inicio = 1;
-            
+             d[i].fin =d[i].inicio + (filasPorHilo-1);
         }else{
              d[i].inicio = i * filasPorHilo;
         }
