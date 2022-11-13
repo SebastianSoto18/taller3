@@ -92,6 +92,17 @@ int main()
         }
     } while (1);
 
+    printf("La placa en el tiempo 0 : \n");
+
+    for (int i = 0; i < filasInt; i++)
+    {
+        for (int j = 0; j < columnasInt; j++)
+        {
+            printf("%d ", placa[i][j]);
+        }
+        printf("\n");
+    }
+
     int hilosmasprincipal = hilos + 1;
     pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
       pthread_barrier_init(&muro, NULL, hilosmasprincipal);
