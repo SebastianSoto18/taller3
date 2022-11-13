@@ -103,15 +103,12 @@ int main()
 
         pthread_create(&hilosArray[i], NULL, (void *)funcionHilo, (void *)&d[i]);
     }
+   
      
 
     while(t<iteraciones){
-        printf("esperando barrera principal\n");
-         pthread_barrier_wait(&barrera);
-         pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
-         printf("reiniciando barrera\n");
 
-        printf("Estado de la placa en el tiempo %d\n",t);
+        printf("Estado de la placa en el tiempo %d\n",t+1);
         for (int i = 0; i < filasInt; i++)
         {
             for (int j = 0; j < columnasInt; j++)
@@ -120,6 +117,8 @@ int main()
             }
             printf("\n");
         }
+        pthread_barrier_wait(&barrera);
+         pthread_barrier_init(&barrera, NULL,hilosmasprincipal);
         if(t==iteraciones){
             pthread_mutex_lock(&mutex);
             bandera=0;
@@ -159,7 +158,6 @@ void *funcionHilo(void *param)
         if(f==iteraciones){
            break;
         }
-        printf("saliendo1 de la barrera hilo en t %d\n",f);
         pthread_barrier_wait(&barrera);
         printf("saliendo2 de la barrera hilo en t %d\n",f);
     }
