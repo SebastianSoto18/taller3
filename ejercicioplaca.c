@@ -156,11 +156,6 @@ void *funcionHilo(void *param)
     int f = 0;
 
     while (1){
-        pthread_mutex_lock(&mutex);
-        if(bandera==0){
-            pthread_mutex_unlock(&mutex);
-            break;
-        }
         for(int i=inicio;i<fin;i++){
             for(int j=1;j<columnasInt-1;j++){
                pthread_mutex_lock(&mutex);
@@ -171,6 +166,9 @@ void *funcionHilo(void *param)
         pthread_barrier_wait(&barrera);
         f++;
         printf("saliendo de la barrera hilo en t %d\n",f);
+        if(f==iteraciones){
+           break;
+        }
     }
 
 
