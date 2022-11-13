@@ -153,6 +153,8 @@ void *funcionHilo(void *param)
     int inicio = d->inicio;
     int fin = d->fin;
     int i = 0;
+    printf("Hilo inicio %d\n", inicio);
+    printf("Hilo fin %d\n", fin);
                     pthread_exit(NULL);
     do{
         pthread_barrier_wait(&muro);
