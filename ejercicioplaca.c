@@ -154,7 +154,7 @@ void *funcionHilo(void *param)
     int f = 0;
 
     do{
-        printf("");
+        printf("\n");
         pthread_barrier_wait(&muro);
 
         for(int i=inicio;i<fin;i++){
@@ -166,7 +166,7 @@ void *funcionHilo(void *param)
         }
 
         pthread_barrier_wait(&barrera);
-        printf("");
+        printf("\n");
     f++;
     }while (f<iteraciones);
 
