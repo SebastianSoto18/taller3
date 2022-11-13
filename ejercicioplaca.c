@@ -114,7 +114,8 @@ int main()
 
 
     while(t<iteraciones){
-
+     
+        printf("esperando en barrera principal\n");
          pthread_barrier_wait(&barrera);
          pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
         printf("Estado de la placa en el tiempo %d\n",t+1);
