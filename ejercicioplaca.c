@@ -129,7 +129,6 @@ int main()
         }
         else
         {
-            pthread_barrier_wait(&barrera);
             printf("Estado de la placa en el tiempo %d\n", t + 1);
             for (int i = 0; i < filasInt; i++)
             {
@@ -139,6 +138,7 @@ int main()
                 }
                 printf("\n");
             }
+            pthread_barrier_wait(&barrera);
             pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
         }
 
@@ -180,7 +180,6 @@ void *funcionHilo(void *param)
                 pthread_mutex_unlock(&mutex);
             }
         }
-        pthread_barrier_wait(&barrera);
         f++;
         if (f == iteraciones)
         {
@@ -188,6 +187,7 @@ void *funcionHilo(void *param)
             break;
         }
         printf("saliendo2 de la barrera hilo en t %d\n", f);
+        pthread_barrier_wait(&barrera);
     }
 
     pthread_exit(NULL);
