@@ -153,12 +153,12 @@ void *funcionHilo(void *param)
     int inicio = d->inicio;
     int fin = d->fin;
     int i = 0;
+                    pthread_exit(NULL);
     do{
         pthread_barrier_wait(&muro);
         for(int i=inicio;i<fin;i++){
             for(int j=1;j<columnasInt;j++){
                pthread_mutex_lock(&mutex);
-                pthread_exit(NULL);
                 placa[i][j]=(placa[i-1][j]+placa[i+1][j]+placa[i][j-1]+placa[i][j+1])/4;
                 pthread_mutex_unlock(&mutex);
             }
