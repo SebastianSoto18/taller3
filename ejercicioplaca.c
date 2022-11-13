@@ -106,6 +106,10 @@ int main()
      
 
     while(t<iteraciones){
+        printf("esperando barrera principal\n");
+         pthread_barrier_wait(&barrera);
+         pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
+         printf("reiniciando barrera\n");
 
         printf("Estado de la placa en el tiempo %d\n",t);
         for (int i = 0; i < filasInt; i++)
@@ -122,10 +126,6 @@ int main()
             pthread_mutex_unlock(&mutex);
         }
         t++;
-        printf("esperando barrera principal\n");
-         pthread_barrier_wait(&barrera);
-         pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
-         printf("reiniciando barrera\n");
     }
 
     for (int i = 0; i < hilos; i++)
@@ -156,11 +156,11 @@ void *funcionHilo(void *param)
             }
         }
         f++;
-        printf("saliendo de la barrera hilo en t %d\n",f);
         if(f==iteraciones){
            break;
         }
         pthread_barrier_wait(&barrera);
+        printf("saliendo de la barrera hilo en t %d\n",f);
     }
 
 
