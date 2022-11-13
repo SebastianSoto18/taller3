@@ -179,15 +179,16 @@ void *funcionHilo(void *param)
                 pthread_mutex_unlock(&mutex);
             }
         }
+        if(iteraciones == 1) break;
         f++;
+        printf("esperando en muro\n");
+         pthread_barrier_wait(&muro);
+            printf("sali de espera muro\n");
         if (f == iteraciones)
         {
             printf("sali hilo\n");
             break;
         }
-        printf("esperando en muro\n");
-         pthread_barrier_wait(&muro);
-            printf("sali de espera muro\n");
     }
 
     pthread_exit(NULL);
