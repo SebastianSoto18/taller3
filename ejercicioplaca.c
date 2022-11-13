@@ -134,7 +134,6 @@ int main()
             pthread_mutex_unlock(&mutex);
         }
         t++;
-        printf("%d\n",t);
     }
 
     for (int i = 0; i < hilos; i++)
