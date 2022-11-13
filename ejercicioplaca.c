@@ -149,7 +149,6 @@ int main()
         t++;
         if (t == iteraciones)
         {
-            pthread_barrier_wait(&barrera);
             printf("sali principal\n");
             break;
         }
