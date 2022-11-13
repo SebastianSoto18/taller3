@@ -102,11 +102,11 @@ int main()
     {
         if(i==0){
             d[i].inicio = 1;
-             d[i].fin =d[i].inicio + (filasPorHilo-1);
+             d[i].fin =(d[i].inicio + filasPorHilo)-1;
         }else{
              d[i].inicio = i * filasPorHilo;
+             d[i].fin =d[i].inicio + filasPorHilo;
         }
-        d[i].fin =d[i].inicio + filasPorHilo;
 
         pthread_create(&hilosArray[i], NULL, (void *)funcionHilo, (void *)&d[i]);
     }
