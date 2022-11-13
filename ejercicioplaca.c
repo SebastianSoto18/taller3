@@ -157,7 +157,6 @@ void *funcionHilo(void *param)
 
     while (1){
         pthread_mutex_lock(&mutex);
-        printf("%d\n",bandera);
         if(bandera==0){
             pthread_mutex_unlock(&mutex);
             break;
