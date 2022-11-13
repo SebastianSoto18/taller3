@@ -154,7 +154,6 @@ void *funcionHilo(void *param)
     int inicio = d->inicio;
     int fin = d->fin;
     int f = 0;
-    printf("hilo inicio %d fin %d\n", inicio, fin);
 
     do{
         pthread_barrier_wait(&muro);
@@ -166,8 +165,9 @@ void *funcionHilo(void *param)
                 pthread_mutex_unlock(&mutex);
             }
         }
-         pthread_exit(NULL);
+       
         pthread_barrier_wait(&barrera);
+          pthread_exit(NULL);
     f++;
     }while (f<iteraciones);
 
