@@ -126,17 +126,17 @@ int main()
                 }
                 printf("\n");
             }
+            t++;
+            if (t == iteraciones)
+            {
+                printf("sali principal\n");
+                break;
+            }
             pthread_barrier_wait(&muro);
             pthread_barrier_init(&muro, NULL, hilosmasprincipal);
              pthread_barrier_wait(&barrera);
             pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
 
-        t++;
-        if (t == iteraciones)
-        {
-            printf("sali principal\n");
-            break;
-        }
     }
 
     for (int i = 0; i < hilos; i++)
@@ -173,12 +173,12 @@ void *funcionHilo(void *param)
             }
         }
         f++;
-         pthread_barrier_wait(&muro);
         if (f == iteraciones)
         {
             printf("sali hilo\n");
             break;
         }
+         pthread_barrier_wait(&muro);
     }
 
     pthread_exit(NULL);
