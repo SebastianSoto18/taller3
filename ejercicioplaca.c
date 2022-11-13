@@ -101,12 +101,12 @@ int main()
     {
         if(i==0){
             d[i].inicio = 0;
-            exit(0);
+            
         }else{
              d[i].inicio = i * filasPorHilo;
         }
         d[i].fin =d[i].inicio + filasPorHilo;
-
+        exit(0);
         pthread_create(&hilosArray[i], NULL, (void *)funcionHilo, (void *)&d[i]);
     }
      pthread_barrier_init(&muro, NULL, hilos);
