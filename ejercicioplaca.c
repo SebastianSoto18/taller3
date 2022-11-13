@@ -149,18 +149,18 @@ void *funcionHilo(void *param)
     struct data *d = (struct data *)param;
     int inicio = d->inicio;
     int fin = d->fin;
-
+    int i = 0;
     do{
         pthread_barrier_wait(&muro);
         for(int i=inicio;i<fin;i++){
             for(int j=1;j<columnasInt;j++){
                pthread_mutex_lock(&mutex);
-                placa[i][j]=int((placa[i-1][j]+placa[i+1][j]+placa[i][j-1]+placa[i][j+1])/4);
+                placa[i][j]=(placa[i-1][j]+placa[i+1][j]+placa[i][j-1]+placa[i][j+1])/4;
                 pthread_mutex_unlock(&mutex);
             }
         }
         pthread_barrier_wait(&barrera);
-
+    i++;
     }while (i<iteraciones);
 
 
