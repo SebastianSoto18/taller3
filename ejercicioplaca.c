@@ -163,7 +163,7 @@ int main()
     free(d);
     free(placa);
     fclose(archivo);
-
+    pthread_barrier_destroy(&barrera);
     return 0;
 }
 
