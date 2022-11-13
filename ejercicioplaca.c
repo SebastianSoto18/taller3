@@ -12,6 +12,11 @@ struct data
 void *funcionHilo(void *param);
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_barrier_t barrera;
+pthread_barrier_t muro;
+int **placa;
+int t=0;
+ int iteraciones=0;
+  int columnasInt=0;
 int main()
 {
 
@@ -19,8 +24,7 @@ int main()
     char columnas[256];
     char digito[256];
     int hilos = 0;
-    int iteraciones=0;
-    int t=0;
+
     FILE *archivo;
 
     archivo = fopen("test2.txt", "r");
@@ -29,9 +33,14 @@ int main()
 
     pthread_barrier_init(&barrera, NULL, hilos+1);
     int filasInt = atoi(filas);
-    int columnasInt = atoi(columnas);
+     columnasInt = atoi(columnas);
 
-    int placa[filasInt][columnasInt];
+    placa = (int **)malloc(filasInt * sizeof(int *));
+
+    for (int i = 0; i < filasInt; i++)
+    {
+        placa[i] = (int *)malloc(columnasInt * sizeof(int));
+    }
 
     for (int i = 0; i < filasInt; i++)
     {
@@ -98,9 +107,27 @@ int main()
 
         pthread_create(&hilosArray[i], NULL, (void *)funcionHilo, (void *)&d[i]);
     }
+     pthread_barrier_init(&muro, NULL, hilos);
 
     while(t<iteraciones){
-        pthread_barrier_wait(&barrera);
+        if(t==0){
+            pthread_barrier_wait(&barrera);
+            thread_barrier_init(&muro, NULL, hilos);
+        }else{
+             pthread_barrier_init(&barrera, NULL, hilos+1);
+             pthread_barrier_init(&muro, NULL, hilos);
+             pthread_barrier_wait(&barrera);
+        }
+       
+        printf("Estado de la placa en el tiempo %d\n",t+1);
+        for (int i = 0; i < filasInt; i++)
+        {
+            for (int j = 0; j < columnasInt; j++)
+            {
+                printf("%d ", placa[i][j]);
+            }
+            printf("\n");
+        }
         
         t++;
     }
@@ -115,4 +142,27 @@ int main()
     fclose(archivo);
 
     return 0;
+}
+
+void *funcionHilo(void *param)
+{
+    struct data *d = (struct data *)param;
+    int inicio = d->inicio;
+    int fin = d->fin;
+
+    do{
+        pthread_barrier_wait(&muro);
+        for(int i=inicio;i<fin;i++){
+            for(int j=1;j<columnasInt;j++){
+               pthread_mutex_lock(&mutex);
+                placa[i][j]=int((placa[i-1][j]+placa[i+1][j]+placa[i][j-1]+placa[i][j+1])/4);
+                pthread_mutex_unlock(&mutex);
+            }
+        }
+        pthread_barrier_wait(&barrera);
+
+    }while (i<iteraciones);
+
+
+    pthread_exit(NULL);
 }
