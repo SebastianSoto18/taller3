@@ -18,6 +18,7 @@ int t=0;
  int iteraciones=0;
  int columnasInt=0;
  int  filasInt =0;
+ int bandera=1;
 int main()
 {
 
@@ -126,7 +127,11 @@ int main()
             }
             printf("\n");
         }
-        
+        if(t==iteraciones){
+            pthread_mutex_lock(&mutex);
+            bandera=0;
+            pthread_mutex_unlock(&mutex);
+        }
         t++;
         printf("%d\n",t);
     }
@@ -150,7 +155,12 @@ void *funcionHilo(void *param)
     int fin = d->fin;
     int f = 0;
 
-    while (f<iteraciones){
+    while (1){
+        pthread_mutex_lock(&mutex);
+        if(bandera==0){
+            pthread_mutex_unlock(&mutex);
+            break;
+        }
         for(int i=inicio;i<fin;i++){
             for(int j=1;j<columnasInt-1;j++){
                pthread_mutex_lock(&mutex);
