@@ -12,7 +12,6 @@ struct data
 void *funcionHilo(void *param);
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_barrier_t barrera;
-pthread_barrier_t muro;
 int **placa;
 int t=0;
  int iteraciones=0;
@@ -97,7 +96,6 @@ int main()
         printf("\n");
     }
     int hilosmasprincipal = hilos + 1;
-    pthread_barrier_init(&muro, NULL, hilos);
     pthread_barrier_init(&barrera, NULL,hilosmasprincipal);
     for (int i = 0; i < hilos; i++)
     {
@@ -118,8 +116,6 @@ int main()
      
         printf("esperando en barrera principal\n");
          pthread_barrier_wait(&barrera);
-         printf("reiniciando muro\n");
-         pthread_barrier_init(&muro, NULL, hilos);
             printf("reiniciando barrera\n");
          pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
         printf("Estado de la placa en el tiempo %d\n",t+1);
@@ -156,9 +152,6 @@ void *funcionHilo(void *param)
     int f = 0;
 
     do{
-        printf("entrando al muro\n");
-        pthread_barrier_wait(&muro);
-        printf("saliendo del muro\n");
         for(int i=inicio;i<fin;i++){
             for(int j=1;j<columnasInt-1;j++){
                pthread_mutex_lock(&mutex);
@@ -166,9 +159,9 @@ void *funcionHilo(void *param)
                 pthread_mutex_unlock(&mutex);
             }
         }
-
         pthread_barrier_wait(&barrera);
         printf("saliendo de la barrera hilo en t %d\n",f);
+        sleep(0.05);
     f++;
     }while (f<iteraciones);
 
