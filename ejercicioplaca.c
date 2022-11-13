@@ -110,6 +110,7 @@ int main()
     }
 
     pthread_barrier_wait(&barrera);
+    printf("sali de espera padre \n");
      pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
 
     while (t < iteraciones)
@@ -182,8 +183,9 @@ void *funcionHilo(void *param)
             break;
         }else{
             pthread_barrier_wait(&barrera);
+            printf("sali de espera hilo\n");
         }
-           printf("saliendo2 de la barrera hilo en t %d\n", f);
+         
         for (int i = inicio; i < fin; i++)
         {
             for (int j = 1; j < columnasInt - 1; j++)
