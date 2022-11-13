@@ -183,6 +183,7 @@ void *funcionHilo(void *param)
         f++;
         if (f == iteraciones)
         {
+             pthread_barrier_wait(&barrera);
             printf("sali hilo\n");
             break;
         }
