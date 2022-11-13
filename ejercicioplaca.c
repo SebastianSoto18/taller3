@@ -137,7 +137,7 @@ int main()
     }
 
     free(d);
-
+    free(placa);
     fclose(archivo);
 
     return 0;
