@@ -74,7 +74,7 @@ int main()
 
     struct data *d;
 
-    d = calloc(hilos, sizeof(struct data));
+    d = (struct data*)calloc(hilos, sizeof(struct data));
 
     do{
         printf("Ingrese el numero de iteraciones: \n");
@@ -157,8 +157,7 @@ void *funcionHilo(void *param)
         for(int i=inicio;i<fin;i++){
             for(int j=1;j<columnasInt;j++){
                pthread_mutex_lock(&mutex);
-                //placa[i][j]=(placa[i-1][j]+placa[i+1][j]+placa[i][j-1]+placa[i][j+1])/4;
-                printf("Hilo %d\n",i);
+                placa[i][j]=(placa[i-1][j]+placa[i+1][j]+placa[i][j-1]+placa[i][j+1])/4;
                 pthread_mutex_unlock(&mutex);
             }
         }
