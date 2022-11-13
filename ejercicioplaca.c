@@ -175,7 +175,14 @@ void *funcionHilo(void *param)
 
     while (1)
     {
-        pthread_barrier_wait(&barrera);
+         if (f == iteraciones)
+        {
+             pthread_barrier_wait(&barrera);
+            printf("sali hilo\n");
+            break;
+        }else{
+            pthread_barrier_wait(&barrera);
+        }
            printf("saliendo2 de la barrera hilo en t %d\n", f);
         for (int i = inicio; i < fin; i++)
         {
@@ -187,13 +194,7 @@ void *funcionHilo(void *param)
             }
         }
         f++;
-        if (f == iteraciones)
-        {
-             pthread_barrier_wait(&barrera);
-            printf("sali hilo\n");
-            break;
-        }
-     
+    
     }
 
     pthread_exit(NULL);
