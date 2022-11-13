@@ -115,6 +115,7 @@ int main()
     printf("sali de espera padre \n");
      pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
      pthread_barrier_wait(&muro);
+     pthread_barrier_init(&muro, NULL, hilosmasprincipal);
     while (t < iteraciones)
     {
         
@@ -133,9 +134,13 @@ int main()
                 printf("sali principal\n");
                 break;
             }
+            printf("esperando barrera principal\n");
              pthread_barrier_wait(&barrera);
+             printf("saliendo de barrera principal\n");
             pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
+            printf("esperando muro principal\n");
             pthread_barrier_wait(&muro);
+            printf("saliendo de muro principal\n");
             pthread_barrier_init(&muro, NULL, hilosmasprincipal);
              
 
