@@ -186,7 +186,7 @@ void *funcionHilo(void *param)
         if(iteraciones == 1) break;
         if (f == iteraciones)
         {
-            printf("sali hilo\n");
+          
             break;
         }
     }
