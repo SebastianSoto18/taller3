@@ -114,7 +114,7 @@ int main()
     pthread_barrier_wait(&barrera);
     printf("sali de espera padre \n");
      pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
-
+     pthread_barrier_wait(&muro);
     while (t < iteraciones)
     {
             printf("Estado de la placa en el tiempo %d\n", t + 1);
@@ -132,10 +132,10 @@ int main()
                 printf("sali principal\n");
                 break;
             }
-            pthread_barrier_wait(&muro);
             pthread_barrier_init(&muro, NULL, hilosmasprincipal);
              pthread_barrier_wait(&barrera);
             pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
+            pthread_barrier_wait(&muro);
 
     }
 
