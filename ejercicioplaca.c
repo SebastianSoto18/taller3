@@ -88,15 +88,7 @@ int main()
         }
     }while(1);
 
-    printf("Estado de la placa en el tiempo 0\n");
-    for (int i = 0; i < filasInt; i++)
-    {
-        for (int j = 0; j < columnasInt; j++)
-        {
-            printf("%d ", placa[i][j]);
-        }
-        printf("\n");
-    }
+
     int hilosmasprincipal = hilos + 1;
     pthread_barrier_init(&barrera, NULL,hilosmasprincipal);
     for (int i = 0; i < hilos; i++)
@@ -113,13 +105,9 @@ int main()
     }
      
 
-
     while(t<iteraciones){
-        printf("esperando barrera principal\n");
-         pthread_barrier_wait(&barrera);
-         pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
-         printf("reiniciando barrera\n");
-        printf("Estado de la placa en el tiempo %d\n",t+1);
+
+        printf("Estado de la placa en el tiempo %d\n",t);
         for (int i = 0; i < filasInt; i++)
         {
             for (int j = 0; j < columnasInt; j++)
@@ -134,6 +122,10 @@ int main()
             pthread_mutex_unlock(&mutex);
         }
         t++;
+        printf("esperando barrera principal\n");
+         pthread_barrier_wait(&barrera);
+         pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
+         printf("reiniciando barrera\n");
     }
 
     for (int i = 0; i < hilos; i++)
