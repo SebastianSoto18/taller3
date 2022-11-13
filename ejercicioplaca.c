@@ -123,7 +123,9 @@ int main()
                 printf("\n");
             }
             pthread_barrier_wait(&barrera);
+            printf("saliendo de espera\n");
             pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
+            printf("reiniciando barrera");
         }
         else
         {
@@ -140,13 +142,12 @@ int main()
             pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
         }
 
+        t++;
         if (t == iteraciones)
         {
-            pthread_mutex_lock(&mutex);
-            bandera = 0;
-            pthread_mutex_unlock(&mutex);
+            printf("sali principal\n");
+            break;
         }
-        t++;
     }
 
     for (int i = 0; i < hilos; i++)
@@ -183,6 +184,7 @@ void *funcionHilo(void *param)
         f++;
         if (f == iteraciones)
         {
+            printf("sali hilo\n");
             break;
         }
         printf("saliendo2 de la barrera hilo en t %d\n", f);
