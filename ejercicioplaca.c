@@ -16,7 +16,8 @@ pthread_barrier_t muro;
 int **placa;
 int t=0;
  int iteraciones=0;
-  int columnasInt=0;
+ int columnasInt=0;
+ int  filasInt =0;
 int main()
 {
 
@@ -32,7 +33,7 @@ int main()
     fscanf(archivo, "%s", &columnas);
 
     pthread_barrier_init(&barrera, NULL, hilos+1);
-    int filasInt = atoi(filas);
+     filasInt = atoi(filas);
      columnasInt = atoi(columnas);
 
     placa = (int **)malloc(filasInt * sizeof(int *));
@@ -153,9 +154,7 @@ void *funcionHilo(void *param)
     int inicio = d->inicio;
     int fin = d->fin;
     int i = 0;
-    printf("Hilo inicio %d\n", inicio);
-    printf("Hilo fin %d\n", fin);
-                    pthread_exit(NULL);
+
     do{
         pthread_barrier_wait(&muro);
         for(int i=inicio;i<fin;i++){
