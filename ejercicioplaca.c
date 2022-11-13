@@ -116,13 +116,11 @@ int main()
     while(t<iteraciones){
         if(t==0){
             pthread_barrier_init(&muro, NULL, hilos);
-            pthread_barrier_wait(&barrera);
         }else{
              pthread_barrier_init(&barrera, NULL, hilos+1);
              pthread_barrier_init(&muro, NULL, hilos);
-             pthread_barrier_wait(&barrera);
         }
-       
+         pthread_barrier_wait(&barrera);
         printf("Estado de la placa en el tiempo %d\n",t+1);
         for (int i = 0; i < filasInt; i++)
         {
@@ -156,7 +154,7 @@ void *funcionHilo(void *param)
     int f = 0;
 
     do{
-
+        printf("");
         pthread_barrier_wait(&muro);
 
         for(int i=inicio;i<fin;i++){
@@ -168,7 +166,7 @@ void *funcionHilo(void *param)
         }
 
         pthread_barrier_wait(&barrera);
-
+        printf("");
     f++;
     }while (f<iteraciones);
 
