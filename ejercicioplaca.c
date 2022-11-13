@@ -120,7 +120,6 @@ int main()
              pthread_barrier_init(&barrera, NULL, hilos+1);
              pthread_barrier_init(&muro, NULL, hilos);
         }
-          printf("\n");
          pthread_barrier_wait(&barrera);
         printf("Estado de la placa en el tiempo %d\n",t+1);
         for (int i = 0; i < filasInt; i++)
