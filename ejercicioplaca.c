@@ -112,7 +112,7 @@ int main()
     while(t<iteraciones){
         if(t==0){
             pthread_barrier_wait(&barrera);
-            thread_barrier_init(&muro, NULL, hilos);
+            pthread_barrier_init(&muro, NULL, hilos);
         }else{
              pthread_barrier_init(&barrera, NULL, hilos+1);
              pthread_barrier_init(&muro, NULL, hilos);
