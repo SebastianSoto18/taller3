@@ -14,11 +14,11 @@ void *funcionHilo(void *param);
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_barrier_t barrera;
 int **placa;
-int t=0;
- int iteraciones=0;
- int columnasInt=0;
- int  filasInt =0;
- int bandera=1;
+int t = 0;
+int iteraciones = 0;
+int columnasInt = 0;
+int filasInt = 0;
+int bandera = 1;
 int main()
 {
 
@@ -33,9 +33,8 @@ int main()
     fscanf(archivo, "%s", &filas);
     fscanf(archivo, "%s", &columnas);
 
-   
-     filasInt = atoi(filas);
-     columnasInt = atoi(columnas);
+    filasInt = atoi(filas);
+    columnasInt = atoi(columnas);
 
     placa = (int **)malloc(filasInt * sizeof(int *));
 
@@ -70,58 +69,81 @@ int main()
 
     } while (1);
 
-    int filasPorHilo = (filasInt-2) / hilos;
+    int filasPorHilo = (filasInt - 2) / hilos;
 
     pthread_t hilosArray[hilos];
 
     struct data *d;
 
-    d =calloc(hilos, sizeof(struct data));
+    d = calloc(hilos, sizeof(struct data));
 
-    do{
+    do
+    {
         printf("Ingrese el numero de iteraciones: \n");
-        scanf("%d",&iteraciones);
-        if(iteraciones<1){
+        scanf("%d", &iteraciones);
+        if (iteraciones < 1)
+        {
             printf("El numero de iteraciones debe ser mayor a 0\n");
-        }else{
+        }
+        else
+        {
             break;
         }
-    }while(1);
-
+    } while (1);
 
     int hilosmasprincipal = hilos + 1;
-    pthread_barrier_init(&barrera, NULL,hilosmasprincipal);
+    pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
     for (int i = 0; i < hilos; i++)
     {
-        if(i==0){
+        if (i == 0)
+        {
             d[i].inicio = 1;
-             d[i].fin =(d[i].inicio + filasPorHilo)-1;
-        }else{
-             d[i].inicio = i * filasPorHilo;
-             d[i].fin =d[i].inicio + filasPorHilo;
+            d[i].fin = (d[i].inicio + filasPorHilo) - 1;
+        }
+        else
+        {
+            d[i].inicio = i * filasPorHilo;
+            d[i].fin = d[i].inicio + filasPorHilo;
         }
 
         pthread_create(&hilosArray[i], NULL, (void *)funcionHilo, (void *)&d[i]);
     }
-   
-     
 
-    while(t<iteraciones){
-
-        printf("Estado de la placa en el tiempo %d\n",t+1);
-        for (int i = 0; i < filasInt; i++)
+    while (t < iteraciones)
+    {
+        if (t == 0)
         {
-            for (int j = 0; j < columnasInt; j++)
+            printf("Estado de la placa en el tiempo %d\n", t + 1);
+            for (int i = 0; i < filasInt; i++)
             {
-                printf("%d ", placa[i][j]);
+                for (int j = 0; j < columnasInt; j++)
+                {
+                    printf("%d ", placa[i][j]);
+                }
+                printf("\n");
             }
-            printf("\n");
+            pthread_barrier_wait(&barrera);
+            pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
         }
-        pthread_barrier_wait(&barrera);
-         pthread_barrier_init(&barrera, NULL,hilosmasprincipal);
-        if(t==iteraciones){
+        else
+        {
+            pthread_barrier_wait(&barrera);
+            printf("Estado de la placa en el tiempo %d\n", t + 1);
+            for (int i = 0; i < filasInt; i++)
+            {
+                for (int j = 0; j < columnasInt; j++)
+                {
+                    printf("%d ", placa[i][j]);
+                }
+                printf("\n");
+            }
+            pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
+        }
+
+        if (t == iteraciones)
+        {
             pthread_mutex_lock(&mutex);
-            bandera=0;
+            bandera = 0;
             pthread_mutex_unlock(&mutex);
         }
         t++;
@@ -146,22 +168,25 @@ void *funcionHilo(void *param)
     int fin = d->fin;
     int f = 0;
 
-    while (1){
-        for(int i=inicio;i<fin;i++){
-            for(int j=1;j<columnasInt-1;j++){
-               pthread_mutex_lock(&mutex);
-                placa[i][j]=(placa[i-1][j]+placa[i+1][j]+placa[i][j-1]+placa[i][j+1])/4;
+    while (1)
+    {
+        for (int i = inicio; i < fin; i++)
+        {
+            for (int j = 1; j < columnasInt - 1; j++)
+            {
+                pthread_mutex_lock(&mutex);
+                placa[i][j] = (placa[i - 1][j] + placa[i + 1][j] + placa[i][j - 1] + placa[i][j + 1]) / 4;
                 pthread_mutex_unlock(&mutex);
             }
         }
         f++;
-        if(f==iteraciones){
-           break;
+        if (f == iteraciones)
+        {
+            break;
         }
         pthread_barrier_wait(&barrera);
-        printf("saliendo2 de la barrera hilo en t %d\n",f);
+        printf("saliendo2 de la barrera hilo en t %d\n", f);
     }
-
 
     pthread_exit(NULL);
 }
