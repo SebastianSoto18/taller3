@@ -96,6 +96,7 @@ int main()
         printf("\n");
     }
 
+
     for (int i = 0; i < hilos; i++)
     {
         if(i==0){
@@ -109,6 +110,7 @@ int main()
     }
      pthread_barrier_init(&muro, NULL, hilos);
 
+    exit(0);
     while(t<iteraciones){
         if(t==0){
             pthread_barrier_wait(&barrera);
