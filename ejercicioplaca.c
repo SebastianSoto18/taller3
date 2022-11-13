@@ -164,6 +164,8 @@ void *funcionHilo(void *param)
        sleep(0.5);
     
     f++;
+    printf("%d\n",f);
+    printf("iteraciones %d\n",iteraciones);
     }while (f<iteraciones);
 
 
