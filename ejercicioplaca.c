@@ -106,6 +106,7 @@ int main()
              d[i].inicio = i * filasPorHilo;
         }
         d[i].fin =d[i].inicio + filasPorHilo;
+        printf("Hilo %d inicio %d fin %d\n",i,d[i].inicio,d[i].fin);
         exit(0);
         pthread_create(&hilosArray[i], NULL, (void *)funcionHilo, (void *)&d[i]);
     }
