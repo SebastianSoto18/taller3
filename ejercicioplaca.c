@@ -125,7 +125,7 @@ int main()
             pthread_barrier_wait(&barrera);
             printf("saliendo de espera\n");
             pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
-            printf("reiniciando barrera");
+            printf("reiniciando barrera\n");
         }
         else
         {
@@ -139,6 +139,7 @@ int main()
                 printf("\n");
             }
             pthread_barrier_wait(&barrera);
+            printf("saliendo de espera\n");
             pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
         }
 
