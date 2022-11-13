@@ -115,7 +115,6 @@ int main()
     printf("sali de espera padre \n");
      pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
      pthread_barrier_wait(&muro);
-     pthread_barrier_init(&muro, NULL, hilosmasprincipal);
     while (t < iteraciones)
     {
         
