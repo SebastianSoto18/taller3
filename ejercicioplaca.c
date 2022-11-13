@@ -115,6 +115,7 @@ int main()
 
 
     while(t<iteraciones){
+        printf("esperando barrera principal\n");
          pthread_barrier_wait(&barrera);
          pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
          printf("reiniciando barrera\n");
