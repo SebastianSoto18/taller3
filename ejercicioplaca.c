@@ -13,6 +13,7 @@ struct data
 void *funcionHilo(void *param);
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_barrier_t barrera;
+pthread_barrier_t muro;
 int **placa;
 int t = 0;
 int iteraciones = 0;
@@ -93,6 +94,7 @@ int main()
 
     int hilosmasprincipal = hilos + 1;
     pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
+      pthread_barrier_init(&muro, NULL, hilosmasprincipal);
     for (int i = 0; i < hilos; i++)
     {
         if (i == 0)
@@ -115,8 +117,6 @@ int main()
 
     while (t < iteraciones)
     {
-        if (t == 0)
-        {
             printf("Estado de la placa en el tiempo %d\n", t + 1);
             for (int i = 0; i < filasInt; i++)
             {
@@ -126,26 +126,10 @@ int main()
                 }
                 printf("\n");
             }
-            pthread_barrier_wait(&barrera);
-            printf("saliendo de espera\n");
+            pthread_barrier_wait(&muro);
+            pthread_barrier_init(&muro, NULL, hilosmasprincipal);
+             pthread_barrier_wait(&barrera);
             pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
-            printf("reiniciando barrera\n");
-        }
-        else
-        {
-            printf("Estado de la placa en el tiempo %d\n", t + 1);
-            for (int i = 0; i < filasInt; i++)
-            {
-                for (int j = 0; j < columnasInt; j++)
-                {
-                    printf("%d ", placa[i][j]);
-                }
-                printf("\n");
-            }
-            pthread_barrier_wait(&barrera);
-            printf("saliendo de espera\n");
-            pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
-        }
 
         t++;
         if (t == iteraciones)
@@ -176,15 +160,7 @@ void *funcionHilo(void *param)
 
     while (1)
     {
-         if (f == iteraciones)
-        {
-             pthread_barrier_wait(&barrera);
-            printf("sali hilo\n");
-            break;
-        }else{
-            pthread_barrier_wait(&barrera);
-            printf("sali de espera hilo\n");
-        }
+        pthread_barrier_wait(&barrera);
          
         for (int i = inicio; i < fin; i++)
         {
@@ -196,7 +172,12 @@ void *funcionHilo(void *param)
             }
         }
         f++;
-    
+         pthread_barrier_wait(&muro);
+        if (f == iteraciones)
+        {
+            printf("sali hilo\n");
+            break;
+        }
     }
 
     pthread_exit(NULL);
