@@ -166,8 +166,8 @@ void *funcionHilo(void *param)
             }
         }
        
-        pthread_barrier_wait(&barrera);
-          pthread_exit(NULL);
+       // pthread_barrier_wait(&barrera);
+         // pthread_exit(NULL);
     f++;
     }while (f<iteraciones);
 
