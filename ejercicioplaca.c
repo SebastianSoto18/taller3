@@ -157,7 +157,7 @@ void *funcionHilo(void *param)
 
     do{
         pthread_barrier_wait(&muro);
-
+        printf("saliendo del muro\n");
         for(int i=inicio;i<fin;i++){
             for(int j=1;j<columnasInt-1;j++){
                pthread_mutex_lock(&mutex);
@@ -167,6 +167,7 @@ void *funcionHilo(void *param)
         }
 
         pthread_barrier_wait(&barrera);
+        printf("saliendo de la barrera\n");
     f++;
     }while (f<iteraciones);
 
