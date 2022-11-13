@@ -153,22 +153,23 @@ void *funcionHilo(void *param)
     struct data *d = (struct data *)param;
     int inicio = d->inicio;
     int fin = d->fin;
-    int i = 0;
+    int f = 0;
     printf("hilo inicio %d fin %d\n", inicio, fin);
 
     do{
         pthread_barrier_wait(&muro);
-        pthread_exit(NULL);
+       
         for(int i=inicio;i<fin;i++){
             for(int j=1;j<columnasInt;j++){
+                 pthread_exit(NULL);
                pthread_mutex_lock(&mutex);
                 placa[i][j]=(placa[i-1][j]+placa[i+1][j]+placa[i][j-1]+placa[i][j+1])/4;
                 pthread_mutex_unlock(&mutex);
             }
         }
         pthread_barrier_wait(&barrera);
-    i++;
-    }while (i<iteraciones);
+    f++;
+    }while (f<iteraciones);
 
 
     pthread_exit(NULL);
