@@ -151,7 +151,7 @@ void *funcionHilo(void *param)
     int fin = d->fin;
     int f = 0;
 
-    do{
+    while (f<iteraciones){
         for(int i=inicio;i<fin;i++){
             for(int j=1;j<columnasInt-1;j++){
                pthread_mutex_lock(&mutex);
@@ -166,7 +166,7 @@ void *funcionHilo(void *param)
     f++;
     printf("%d\n",f);
     printf("iteraciones %d\n",iteraciones);
-    }while (f<iteraciones);
+    }
 
 
     pthread_exit(NULL);
