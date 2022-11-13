@@ -161,7 +161,7 @@ void *funcionHilo(void *param)
 
     while (1)
     {
-        printf("esperando en barrera\n",);
+        printf("esperando en barrera\n");
         pthread_barrier_wait(&barrera);
          
         for (int i = inicio; i < fin; i++)
