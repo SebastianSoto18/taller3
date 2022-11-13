@@ -163,12 +163,12 @@ void *funcionHilo(void *param)
                 pthread_mutex_unlock(&mutex);
             }
         }
-        pthread_barrier_wait(&barrera);
         f++;
         printf("saliendo de la barrera hilo en t %d\n",f);
         if(f==iteraciones){
            break;
         }
+        pthread_barrier_wait(&barrera);
     }
 
 
