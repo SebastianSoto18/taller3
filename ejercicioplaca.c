@@ -110,7 +110,7 @@ int main()
     }
      pthread_barrier_init(&muro, NULL, hilos);
 
-    exit(0);
+
     while(t<iteraciones){
         if(t==0){
             pthread_barrier_wait(&barrera);
@@ -157,7 +157,8 @@ void *funcionHilo(void *param)
         for(int i=inicio;i<fin;i++){
             for(int j=1;j<columnasInt;j++){
                pthread_mutex_lock(&mutex);
-                placa[i][j]=(placa[i-1][j]+placa[i+1][j]+placa[i][j-1]+placa[i][j+1])/4;
+                //placa[i][j]=(placa[i-1][j]+placa[i+1][j]+placa[i][j-1]+placa[i][j+1])/4;
+                printf("Hilo %d\n",i);
                 pthread_mutex_unlock(&mutex);
             }
         }
