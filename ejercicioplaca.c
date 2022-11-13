@@ -106,8 +106,7 @@ int main()
              d[i].inicio = i * filasPorHilo;
         }
         d[i].fin =d[i].inicio + filasPorHilo;
-        printf("Hilo %d inicio %d fin %d\n",i,d[i].inicio,d[i].fin);
-        exit(0);
+
         pthread_create(&hilosArray[i], NULL, (void *)funcionHilo, (void *)&d[i]);
     }
      pthread_barrier_init(&muro, NULL, hilos);
@@ -159,6 +158,7 @@ void *funcionHilo(void *param)
         for(int i=inicio;i<fin;i++){
             for(int j=1;j<columnasInt;j++){
                pthread_mutex_lock(&mutex);
+                pthread_exit(NULL);
                 placa[i][j]=(placa[i-1][j]+placa[i+1][j]+placa[i][j-1]+placa[i][j+1])/4;
                 pthread_mutex_unlock(&mutex);
             }
