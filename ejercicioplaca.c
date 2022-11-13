@@ -114,11 +114,11 @@ int main()
 
 
     while(t<iteraciones){
-     
+        printf("iteracion %d\n",iteraciones);
         printf("esperando en barrera principal\n");
          pthread_barrier_wait(&barrera);
-            printf("reiniciando barrera\n");
          pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
+         printf("reiniciando barrera\n");
         printf("Estado de la placa en el tiempo %d\n",t+1);
         for (int i = 0; i < filasInt; i++)
         {
