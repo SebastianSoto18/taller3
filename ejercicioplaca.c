@@ -157,6 +157,7 @@ void *funcionHilo(void *param)
     int f = 0;
 
     do{
+        printf("entrando al muro\n");
         pthread_barrier_wait(&muro);
         printf("saliendo del muro\n");
         for(int i=inicio;i<fin;i++){
