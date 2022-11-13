@@ -159,8 +159,9 @@ void *funcionHilo(void *param)
         if(f==iteraciones){
            break;
         }
+        printf("saliendo1 de la barrera hilo en t %d\n",f);
         pthread_barrier_wait(&barrera);
-        printf("saliendo de la barrera hilo en t %d\n",f);
+        printf("saliendo2 de la barrera hilo en t %d\n",f);
     }
 
 
