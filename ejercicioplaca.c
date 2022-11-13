@@ -74,7 +74,7 @@ int main()
 
     struct data *d;
 
-    d = (struct data*)calloc(hilos, sizeof(struct data));
+    d =calloc(hilos, sizeof(struct data));
 
     do{
         printf("Ingrese el numero de iteraciones: \n");
@@ -101,6 +101,7 @@ int main()
     {
         if(i==0){
             d[i].inicio = 0;
+            exit(0);
         }else{
              d[i].inicio = i * filasPorHilo;
         }
