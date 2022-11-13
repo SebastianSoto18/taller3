@@ -148,6 +148,7 @@ int main()
     free(placa);
     fclose(archivo);
     pthread_barrier_destroy(&barrera);
+    pthread_barrier_destroy(&muro);
     return 0;
 }
 
