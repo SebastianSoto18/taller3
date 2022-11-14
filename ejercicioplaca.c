@@ -106,13 +106,13 @@ int main()
             t++;
             if (t == iteraciones) break;
             
-            printf("esperando barrera principal\n");
+            printf("Inicio de el procesamiento de los dato\n");
              pthread_barrier_wait(&barrera);
-             printf("saliendo de barrera principal\n");
+             printf("Fin procesamiento de los datos\n");
             pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
-            printf("esperando muro principal\n");
+            printf("Preparando para mostrar datos\n");
             pthread_barrier_wait(&muro);
-            printf("saliendo de muro principal\n");
+            printf("Desplegando datos\n");
             pthread_barrier_init(&muro, NULL, hilosmasprincipal);
              
 
