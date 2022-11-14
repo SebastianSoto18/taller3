@@ -32,7 +32,7 @@ int main()
     fscanf(archivo, "%d", &columnasInt);
     fscanf(archivo, "%d", &hilos);
     fscanf(archivo, "%d", &iteraciones);
-    
+    printf("filas: %d columnas: %d hilos: %d iteraciones: %d\n", filasInt, columnasInt, hilos, iteraciones);
     placa = (int **)malloc(filasInt * sizeof(int *));
 
     for (int i = 0; i < filasInt; i++)
@@ -89,7 +89,6 @@ int main()
     }
 
     pthread_barrier_wait(&barrera);
-    printf("sali de espera padre \n");
      pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
      pthread_barrier_wait(&muro);
     while (t < iteraciones)
