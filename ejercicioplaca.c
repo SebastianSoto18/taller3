@@ -133,13 +133,13 @@ int main()
              printf("\n");
              printf("\n");   
              printf("\n");    
-            // printf("Inicio de el procesamiento de los datos...\n");
+            printf("Inicio de el procesamiento de los datos...\n");
              pthread_barrier_wait(&barrera);
-             //printf("Fin procesamiento de los datos...\n");
+             printf("Fin procesamiento de los datos...\n");
              pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
-             //printf("Preparando para mostrar datos...\n");
+             printf("Preparando para mostrar datos...\n");
              pthread_barrier_wait(&muro);
-             //printf("Desplegando datos...\n");
+             printf("Desplegando datos...\n");
              pthread_barrier_init(&muro, NULL, hilosmasprincipal);
              
 
