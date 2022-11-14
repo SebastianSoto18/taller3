@@ -60,11 +60,11 @@ int main()
 
     d = calloc(hilos, sizeof(struct data));
 
-/*      printf("Inicio de el procesamiento de los datos...\n");        
+    printf("Inicio de el procesamiento de los datos...\n");        
      printf("Fin procesamiento de los datos...\n");
      printf("Preparando para mostrar datos...\n");
      printf("Desplegando datos...\n");   
-    printf("La placa en el tiempo 0 : \n"); */
+     printf("La placa en el tiempo 0 : \n"); 
 
    for (int i = 0; i < filasInt; i++) {
         for (int j = 0; j < columnasInt; j++) {
@@ -95,14 +95,14 @@ int main()
     pthread_barrier_wait(&barrera);
      pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
      pthread_barrier_wait(&muro);
-/*      printf("\n");
+     printf("\n");
      printf("\n");
      printf("\n");   
      printf("\n");
      printf("Inicio de el procesamiento de los datos...\n");        
      printf("Fin procesamiento de los datos...\n");
      printf("Preparando para mostrar datos...\n");
-     printf("Desplegando datos...\n");    */
+     printf("Desplegando datos...\n");    
     while (t < iteraciones)
     {
         
@@ -118,10 +118,10 @@ int main()
             t++;
             if (t == iteraciones) break;
 
-/*             printf("\n");
+             printf("\n");
             printf("\n");
             printf("\n");   
-             printf("\n");    */   
+             printf("\n");    
             printf("Inicio de el procesamiento de los datos...\n");
              pthread_barrier_wait(&barrera);
              printf("Fin procesamiento de los datos...\n");
