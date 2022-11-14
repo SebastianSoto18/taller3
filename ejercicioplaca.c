@@ -19,7 +19,7 @@ int t = 0;
 int iteraciones = 0;
 int columnasInt = 0;
 int filasInt = 0;
-int bandera = 1;
+
 int main()
 {
     int hilos = 0;
