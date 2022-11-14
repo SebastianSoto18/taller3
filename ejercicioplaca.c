@@ -153,7 +153,7 @@ void *funcionHilo(void *param)
     int inicio = d->inicio;
     int fin = d->fin;
     int f = 0;
-
+    printf("inicio %d fin %d\n", inicio, fin);
     while (1)
     {
 
@@ -165,6 +165,7 @@ void *funcionHilo(void *param)
             {
                 pthread_mutex_lock(&mutex);
                 placa[i][j] = (placa[i - 1][j] + placa[i + 1][j] + placa[i][j - 1] + placa[i][j + 1]) / 4;
+                printf("resultado de la placa[%d][%d] = %.1f\n ", i, j, placa[i][j]);
                 pthread_mutex_unlock(&mutex);
             }
         }
