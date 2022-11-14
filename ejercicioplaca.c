@@ -44,7 +44,7 @@ int main()
     {
         for (int j = 0; j < columnasInt; j++)
         {
-            fscanf(archivo, "%.2f", &placa[i][j]);
+            fscanf(archivo, "%f", &placa[i][j]);
         }
     }
 
