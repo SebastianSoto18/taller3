@@ -170,7 +170,7 @@ void *funcionHilo(void *param)
 
         pthread_barrier_wait(&barrera);
 
-        for (int i = inicio; i < fin; i++)
+        for (int i = inicio; i <= fin; i++)
         {
             for (int j = 1; j < columnasInt - 1; j++)
             {
