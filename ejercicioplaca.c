@@ -19,7 +19,7 @@ int t = 0;
 int iteraciones = 0;
 int columnasInt = 0;
 int filasInt = 0;
-
+float **copia;
 int main()
 {
     int hilos = 0;
@@ -35,10 +35,12 @@ int main()
     printf("\n");
         
     placa = (float **)malloc(filasInt * sizeof(float *));
+    copia = (float **)malloc(filasInt * sizeof(float *));
 
     for (int i = 0; i < filasInt; i++)
     {
         placa[i] = (float *)malloc(columnasInt * sizeof(float));
+        copia[i] = (float *)malloc(columnasInt * sizeof(float));
     }
 
     for (int i = 0; i < filasInt; i++)
@@ -46,6 +48,7 @@ int main()
         for (int j = 0; j < columnasInt; j++)
         {
             fscanf(archivo, "%f", &placa[i][j]);
+            copia[i][j] = placa[i][j];
         }
         
     }
@@ -106,6 +109,7 @@ int main()
      printf("Desplegando datos...\n");    
     while (t < iteraciones)
     {
+           
         
             printf("Estado de la placa en el tiempo %d\n", t + 1);
             for (int i = 0; i < filasInt; i++)
@@ -118,6 +122,11 @@ int main()
             }
             t++;
             if (t == iteraciones) break;
+
+            for(int i = 0; i < filasInt; i++){
+                for(int j = 0; j < columnasInt; j++){
+                    copia[i][j] = placa[i][j];
+                }
 
              printf("\n");
             printf("\n");
@@ -165,7 +174,7 @@ void *funcionHilo(void *param)
             for (int j = 1; j < columnasInt - 1; j++)
             {
                 pthread_mutex_lock(&mutex);
-                placa[i][j] = (placa[i - 1][j] + placa[i + 1][j] + placa[i][j - 1] + placa[i][j + 1]) / 4;
+                placa[i][j] = (copia[i - 1][j] + copia[i + 1][j] + copia[i][j - 1] + copia[i][j + 1]) / 4;
                 printf("resultado de la placa[%d][%d] = %.1f\n ", i, j, placa[i][j]);
                 pthread_mutex_unlock(&mutex);
             }
