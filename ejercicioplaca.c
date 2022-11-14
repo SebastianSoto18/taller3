@@ -60,13 +60,11 @@ int main()
 
     printf("La placa en el tiempo 0 : \n");
 
-    for (int i = 0; i < filasInt; i++)
-    {
-        for (int j = 0; j < columnasInt; j++)
-        {
-            printf("%.1f", placa[i][j]);
-        }
-        printf("\n");
+   for (int i = 0; i < filasInt; i++) {
+        for (int j = 0; j < columnasInt; j++) {
+                    printf("%.1f ", placa[i][j]);
+                }
+                printf("\n");
     }
 
     int hilosmasprincipal = hilos + 1;
@@ -108,7 +106,8 @@ int main()
 
             printf("\n");
             printf("\n");
-            printf("\n");       
+            printf("\n");   
+             printf("\n");      
             printf("Inicio de el procesamiento de los datos...\n");
              pthread_barrier_wait(&barrera);
              printf("Fin procesamiento de los datos...\n");
