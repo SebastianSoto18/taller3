@@ -22,9 +22,7 @@ int filasInt = 0;
 int bandera = 1;
 int main()
 {
-
     int hilos = 0;
-    char hilostxt[256];
     FILE *archivo;
 
     archivo = fopen("test2.txt", "r");
@@ -33,6 +31,7 @@ int main()
     fscanf(archivo, "%d", &hilos);
     fscanf(archivo, "%d", &iteraciones);
     printf("filas: %d columnas: %d hilos: %d iteraciones: %d\n", filasInt, columnasInt, hilos, iteraciones);
+
     placa = (float **)malloc(filasInt * sizeof(float *));
 
     for (int i = 0; i < filasInt; i++)
@@ -64,7 +63,7 @@ int main()
     {
         for (int j = 0; j < columnasInt; j++)
         {
-            printf("%.2f", placa[i][j]);
+            printf("%.1f", placa[i][j]);
         }
         printf("\n");
     }
@@ -93,26 +92,29 @@ int main()
      pthread_barrier_wait(&muro);
     while (t < iteraciones)
     {
+            printf("\n");
+            printf("\n");
+            printf("\n");
         
             printf("Estado de la placa en el tiempo %d\n", t + 1);
             for (int i = 0; i < filasInt; i++)
             {
                 for (int j = 0; j < columnasInt; j++)
                 {
-                    printf("%.2f ", placa[i][j]);
+                    printf("%.1f ", placa[i][j]);
                 }
                 printf("\n");
             }
             t++;
             if (t == iteraciones) break;
             
-            printf("Inicio de el procesamiento de los dato\n");
+            printf("Inicio de el procesamiento de los datos...\n");
              pthread_barrier_wait(&barrera);
-             printf("Fin procesamiento de los datos\n");
+             printf("Fin procesamiento de los datos...\n");
             pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
-            printf("Preparando para mostrar datos\n");
+            printf("Preparando para mostrar datos...\n");
             pthread_barrier_wait(&muro);
-            printf("Desplegando datos\n");
+            printf("Desplegando datos...\n");
             pthread_barrier_init(&muro, NULL, hilosmasprincipal);
              
 
