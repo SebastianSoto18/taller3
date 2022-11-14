@@ -52,7 +52,7 @@ int main()
 
     
 
-    int filasPorHilo = (filasInt - 2) / hilos;
+    int filasPorHilo = (filasInt - 1) / hilos;
 
     pthread_t hilosArray[hilos];
 
