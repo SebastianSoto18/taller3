@@ -14,7 +14,7 @@ void *funcionHilo(void *param);
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_barrier_t barrera;
 pthread_barrier_t muro;
-int **placa;
+float **placa;
 int t = 0;
 int iteraciones = 0;
 int columnasInt = 0;
@@ -33,18 +33,18 @@ int main()
     fscanf(archivo, "%d", &hilos);
     fscanf(archivo, "%d", &iteraciones);
     printf("filas: %d columnas: %d hilos: %d iteraciones: %d\n", filasInt, columnasInt, hilos, iteraciones);
-    placa = (int **)malloc(filasInt * sizeof(int *));
+    placa = (float **)malloc(filasInt * sizeof(float *));
 
     for (int i = 0; i < filasInt; i++)
     {
-        placa[i] = (int *)malloc(columnasInt * sizeof(int));
+        placa[i] = (float *)malloc(columnasInt * sizeof(float));
     }
 
     for (int i = 0; i < filasInt; i++)
     {
         for (int j = 0; j < columnasInt; j++)
         {
-            fscanf(archivo, "%d", &placa[i][j]);
+            fscanf(archivo, "%.2f", &placa[i][j]);
         }
     }
 
@@ -64,7 +64,7 @@ int main()
     {
         for (int j = 0; j < columnasInt; j++)
         {
-            printf("%d ", placa[i][j]);
+            printf("%.2f", placa[i][j]);
         }
         printf("\n");
     }
@@ -99,7 +99,7 @@ int main()
             {
                 for (int j = 0; j < columnasInt; j++)
                 {
-                    printf("%d ", placa[i][j]);
+                    printf("%.2f ", placa[i][j]);
                 }
                 printf("\n");
             }
