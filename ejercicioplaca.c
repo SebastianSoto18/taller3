@@ -89,6 +89,7 @@ int main()
             d[i].fin = d[i].inicio + filasPorHilo;
         }
 
+
         pthread_create(&hilosArray[i], NULL, (void *)funcionHilo, (void *)&d[i]);
     }
 
