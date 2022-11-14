@@ -45,6 +45,7 @@ int main()
         {
             fscanf(archivo, "%f", &placa[i][j]);
         }
+        
     }
 
     
@@ -92,9 +93,6 @@ int main()
      pthread_barrier_wait(&muro);
     while (t < iteraciones)
     {
-            printf("\n");
-            printf("\n");
-            printf("\n");
         
             printf("Estado de la placa en el tiempo %d\n", t + 1);
             for (int i = 0; i < filasInt; i++)
@@ -107,7 +105,10 @@ int main()
             }
             t++;
             if (t == iteraciones) break;
-            
+
+            printf("\n");
+            printf("\n");
+            printf("\n");       
             printf("Inicio de el procesamiento de los datos...\n");
              pthread_barrier_wait(&barrera);
              printf("Fin procesamiento de los datos...\n");
