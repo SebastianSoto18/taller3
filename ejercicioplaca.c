@@ -23,20 +23,16 @@ int bandera = 1;
 int main()
 {
 
-    char filas[256];
-    char columnas[256];
-    char digito[256];
     int hilos = 0;
-
+    char hilostxt[256];
     FILE *archivo;
 
     archivo = fopen("test2.txt", "r");
-    fscanf(archivo, "%s", &filas);
-    fscanf(archivo, "%s", &columnas);
-
-    filasInt = atoi(filas);
-    columnasInt = atoi(columnas);
-
+    fscanf(archivo, "%d", &filasInt);
+    fscanf(archivo, "%d", &columnasInt);
+    fscanf(archivo, "%d", &hilos);
+    fscanf(archivo, "%d", &iteraciones);
+    
     placa = (int **)malloc(filasInt * sizeof(int *));
 
     for (int i = 0; i < filasInt; i++)
@@ -48,27 +44,11 @@ int main()
     {
         for (int j = 0; j < columnasInt; j++)
         {
-            fscanf(archivo, "%s", &digito);
-            placa[i][j] = atoi(digito);
+            fscanf(archivo, "%d", &placa[i][j]);
         }
     }
 
-    do
-    {
-        printf("Ingrese el numero de hilos: ");
-        scanf("%d", &hilos);
-
-        if (hilos > filasInt)
-        {
-            printf("El numero de hilos no puede ser menor o igual  a las filas de la placa\n");
-        }
-
-        if (hilos <= filasInt)
-        {
-            break;
-        }
-
-    } while (1);
+    
 
     int filasPorHilo = (filasInt - 2) / hilos;
 
@@ -77,20 +57,6 @@ int main()
     struct data *d;
 
     d = calloc(hilos, sizeof(struct data));
-
-    do
-    {
-        printf("Ingrese el numero de iteraciones: \n");
-        scanf("%d", &iteraciones);
-        if (iteraciones < 1)
-        {
-            printf("El numero de iteraciones debe ser mayor a 0\n");
-        }
-        else
-        {
-            break;
-        }
-    } while (1);
 
     printf("La placa en el tiempo 0 : \n");
 
