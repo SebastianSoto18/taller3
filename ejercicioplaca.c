@@ -109,13 +109,13 @@ int main()
                 printf("sali principal\n");
                 break;
             }
-            
-            pthread_barrier_wait(&barrera);
-             
+            printf("esperando barrera principal\n");
+             pthread_barrier_wait(&barrera);
+             printf("saliendo de barrera principal\n");
             pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
-
+            printf("esperando muro principal\n");
             pthread_barrier_wait(&muro);
-
+            printf("saliendo de muro principal\n");
             pthread_barrier_init(&muro, NULL, hilosmasprincipal);
              
 
