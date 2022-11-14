@@ -104,11 +104,8 @@ int main()
                 printf("\n");
             }
             t++;
-            if (t == iteraciones)
-            {
-                printf("sali principal\n");
-                break;
-            }
+            if (t == iteraciones) break;
+            
             printf("esperando barrera principal\n");
              pthread_barrier_wait(&barrera);
              printf("saliendo de barrera principal\n");
@@ -160,11 +157,7 @@ void *funcionHilo(void *param)
          pthread_barrier_wait(&muro);
 
         if(iteraciones == 1) break;
-        if (f == iteraciones)
-        {
-          
-            break;
-        }
+        if (f == iteraciones)break;
     }
 
     pthread_exit(NULL);
