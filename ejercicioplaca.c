@@ -172,7 +172,6 @@ void *funcionHilo(void *param)
 
          pthread_barrier_wait(&muro);
 
-        if(iteraciones == 1) break;
         if (f == iteraciones)break;
     }
 
