@@ -31,7 +31,9 @@ int main()
     fscanf(archivo, "%d", &hilos);
     fscanf(archivo, "%d", &iteraciones);
     printf("filas: %d columnas: %d hilos: %d iteraciones: %d\n", filasInt, columnasInt, hilos, iteraciones);
-
+     printf("\n");
+    printf("\n");
+        
     placa = (float **)malloc(filasInt * sizeof(float *));
 
     for (int i = 0; i < filasInt; i++)
@@ -89,6 +91,10 @@ int main()
     pthread_barrier_wait(&barrera);
      pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
      pthread_barrier_wait(&muro);
+     printf("\n");
+     printf("\n");
+     printf("\n");   
+     printf("\n");   
     while (t < iteraciones)
     {
         
