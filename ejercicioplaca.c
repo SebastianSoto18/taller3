@@ -127,6 +127,7 @@ int main()
                 for(int j = 0; j < columnasInt; j++){
                     copia[i][j] = placa[i][j];
                 }
+            }
 
              printf("\n");
             printf("\n");
