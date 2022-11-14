@@ -59,7 +59,11 @@ int main()
     struct data *d;
 
     d = calloc(hilos, sizeof(struct data));
-
+    
+     printf("Inicio de el procesamiento de los datos...\n");        
+     printf("Fin procesamiento de los datos...\n");
+     printf("Preparando para mostrar datos...\n");
+     printf("Desplegando datos...\n");   
     printf("La placa en el tiempo 0 : \n");
 
    for (int i = 0; i < filasInt; i++) {
