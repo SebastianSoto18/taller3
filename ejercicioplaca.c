@@ -160,7 +160,6 @@ void *funcionHilo(void *param)
 
     while (1)
     {
-        pthread_barrier_wait(&barrera);
         for (int i = inicio; i < fin; i++)
         {
             if(i == 0 || i == filasInt - 1)continue;
@@ -172,6 +171,7 @@ void *funcionHilo(void *param)
             }
         }
         f++;
+        pthread_barrier_wait(&barrera);
          pthread_barrier_wait(&muro);
         if (f == iteraciones)break;
     }
