@@ -170,9 +170,7 @@ void *funcionHilo(void *param)
 
     while (1)
     {
-        printf("esperando barrera hilo\n");
         pthread_barrier_wait(&barrera);
-        printf("saliedno espera barrera\n");
         for (int i = inicio; i < fin; i++)
         {
             if(i == 0 || i == filasInt - 1)continue;
@@ -184,9 +182,7 @@ void *funcionHilo(void *param)
             }
         }
         f++;
-        printf("esperando muro hilo\n");
          pthread_barrier_wait(&muro);
-            printf("saliedno espera muro hilo\n");
         if (f == iteraciones)break;
     }
 
