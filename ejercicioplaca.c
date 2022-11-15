@@ -134,10 +134,8 @@ int main()
              printf("\n");   
              printf("\n");    
 
-            printf("dd\n");
+             pthread_barrier_init(&muro2, NULL, hilos);            
              pthread_barrier_wait(&barrera);
-               printf("dd\n");
-             pthread_barrier_init(&muro2, NULL, hilos);
              pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
              pthread_barrier_wait(&muro);
              pthread_barrier_init(&muro, NULL, hilosmasprincipal);
@@ -152,6 +150,7 @@ int main()
 
     free(d);
     free(placa);
+    free(copia);
     fclose(archivo);
     pthread_barrier_destroy(&barrera);
     pthread_barrier_destroy(&muro);
@@ -175,7 +174,6 @@ void *funcionHilo(void *param)
             {
                 pthread_mutex_lock(&mutex);
                 placa[i][j] = (copia[i - 1][j] + copia[i + 1][j] + copia[i][j - 1] + copia[i][j + 1]) / 4;
-                printf("resultado fila %d columna %d: %f\n", i, j, placa[i][j]);
                 pthread_mutex_unlock(&mutex);
             }
         }
