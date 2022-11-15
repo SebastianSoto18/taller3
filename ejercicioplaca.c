@@ -91,8 +91,8 @@ int main()
 
         pthread_create(&hilosArray[i], NULL, (void *)funcionHilo, (void *)&d[i]);
     }
-    sleep(1);
     pthread_barrier_wait(&barrera);
+    sleep(1);
 
      pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
 
