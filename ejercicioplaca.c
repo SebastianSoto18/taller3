@@ -94,22 +94,19 @@ int main()
 
         pthread_create(&hilosArray[i], NULL, (void *)funcionHilo, (void *)&d[i]);
     }
-     printf("Inicio de el procesamiento de los datos...\n"); 
-    pthread_barrier_wait(&barrera);
-     printf("Inicio de el procesamiento de los datos...\n"); 
-     pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
-      printf("Inicio de el procesamiento de los datos...\n"); 
-     pthread_barrier_wait(&muro);
-      printf("Inicio de el procesamiento de los datos...\n"); 
 
      printf("\n");
      printf("\n");
      printf("\n");   
      printf("\n");
-     printf("Inicio de el procesamiento de los datos...\n");        
-     printf("Fin procesamiento de los datos...\n");
-     printf("Preparando para mostrar datos...\n");
-     printf("Desplegando datos...\n");    
+
+     printf("Inicio de el procesamiento de los datos...\n"); 
+    pthread_barrier_wait(&barrera);
+      printf("Fin procesamiento de los datos...\n");
+     pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
+     printf("Preparando para mostrar datos...\n"); 
+     pthread_barrier_wait(&muro);
+       printf("Desplegando datos...\n");   
     while (t < iteraciones)
     {
            
@@ -138,13 +135,13 @@ int main()
              printf("\n");    
 
              pthread_barrier_init(&muro2, NULL, hilos);    
-        
+             printf("Inicio de el procesamiento de los datos...\n"); 
              pthread_barrier_wait(&barrera);
-
+              printf("Fin procesamiento de los datos...\n");
              pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
-
+            printf("Preparando para mostrar datos...\n"); 
              pthread_barrier_wait(&muro);
-
+               printf("Desplegando datos...\n");   
              pthread_barrier_init(&muro, NULL, hilosmasprincipal);
 
 
