@@ -14,15 +14,17 @@ void *funcionHilo(void *param);
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_barrier_t barrera;
 pthread_barrier_t muro;
+pthread_barrier_t muro2;
 float **placa;
 int t = 0;
 int iteraciones = 0;
 int columnasInt = 0;
 int filasInt = 0;
+ int hilos = 0;
 float **copia;
 int main()
 {
-    int hilos = 0;
+
     FILE *archivo;
 
     archivo = fopen("test2.txt", "r");
@@ -76,7 +78,8 @@ int main()
 
     int hilosmasprincipal = hilos + 1;
     pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
-      pthread_barrier_init(&muro, NULL, hilosmasprincipal);
+     pthread_barrier_init(&muro, NULL, hilosmasprincipal);
+     pthread_barrier_init(&muro2, NULL, hilos);
     for (int i = 0; i < hilos; i++)
     {
         if (i == 0)
@@ -91,9 +94,8 @@ int main()
 
         pthread_create(&hilosArray[i], NULL, (void *)funcionHilo, (void *)&d[i]);
     }
-    printf("Esperando a que los hilos terminen...\n");
+
     pthread_barrier_wait(&barrera);
-    printf("Hilos terminados...\n");
      pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
      pthread_barrier_wait(&muro);
      
@@ -132,9 +134,9 @@ int main()
              printf("\n");   
              printf("\n");    
 
-               printf("Esperando a que los hilos terminen...\n");
-            pthread_barrier_wait(&barrera);
-            printf("Hilos terminados...\n");
+
+             pthread_barrier_wait(&barrera);
+             pthread_barrier_init(&muro2, NULL, hilos);
              pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
              pthread_barrier_wait(&muro);
              pthread_barrier_init(&muro, NULL, hilosmasprincipal);
@@ -164,6 +166,7 @@ void *funcionHilo(void *param)
 
     while (1)
     {
+        pthread_barrier_wait(&barrera);
         for (int i = inicio; i < fin; i++)
         {
             if(i == 0 || i == filasInt - 1)continue;
@@ -176,7 +179,7 @@ void *funcionHilo(void *param)
             }
         }
         f++;
-        pthread_barrier_wait(&barrera);
+        pthread_barrier_wait(&muro2);
          pthread_barrier_wait(&muro);
         if (f == iteraciones)break;
     }
