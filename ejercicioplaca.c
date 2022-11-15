@@ -93,6 +93,7 @@ int main()
     }
     printf("Esperando a que los hilos terminen...\n");
     pthread_barrier_wait(&barrera);
+    printf("Hilos terminados...\n");
      pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
      pthread_barrier_wait(&muro);
      
@@ -131,7 +132,9 @@ int main()
              printf("\n");   
              printf("\n");    
 
-             pthread_barrier_wait(&barrera);
+               printf("Esperando a que los hilos terminen...\n");
+            pthread_barrier_wait(&barrera);
+            printf("Hilos terminados...\n");
              pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
              pthread_barrier_wait(&muro);
              pthread_barrier_init(&muro, NULL, hilosmasprincipal);
