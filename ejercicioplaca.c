@@ -3,7 +3,7 @@
 #include <pthread.h>
 #include <string.h>
 #include <time.h>
-
+#include <unistd.h>
 struct data
 {
     int inicio;
@@ -91,13 +91,13 @@ int main()
 
         pthread_create(&hilosArray[i], NULL, (void *)funcionHilo, (void *)&d[i]);
     }
-    printf("esperando barrera antes de ciclo\n");
+    sleep(0.5);
     pthread_barrier_wait(&barrera);
-    printf("saliendo  barrera antes  de ciclo\n");
+     sleep(0.5);
      pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
-     printf("esperando muro antes de ciclo\n");
+      sleep(0.5);
      pthread_barrier_wait(&muro);
-        printf("saliendo muro antes de ciclo\n");
+
      printf("\n");
      printf("\n");
      printf("\n");   
