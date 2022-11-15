@@ -82,15 +82,13 @@ int main()
         if (i == 0)
         {
             d[i].inicio = 0;
-            d[i].fin = d[i].inicio + filasPorHilo;
         }
         else
         {
             d[i].inicio = i * filasPorHilo;
-            d[i].fin = d[i].inicio + filasPorHilo;
         }
-
-
+            d[i].fin = d[i].inicio + filasPorHilo;
+            
         pthread_create(&hilosArray[i], NULL, (void *)funcionHilo, (void *)&d[i]);
     }
     printf("esperando barrera antes de ciclo\n");
