@@ -134,8 +134,9 @@ int main()
              printf("\n");   
              printf("\n");    
 
-
+            printf("dd\n");
              pthread_barrier_wait(&barrera);
+               printf("dd\n");
              pthread_barrier_init(&muro2, NULL, hilos);
              pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
              pthread_barrier_wait(&muro);
