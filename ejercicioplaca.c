@@ -53,9 +53,7 @@ int main()
         
     }
 
-    
-
-    int filasPorHilo = (filasInt - 1) / hilos;
+    int filasPorHilo = filasInt  / hilos;
 
     pthread_t hilosArray[hilos];
 
@@ -83,8 +81,8 @@ int main()
     {
         if (i == 0)
         {
-            d[i].inicio = 1;
-            d[i].fin = (d[i].inicio + filasPorHilo) - 1;
+            d[i].inicio = 0;
+            d[i].fin = d[i].inicio + filasPorHilo;
         }
         else
         {
@@ -165,13 +163,16 @@ void *funcionHilo(void *param)
     int fin = d->fin;
     int f = 0;
 
+    printf("inicio  %d, find %d\n", inicio,fin);
+
     while (1)
     {
 
         pthread_barrier_wait(&barrera);
 
-        for (int i = inicio; i <= fin; i++)
+        for (int i = inicio; i < fin; i++)
         {
+            if(i == 0 || i == filasInt - 1)continue;
             for (int j = 1; j < columnasInt - 1; j++)
             {
                 pthread_mutex_lock(&mutex);
