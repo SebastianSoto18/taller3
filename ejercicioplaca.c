@@ -93,8 +93,8 @@ int main()
     }
     pthread_barrier_wait(&barrera);
      pthread_barrier_wait(&muro);
-     sleep(1);
      pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
+     
      printf("\n");
      printf("\n");
      printf("\n");   
@@ -130,7 +130,6 @@ int main()
              printf("\n");   
              printf("\n");    
 
-             sleep(1);
              pthread_barrier_wait(&barrera);
              pthread_barrier_wait(&muro);
              pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
@@ -161,6 +160,7 @@ void *funcionHilo(void *param)
 
     while (1)
     {
+        sleep(1);
         pthread_barrier_wait(&barrera);
         for (int i = inicio; i < fin; i++)
         {
