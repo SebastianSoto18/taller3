@@ -132,8 +132,8 @@ int main()
 
              pthread_barrier_wait(&barrera);
 
-             pthread_barrier_wait(&muro);
                 sleep(1);
+             pthread_barrier_wait(&muro);
              pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
              pthread_barrier_init(&muro, NULL, hilosmasprincipal);
              
