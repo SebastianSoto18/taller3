@@ -14,7 +14,6 @@ void *funcionHilo(void *param);
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_barrier_t barrera;
 pthread_barrier_t muro;
-//pthread_barrier_t muro2;
 float **placa;
 int t = 0;
 int iteraciones = 0;
@@ -182,7 +181,6 @@ void *funcionHilo(void *param)
             }
         }
         f++;
-        //pthread_barrier_wait(&muro2);
          pthread_barrier_wait(&muro);
         if (f == iteraciones)break;
     }
