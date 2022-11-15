@@ -130,9 +130,8 @@ int main()
              printf("\n");   
              printf("\n");    
 
+             sleep(1);
              pthread_barrier_wait(&barrera);
-
-                sleep(1);
              pthread_barrier_wait(&muro);
              pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
              pthread_barrier_init(&muro, NULL, hilosmasprincipal);
