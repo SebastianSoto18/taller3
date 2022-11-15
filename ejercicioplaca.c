@@ -93,8 +93,7 @@ int main()
     }
     pthread_barrier_wait(&barrera);
      pthread_barrier_wait(&muro);
-
-    sleep(1);
+     sleep(1);
      pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
      printf("\n");
      printf("\n");
@@ -130,13 +129,12 @@ int main()
              printf("\n");
              printf("\n");   
              printf("\n");    
-            printf("Inicio de el procesamiento de los datos...\n");
+
              pthread_barrier_wait(&barrera);
-             printf("Fin procesamiento de los datos...\n");
-             pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
-             printf("Preparando para mostrar datos...\n");
+
              pthread_barrier_wait(&muro);
-             printf("Desplegando datos...\n");
+                sleep(1);
+             pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
              pthread_barrier_init(&muro, NULL, hilosmasprincipal);
              
 
