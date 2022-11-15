@@ -88,7 +88,7 @@ int main()
             d[i].inicio = i * filasPorHilo;
         }
             d[i].fin = d[i].inicio + filasPorHilo;
-            
+
         pthread_create(&hilosArray[i], NULL, (void *)funcionHilo, (void *)&d[i]);
     }
     printf("esperando barrera antes de ciclo\n");
@@ -163,8 +163,6 @@ void *funcionHilo(void *param)
     int inicio = d->inicio;
     int fin = d->fin;
     int f = 0;
-
-    printf("inicio  %d, find %d\n", inicio,fin);
 
     while (1)
     {
