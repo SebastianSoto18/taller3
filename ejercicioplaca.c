@@ -129,7 +129,7 @@ int main()
              printf("\n");
              printf("\n");   
              printf("\n");    
-
+            int a = 0;
              pthread_barrier_wait(&barrera);
              pthread_barrier_wait(&muro);
              pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
