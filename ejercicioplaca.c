@@ -92,9 +92,9 @@ int main()
         pthread_create(&hilosArray[i], NULL, (void *)funcionHilo, (void *)&d[i]);
     }
     pthread_barrier_wait(&barrera);
-    sleep(1);
      pthread_barrier_wait(&muro);
 
+    sleep(1);
      pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
      printf("\n");
      printf("\n");
