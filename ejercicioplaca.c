@@ -79,7 +79,7 @@ int main()
     int hilosmasprincipal = hilos + 1;
     pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
      pthread_barrier_init(&muro, NULL, hilosmasprincipal);
-   //  pthread_barrier_init(&muro2, NULL, hilos);
+
     for (int i = 0; i < hilos; i++)
     {
         if (i == 0)
@@ -134,7 +134,7 @@ int main()
              printf("\n");   
              printf("\n");    
 
-            // pthread_barrier_init(&muro2, NULL, hilos);    
+
              printf("Inicio de el procesamiento de los datos...\n"); 
              pthread_barrier_wait(&barrera);
               printf("Fin procesamiento de los datos...\n");
