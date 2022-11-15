@@ -14,7 +14,7 @@ void *funcionHilo(void *param);
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_barrier_t barrera;
 pthread_barrier_t muro;
-pthread_barrier_t muro2;
+//pthread_barrier_t muro2;
 float **placa;
 int t = 0;
 int iteraciones = 0;
@@ -79,7 +79,7 @@ int main()
     int hilosmasprincipal = hilos + 1;
     pthread_barrier_init(&barrera, NULL, hilosmasprincipal);
      pthread_barrier_init(&muro, NULL, hilosmasprincipal);
-     pthread_barrier_init(&muro2, NULL, hilos);
+   //  pthread_barrier_init(&muro2, NULL, hilos);
     for (int i = 0; i < hilos; i++)
     {
         if (i == 0)
@@ -134,7 +134,7 @@ int main()
              printf("\n");   
              printf("\n");    
 
-             pthread_barrier_init(&muro2, NULL, hilos);    
+            // pthread_barrier_init(&muro2, NULL, hilos);    
              printf("Inicio de el procesamiento de los datos...\n"); 
              pthread_barrier_wait(&barrera);
               printf("Fin procesamiento de los datos...\n");
@@ -182,7 +182,7 @@ void *funcionHilo(void *param)
             }
         }
         f++;
-        pthread_barrier_wait(&muro2);
+        //pthread_barrier_wait(&muro2);
          pthread_barrier_wait(&muro);
         if (f == iteraciones)break;
     }
