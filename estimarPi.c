@@ -202,6 +202,8 @@ void  *funcion_hilo_sin_asignar(void *param){
     }
 
         while(1){
+            j++;
+              if(j==tamanoFaltante)break;
           pthread_mutex_lock(&mutex);
             if(calculados[j]==0){
                       calculados[j]=1;
@@ -223,11 +225,7 @@ void  *funcion_hilo_sin_asignar(void *param){
                 printf("sumaHilo: %f\n",sumaHilo);
                     j++;
                     if(j==tamanoFaltante)break;
-             }else{
-                     j++;
-                    if(j==tamanoFaltante)break;
-        }
-        printf("j: %d\n",j);
+             }
         }
         printf("termine inicio %d fin %d\n",inicio,fin);
         pthread_barrier_wait(&barrera2);
