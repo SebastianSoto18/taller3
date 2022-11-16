@@ -56,7 +56,7 @@ int main(){
                 float aux=n/child;
                 segmento=(int)aux;
                 bandera=1;
-                printf("La cantidad de hide los elementos\n");
+
             }
             break;
         }
@@ -68,6 +68,7 @@ int main(){
 
     if(bandera){
         cobertura=child*segmento;
+                        printf("La cantidad de hide los elementos\n");
          tamanoFaltante=n-cobertura;
         if(tamanoFaltante>1){
             terminos = (int *)malloc(tamanoFaltante*sizeof(int));
