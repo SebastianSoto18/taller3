@@ -56,7 +56,7 @@ int main(){
                 float aux=n/child;
                 segmento=(int)aux;
                 bandera=1;
-                        printf("La cantidad de hide los elementos\n");
+
             }
             break;
         }
@@ -65,7 +65,7 @@ int main(){
     pthread_t tid[child];
     struct segment  *d;
     d = (struct segment *)malloc(child*sizeof(struct segment));
-
+    printf("La cantidad de hide los elementos\n");
     if(bandera){
         int cobertura=child*segmento;
         int tamanoFaltante=n-cobertura;
