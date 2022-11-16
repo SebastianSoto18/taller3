@@ -68,6 +68,8 @@ int main(){
     }
 
     printf("El valor de pi es: %f\n",4*(double)resultado);
+
+    free(d);
     return 0;
 }
 
