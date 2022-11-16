@@ -91,6 +91,8 @@ int main(){
                         for(int i=0;i<tamanoFaltante;i++){
                             printf("%d\n",terminos[i]);
                         }
+
+
                     for(int i=0;i<child;i++){
                             if(i==0){
                                 d[i].inicio=0;
@@ -182,7 +184,7 @@ void  *funcion_hilo_sin_asignar(void *param){
     int fin=d->fin;
     int signoSerie=1;
     double  sumaHilo=0;
-
+    printf("Inicio: %d Fin: %d\n",inicio,fin);
     for(int i=inicio;i<fin;i++){
         if(i==0){
             signoSerie=1;
