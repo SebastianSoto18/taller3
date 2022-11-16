@@ -73,27 +73,27 @@ int main(){
          tamanoFaltante=n-cobertura;
          printf("%d\n",tamanoFaltante);
         if(tamanoFaltante>1){
-            terminos = (int *)malloc(tamanoFaltante*sizeof(int));
-            calculados = (int *)malloc(tamanoFaltante*sizeof(int));
-                         printf("%d\n",tamanoFaltante);
-        for(int i=cobertura;i<n;i++){
-            terminos[i]=i;
-            calculados[i]=0;
-        }
-        printf("%d",cobertura);
-        
-        for(int i=0;i<tamanoFaltante;i++){
-            printf("terminos[%d]=%d",i,terminos[i]);
-        }
-    for(int i=0;i<child;i++){
-            if(i==0){
-                d[i].inicio=0;
-            }else{
-                d[i].inicio=i*segmento;
-            }
-            d[i].fin=d[i].inicio+segmento;
-            pthread_create(&tid[i],NULL,funcion_hilo_sin_asignar,(void *)&d[i]);
-    }
+                            terminos = (int *)malloc(tamanoFaltante*sizeof(int));
+                            calculados = (int *)malloc(tamanoFaltante*sizeof(int));
+                                        printf("%d\n",cobertura);
+                        for(int i=cobertura;i<n;i++){
+                            terminos[i]=i;
+                            calculados[i]=0;
+                        }
+                        printf("%d",cobertura);
+                        
+                        for(int i=0;i<tamanoFaltante;i++){
+                            printf("terminos[%d]=%d",i,terminos[i]);
+                        }
+                    for(int i=0;i<child;i++){
+                            if(i==0){
+                                d[i].inicio=0;
+                            }else{
+                                d[i].inicio=i*segmento;
+                            }
+                            d[i].fin=d[i].inicio+segmento;
+                            pthread_create(&tid[i],NULL,funcion_hilo_sin_asignar,(void *)&d[i]);
+                    }
           
         }else{
             printf("No se puede realizar la estimacion con la cantidad de hilos ingresada\n");
