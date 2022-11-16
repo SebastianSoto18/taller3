@@ -13,7 +13,7 @@ struct segment{
     int fin;
 };
 
-    int suma=0;
+double suma=0.0;
 
 int main(){
     int n=0;
@@ -60,7 +60,7 @@ int main(){
         pthread_join(tid[i],NULL);
     }
 
-    printf("El valor de pi es: %f\n",4*(float)resultado/n);
+    printf("El valor de pi es: %f\n",4*(double)resultado/n);
     return 0;
 }
 
