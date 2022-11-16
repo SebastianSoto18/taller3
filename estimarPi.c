@@ -67,8 +67,9 @@ int main(){
     d = (struct segment *)malloc(child*sizeof(struct segment));
 
     if(bandera){
+       
         cobertura=child*segmento;
-                        printf("La cantidad de hide los elementos\n");
+                         printf("%d\n",cobertura);
          tamanoFaltante=n-cobertura;
         if(tamanoFaltante>1){
             terminos = (int *)malloc(tamanoFaltante*sizeof(int));
