@@ -86,7 +86,7 @@ void *funcion_hilo(void *param){
         if(i==0){
             signoSerie=1;
         }else{
-            //signoSerie=pow(-1,i);
+            signoSerie=potencia(-1,i);
         }
 
     if(signoSerie==1){
