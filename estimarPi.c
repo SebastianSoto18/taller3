@@ -77,6 +77,8 @@ int main(){
             terminos[i]=i;
             calculados[i]=0;
         }
+        printf("%d",cobertura);
+        
         for(int i=0;i<tamanoFaltante;i++){
             printf("terminos[%d]=%d",i,terminos[i]);
         }
