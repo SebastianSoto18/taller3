@@ -83,16 +83,9 @@ int main(){
                             terminos[i]=i+cobertura;
                             }
                             calculados[i]=0;
-                            printf("%d\n",terminos[i]);
                         }
-
                         
-                        for(int i=0;i<tamanoFaltante;i++){
-                            printf("%d\n",terminos[i]);
-                        }
-
-
-                    for(int i=0;i<child;i++){
+            for(int i=0;i<child;i++){
                             if(i==0){
                                 d[i].inicio=0;
                             }else{
@@ -103,7 +96,7 @@ int main(){
                     }
           
         }else{
-            printf("No se puede realizar la estimacion con la cantidad de hilos ingresada\n");
+
              for(int i=0;i<child;i++){
                     if(i==0){
                         d[i].inicio=0;
