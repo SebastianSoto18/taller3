@@ -199,7 +199,7 @@ void  *funcion_hilo_sin_asignar(void *param){
         }
     }
 
-
+    printf("Suma: %f\n",sumaHilo);
     pthread_barrier_wait(&barrera);
 
 
