@@ -92,10 +92,10 @@ void *funcion_hilo(void *param){
 
         if(signoSerie==1){
             printf("positivo\n");
-            sumaHilo+=1/(2*i+1);
+           sumaHilo=sumaHilo + (double)1/(2*i+1);
         }else{
             printf("negativo\n");
-            sumaHilo-=1/(2*i+1);
+            sumaHilo=sumaHilo - (double)1/(2*i+1);
         }
     }
 
