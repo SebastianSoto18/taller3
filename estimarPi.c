@@ -205,6 +205,7 @@ void  *funcion_hilo_sin_asignar(void *param){
 
 int j=0;
         while(j<tamanoFaltante){
+            printf("j: %d\n",j);
         pthread_mutex_lock(&mutex);
             if(calculados[j]==0){
                 printf("Hilo: %d\n",j);
