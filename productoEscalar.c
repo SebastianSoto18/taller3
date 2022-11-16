@@ -49,7 +49,7 @@ int main(){
     }while (1);
     
 
-    phtread_t tid[child];
+    pthread_t tid[child];
     struct data  *d;
     d = (struct data *)malloc(child*sizeof(struct data));
 
