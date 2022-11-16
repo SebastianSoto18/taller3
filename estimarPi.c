@@ -76,10 +76,11 @@ int main(){
                             terminos = (int *)malloc(tamanoFaltante*sizeof(int));
                             calculados = (int *)malloc(tamanoFaltante*sizeof(int));
                                         printf("%d\n",cobertura);
+                                        int aux=0;
                         for(int i=cobertura;i<n;i++){
-                            terminos[i]=i;
+                            terminos[aux]=i;
                             calculados[i]=0;
-                            printf("%d\n",terminos[i]);
+                            aux++;
                         }
                         printf("%d",cobertura);
                         
