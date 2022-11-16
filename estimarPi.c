@@ -81,6 +81,7 @@ int main(){
                             terminos[aux]=i;
                             calculados[aux]=0;
                             aux++;
+                            printf("%d\n",terminos[aux]);
                         }
                         printf("%d",cobertura);
                         
