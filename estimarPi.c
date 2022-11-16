@@ -67,8 +67,6 @@ int main(){
         pthread_join(tid[i],NULL);
     }
 
-    printf("%d\n",potencia(2,2));
-
     printf("El valor de pi es: %f\n",4*(double)resultado/n);
     return 0;
 }
@@ -82,14 +80,13 @@ void *funcion_hilo(void *param){
     int fin=d->fin;
     int signoSerie=1;
     double  sumaHilo=0;
+    printf("Inicio: %d Fin: %d\n",inicio,fin);
     for(int i=inicio;i<fin;i++){
         if(i==0){
             signoSerie=1;
         }else{
             signoSerie=potencia(-1,i);
         }
-
-        printf("El signo es: %d\n",signoSerie);
 
         if(signoSerie==1){
             sumaHilo+=1/(2*i+1);
