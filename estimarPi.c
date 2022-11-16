@@ -203,7 +203,7 @@ void  *funcion_hilo_sin_asignar(void *param){
 
     pthread_barrier_wait(&barrera);
 
-int j=0;
+
         while(j<tamanoFaltante){
             printf("j: %d\n",j);
         pthread_mutex_lock(&mutex);
@@ -224,10 +224,10 @@ int j=0;
                 }
                 calculados[j]=1;
                 
-            }else{
-             continue;
             }
+            pthread_mutex_lock(&mutex);
             j++;
+             pthread_mutex_unlock(&mutex);
         }
         printf("termine inicio %d fin %d\n",inicio,fin);
         pthread_barrier_wait(&barrera2);
