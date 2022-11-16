@@ -24,7 +24,7 @@ int main(){
     do{
         printf("Ingrese hasta donde se hara la estimacion: \n");
         scanf("%d",&n);
-        if(n<1 || n>2){
+        if(n<1 ){
             printf("El tamaño debe ser mayor a 0 y mayor a 1\n");
         }else{
             break;
