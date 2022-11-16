@@ -71,11 +71,11 @@ int main(){
         cobertura=child*segmento;
 
          tamanoFaltante=n-cobertura;
-         printf("%d\n",tamanoFaltante);
+
         if(tamanoFaltante>1){
                             terminos = (int *)malloc(tamanoFaltante*sizeof(int));
                             calculados = (int *)malloc(tamanoFaltante*sizeof(int));
-                                        printf("%d\n",cobertura);
+
                                         int aux=0;
                         for(int i=0;i<tamanoFaltante;i++){
                             if(i==0){
@@ -86,7 +86,7 @@ int main(){
                             calculados[i]=0;
                             printf("%d\n",terminos[i]);
                         }
-                        printf("%d",cobertura);
+
                         
                         for(int i=0;i<tamanoFaltante;i++){
                             printf("terminos[%d]=%d",i,terminos[i]);
