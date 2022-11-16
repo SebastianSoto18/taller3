@@ -228,7 +228,6 @@ void  *funcion_hilo_sin_asignar(void *param){
              }
         }
         printf("termine inicio %d fin %d\n",inicio,fin);
-        pthread_barrier_wait(&barrera2);
         printf("SumaHilo: %f\n",sumaHilo);
         
     pthread_mutex_lock(&mutex);
