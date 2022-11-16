@@ -228,6 +228,7 @@ void  *funcion_hilo_sin_asignar(void *param){
                      j++;
                     if(j==tamanoFaltante)break;
         }
+        printf("j: %d\n",j);
         }
         printf("termine inicio %d fin %d\n",inicio,fin);
         pthread_barrier_wait(&barrera2);
