@@ -136,6 +136,9 @@ int main(){
     printf("El valor de pi es: %f\n",4*(double)resultado);
 
     free(d);
+    free(terminos);
+    free(calculados);
+    
     return 0;
 }
 
