@@ -75,7 +75,7 @@ int main(){
         if(tamanoFaltante>1){
             terminos = (int *)malloc(tamanoFaltante*sizeof(int));
             calculados = (int *)malloc(tamanoFaltante*sizeof(int));
-                         printf("%d\n"tamanoFaltante);
+                         printf("%d\n",tamanoFaltante);
         for(int i=cobertura;i<n;i++){
             terminos[i]=i;
             calculados[i]=0;
