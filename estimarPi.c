@@ -99,7 +99,7 @@ void *funcion_hilo(void *param){
 
     pthread_mutex_lock(&mutex);
     resultado+=sumaHilo;
-    printf("Resultado: %f\n",resultado);
+    printf("Resultado: %f\n",sumaHilo);
     pthread_mutex_unlock(&mutex);
 
     pthread_exit(0);
