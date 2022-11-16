@@ -21,7 +21,7 @@ float resultado=0;
 int  *terminos;
 int *calculados;
 int tamanoFaltante;
- int j=0;
+
 struct segment{
     int inicio;
     int fin;
@@ -185,6 +185,7 @@ void  *funcion_hilo_sin_asignar(void *param){
     int fin=d->fin;
     int signoSerie=1;
     double  sumaHilo=0;
+    int j=0;
     printf("Inicio: %d Fin: %d\n",inicio,fin);
     for(int i=inicio;i<fin;i++){
         if(i==0){
@@ -203,40 +204,29 @@ void  *funcion_hilo_sin_asignar(void *param){
 
     pthread_barrier_wait(&barrera);
 
-    pthread_mutex_lock(&mutex);
-        while(j<tamanoFaltante){
-              pthread_mutex_unlock(&mutex);
-            printf("j: %d\n",j);
-        pthread_mutex_lock(&mutex);
-            if(calculados[j]==0){
-                printf("Hilo: %d\n",j);
-         pthread_mutex_unlock(&mutex);
+
+        while(1){
           pthread_mutex_lock(&mutex);
+            if(calculados[j]==0){
+                      calculados[j]=1;
          int ter = terminos[j];
-                pthread_mutex_unlock(&mutex);
                 if(j==0){
                     signoSerie=1;
                 }else{
                     signoSerie=potencia(-1,ter);
                 }
+                pthread_mutex_unlock(&mutex);
 
                 if(signoSerie==1){
                    sumaHilo=sumaHilo + (double)1/(2*ter+1);
                 }else{
                     sumaHilo=sumaHilo - (double)1/(2*ter+1);
                 }
-                
-                calculados[j]=1;
-                    pthread_mutex_lock(&mutex);
                     j++;
                     if(j==tamanoFaltante)break;
-                pthread_mutex_unlock(&mutex);
-
-        }
-             pthread_mutex_lock(&mutex);
+             }else{
                      j++;
                     if(j==tamanoFaltante)break;
-             pthread_mutex_unlock(&mutex);
         }
         printf("termine inicio %d fin %d\n",inicio,fin);
         pthread_barrier_wait(&barrera2);
