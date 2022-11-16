@@ -32,7 +32,7 @@ int main(){
     int child;
     int segmento=0;
     int bandera=0;
-
+      int cobertura=0;
     do{
         printf("Ingrese hasta donde se hara la estimacion: \n");
         scanf("%d",&n);
@@ -67,7 +67,7 @@ int main(){
     d = (struct segment *)malloc(child*sizeof(struct segment));
 
     if(bandera){
-        int cobertura=child*segmento;
+        cobertura=child*segmento;
          tamanoFaltante=n-cobertura;
         if(tamanoFaltante>1){
             terminos = (int *)malloc(tamanoFaltante*sizeof(int));
