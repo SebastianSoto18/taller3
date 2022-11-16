@@ -203,25 +203,26 @@ void  *funcion_hilo_sin_asignar(void *param){
 
     pthread_barrier_wait(&barrera);
 
-
-        for(int i=0;i<tamanoFaltante;i++){
+int j=0;
+        while(j<tamanoFaltante){
         pthread_mutex_lock(&mutex);
-            if(calculados[i]==0){
-                printf("Hilo: %d\n",i);
+            if(calculados[j]==0){
+                printf("Hilo: %d\n",j);
          pthread_mutex_unlock(&mutex);
-                if(i==0){
+         int ter = terminos[j];
+                if(j==0){
                     signoSerie=1;
                 }else{
-                    signoSerie=potencia(-1,i);
+                    signoSerie=potencia(-1,ter);
                 }
 
                 if(signoSerie==1){
-                   sumaHilo=sumaHilo + (double)1/(2*terminos[i]+1);
+                   sumaHilo=sumaHilo + (double)1/(2*ter+1);
                 }else{
-                    sumaHilo=sumaHilo - (double)1/(2*terminos[i]+1);
+                    sumaHilo=sumaHilo - (double)1/(2*ter+1);
                 }
-                calculados[i]=1;
-                printf("Hilo: %d\n",calculados[i]);
+                calculados[j]=1;
+                
             }else{
              continue;
             }
