@@ -5,6 +5,14 @@
 
 void *funcion_hilo(void *param);
 
+int potencia(int base,int exponente){
+    int resultado=1;
+    for(int i=0;i<exponente;i++){
+        resultado=resultado*base;
+    }
+    return resultado;
+}
+
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 float resultado=0;
@@ -66,13 +74,7 @@ int main(){
 }
 
 
-int potencia(int base,int exponente){
-    int resultado=1;
-    for(int i=0;i<exponente;i++){
-        resultado=resultado*base;
-    }
-    return resultado;
-}
+
 
 void *funcion_hilo(void *param){
     struct segment *d = (struct segment *)param;
