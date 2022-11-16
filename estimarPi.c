@@ -208,7 +208,7 @@ void  *funcion_hilo_sin_asignar(void *param){
                       printf("calculados[%d]=%d\n",j,calculados[j]);
                       int ter = terminos[j];
                       printf("terminos[%d]=%d\n",j,terminos[j]);
-                if(j==0){
+                if(ter==0){
                     signoSerie=1;
                 }else{
                     signoSerie=potencia(-1,ter);
@@ -220,6 +220,7 @@ void  *funcion_hilo_sin_asignar(void *param){
                 }else{
                     sumaHilo=sumaHilo - (double)1/(2*ter+1);
                 }
+                printf("sumaHilo: %f\n",sumaHilo);
                     j++;
                     if(j==tamanoFaltante)break;
              }else{
