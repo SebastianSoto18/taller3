@@ -65,13 +65,14 @@ int main(){
     pthread_t tid[child];
     struct segment  *d;
     d = (struct segment *)malloc(child*sizeof(struct segment));
-    printf("bandera %d\n",bandera);
+
     if(bandera){
         int cobertura=child*segmento;
         int tamanoFaltante=n-cobertura;
         if(tamanoFaltante>1){
-            terminos = (int *)malloc((tamanoFaltante)*sizeof(int));
-            calculados = (int *)malloc((tamanoFaltante)*sizeof(int));
+            terminos = (int *)malloc(tamanoFaltante*sizeof(int));
+            calculados = (int *)malloc(tamanoFaltante*sizeof(int));
+                printf("bandera %d\n",bandera);
         for(int i=tamanoFaltante;i<n;i++){
             terminos[i]=i;
             calculados[i]=0;
