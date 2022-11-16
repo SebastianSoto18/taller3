@@ -81,7 +81,7 @@ void *funcion_hilo(void *param){
     int inicio=d->inicio;
     int fin=d->fin;
     int signoSerie=1;
-    float  sumaHilo=0;
+    double  sumaHilo=0;
     for(int i=inicio;i<fin;i++){
         if(i==0){
             signoSerie=1;
@@ -89,11 +89,13 @@ void *funcion_hilo(void *param){
             signoSerie=potencia(-1,i);
         }
 
-    if(signoSerie==1){
-        sumaHilo+=1/(2*i+1);
-    }else{
-        sumaHilo-=1/(2*i+1);
-    }
+        printf("El signo es: %d\n",signoSerie);
+
+        if(signoSerie==1){
+            sumaHilo+=1/(2*i+1);
+        }else{
+            sumaHilo-=1/(2*i+1);
+        }
     }
 
     pthread_mutex_lock(&mutex);
