@@ -73,7 +73,7 @@ int main(){
             terminos = (int *)malloc(tamanoFaltante*sizeof(int));
             calculados = (int *)malloc(tamanoFaltante*sizeof(int));
 
-        for(int i=tamanoFaltante;i<n;i++){
+        for(int i=cobertura;i<n;i++){
             terminos[i]=i;
             calculados[i]=0;
         }
@@ -87,7 +87,7 @@ int main(){
             d[i].fin=d[i].inicio+segmento;
             pthread_create(&tid[i],NULL,funcion_hilo_sin_asignar,(void *)&d[i]);
     }
-                    printf("bandera %d\n",bandera);
+          
         }else{
             printf("No se puede realizar la estimacion con la cantidad de hilos ingresada\n");
              for(int i=0;i<child;i++){
