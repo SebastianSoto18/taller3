@@ -51,7 +51,6 @@ int main(){
             if(n%child==0){
                segmento=n/child;
             }else{
-                printf("La cantidad de hide los elementos\n");
                 float aux=n/child;
                 segmento=(int)aux;
                 bandera=1;
@@ -84,7 +83,7 @@ int main(){
                             }
                             calculados[i]=0;
                         }
-                        
+
             for(int i=0;i<child;i++){
                             if(i==0){
                                 d[i].inicio=0;
