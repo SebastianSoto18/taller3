@@ -226,6 +226,7 @@ int j=0;
             }else{
              continue;
             }
+            j++;
         }
         pthread_barrier_wait(&barrera2);
         printf("SumaHilo: %f\n",sumaHilo);
