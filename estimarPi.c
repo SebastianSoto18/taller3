@@ -69,13 +69,13 @@ int main(){
     if(bandera){
        
         cobertura=child*segmento;
-                         printf("%d\n",cobertura);
+
          tamanoFaltante=n-cobertura;
          printf("%d\n",tamanoFaltante);
         if(tamanoFaltante>1){
             terminos = (int *)malloc(tamanoFaltante*sizeof(int));
             calculados = (int *)malloc(tamanoFaltante*sizeof(int));
-
+                         printf("%d\n"tamanoFaltante);
         for(int i=cobertura;i<n;i++){
             terminos[i]=i;
             calculados[i]=0;
