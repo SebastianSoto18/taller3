@@ -202,7 +202,7 @@ void  *funcion_hilo_sin_asignar(void *param){
     pthread_mutex_lock(&mutex);
     resultado+=sumaHilo;
     pthread_mutex_unlock(&mutex);
-    printf("calculado segmento\n"   );
+    printf("calculado segmento %d\n",inicio  );
     while(1){
         pthread_mutex_lock(&mutex);
         if(calculados[j]==0){
