@@ -5,8 +5,7 @@
 
 void *funcion_hilo(void *param);
 void *funcion_hilo_sin_asignar(void *param);
-pthread_barrier_t barrera;
-pthread_barrier_t barrera2;
+
 int potencia(int base,int exponente){
     int resultado=1;
     for(int i=0;i<exponente;i++){
@@ -65,8 +64,7 @@ int main(){
     pthread_t tid[child];
     struct segment  *d;
     d = (struct segment *)malloc(child*sizeof(struct segment));
-     pthread_barrier_init(&barrera, NULL, child);
-        pthread_barrier_init(&barrera2, NULL, child);
+
     if(bandera){
        
         cobertura=child*segmento;
@@ -157,7 +155,7 @@ void *funcion_hilo(void *param){
     int fin=d->fin;
     int signoSerie=1;
     double  sumaHilo=0;
-    printf("Inicio: %d Fin: %d\n",inicio,fin);
+
     for(int i=inicio;i<fin;i++){
         if(i==0){
             signoSerie=1;
@@ -187,7 +185,7 @@ void  *funcion_hilo_sin_asignar(void *param){
     double  sumaHilo=0;
     double auxsumahilo=0;
     int j=0;
-    printf("Inicio: %d Fin: %d\n",inicio,fin);
+
     for(int i=inicio;i<fin;i++){
         if(i==0){
             signoSerie=1;
@@ -208,30 +206,26 @@ void  *funcion_hilo_sin_asignar(void *param){
           pthread_mutex_lock(&mutex);
             if(calculados[j]==0){
                       calculados[j]=1;
-                      printf("calculados[%d]=%d\n",j,calculados[j]);
                       int ter = terminos[j];
-                      printf("terminos[%d]=%d\n",j,terminos[j]);
                 if(ter==0){
                     signoSerie=1;
                 }else{
                     signoSerie=potencia(-1,ter);
                 }
                 pthread_mutex_unlock(&mutex);
-                printf("signo: %d\n",signoSerie);
                 if(signoSerie==1){
                    sumaHilo=sumaHilo + (double)1/(2*ter+1);
                 }else{
                     sumaHilo=sumaHilo - (double)1/(2*ter+1);
                 }
-                printf("sumaHilo: %f\n",sumaHilo);
+
                             j++;
-                    if(j==tamanoFaltante) printf("sali\n"); break;
+                    if(j==tamanoFaltante) break;
              }
                              pthread_mutex_unlock(&mutex);
                                          j++;
         }
-        printf("termine inicio %d fin %d\n",inicio,fin);
-        printf("SumaHilo: %f\n",sumaHilo);
+
         
     pthread_mutex_lock(&mutex);
     resultado+=sumaHilo;
