@@ -199,30 +199,35 @@ void  *funcion_hilo_sin_asignar(void *param){
         }
     }
 
+
+    pthread_barrier_wait(&barrera);
+
+
+        for(int i=0;i<tamanoFaltante;i++){
+        pthread_mutex_lock(&mutex);
+            if(calculados[i]==0){
+                if(i==0){
+                    signoSerie=1;
+                }else{
+                    signoSerie=potencia(-1,i);
+                }
+
+                if(signoSerie==1){
+                   sumaHilo=sumaHilo + (double)1/(2*i+1);
+                }else{
+                    sumaHilo=sumaHilo - (double)1/(2*i+1);
+                }
+                calculados[i]=1;
+            }else{
+             pthread_mutex_unlock(&mutex);
+             continue;
+            }
+        }
+        
+        
     pthread_mutex_lock(&mutex);
     resultado+=sumaHilo;
     pthread_mutex_unlock(&mutex);
-    printf("calculado segmento %d\n",inicio  );
-    pthread_barrier_wait(&barrera);
-    while(1){
-        pthread_mutex_lock(&mutex);
-        if(calculados[j]==0){
-            calculados[j]=1;
-           signoSerie=potencia(-1,terminos[j]);
-            if(signoSerie==1){
-                resultado=resultado + (double)1/(2*terminos[j]+1);
-            }else{
-                resultado=resultado - (double)1/(2*terminos[j]+1);
-            }
-            j++;
-            }else{
-            j++;
-            }
-            if(j==tamanoFaltante){
-                break;
-            }
-            pthread_mutex_unlock(&mutex);
-        }
     
     pthread_exit(0);
 }
