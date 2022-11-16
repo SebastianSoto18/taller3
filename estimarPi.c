@@ -1,19 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <math.h>
 
 void *funcion_hilo(void *param);
 
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
-int resultado=0;
+float resultado=0;
 
 struct segment{
     int inicio;
     int fin;
 };
-
-double suma=0.0;
 
 int main(){
     int n=0;
@@ -68,12 +67,25 @@ void *funcion_hilo(void *param){
     struct segment *d = (struct segment *)param;
     int inicio=d->inicio;
     int fin=d->fin;
-
+    int signoSerie;
+    float  sumaHilo=0;
     for(int i=inicio;i<fin;i++){
-        suma+=1/(2*i+1);
+        if(i==0){
+            signoSerie=1;
+        }else{
+            signoSerie=pow(-1,i);
+        }
+
+    if(signoSerie==1){
+        sumaHilo+=1/(2*i+1);
+    }else{
+        sumaHilo-=1/(2*i+1);
     }
+    }
+
     pthread_mutex_lock(&mutex);
-    resultado+=suma;
+    resultado+=sumaHilo;
     pthread_mutex_unlock(&mutex);
+
     pthread_exit(0);
 }
