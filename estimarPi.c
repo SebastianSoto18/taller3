@@ -49,10 +49,10 @@ int main(){
         if(child>n){
             printf("La cantidad de hilos debe ser menor o igual al tamaño de los elementos\n");
         }else{
-            printf("No se puede realizar la estimacion con la cantidad de hilos ingresada\n");
             if(n%child==0){
                segmento=n/child;
             }else{
+                printf("La cantidad de hide los elementos\n");
                 segmento=(int)n/child;
                 bandera=1;
             }
