@@ -58,7 +58,7 @@ int main(){
             break;
         }
          }while(1);
-
+            printf("No se puede realizar la estimacion con la cantidad de hilos ingresada\n");
     pthread_t tid[child];
     struct segment  *d;
     d = (struct segment *)malloc(child*sizeof(struct segment));
