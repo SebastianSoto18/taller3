@@ -223,7 +223,7 @@ void  *funcion_hilo_sin_asignar(void *param){
                     sumaHilo=sumaHilo - (double)1/(2*ter+1);
                 }
                 printf("sumaHilo: %f\n",sumaHilo);
-                    j++;
+                            j++;
                     if(j==tamanoFaltante) printf("sali\n"); break;
              }
         }
