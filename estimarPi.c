@@ -77,7 +77,9 @@ int main(){
             terminos[i]=i;
             calculados[i]=0;
         }
-
+        for(int i=0;i<tamanoFaltante;i++){
+            printf("terminos[%d]=%d",i,terminos[i]);
+        }
     for(int i=0;i<child;i++){
             if(i==0){
                 d[i].inicio=0;
