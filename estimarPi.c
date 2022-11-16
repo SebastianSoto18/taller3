@@ -85,6 +85,7 @@ int main(){
             pthread_create(&tid[i],NULL,funcion_hilo_sin_asignar,(void *)&d[i]);
     }
         }else{
+            printf("No se puede realizar la estimacion con la cantidad de hilos ingresada\n");
              for(int i=0;i<child;i++){
                     if(i==0){
                         d[i].inicio=0;
