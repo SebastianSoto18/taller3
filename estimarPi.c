@@ -228,6 +228,7 @@ int j=0;
             }
             j++;
         }
+        printf("termine inicio %d fin %d\n",inicio,fin);
         pthread_barrier_wait(&barrera2);
         printf("SumaHilo: %f\n",sumaHilo);
         
