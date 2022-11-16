@@ -209,6 +209,7 @@ void  *funcion_hilo_sin_asignar(void *param){
           pthread_mutex_lock(&mutex);
             if(calculados[j]==0){
                       calculados[j]=1;
+                      printf("calculados[%d]=%d\n",j,calculados[j]);
          int ter = terminos[j];
                 if(j==0){
                     signoSerie=1;
