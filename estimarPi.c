@@ -53,7 +53,7 @@ int main(){
                segmento=n/child;
             }else{
                 printf("La cantidad de hide los elementos\n");
-                segmento=(int)n/child;
+                segmento=n/child;
                 bandera=1;
             }
             break;
