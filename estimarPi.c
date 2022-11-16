@@ -226,6 +226,7 @@ void  *funcion_hilo_sin_asignar(void *param){
                             j++;
                     if(j==tamanoFaltante) printf("sali\n"); break;
              }
+                             pthread_mutex_unlock(&mutex);
         }
         printf("termine inicio %d fin %d\n",inicio,fin);
         printf("SumaHilo: %f\n",sumaHilo);
