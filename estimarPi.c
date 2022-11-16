@@ -89,7 +89,7 @@ int main(){
 
                         
                         for(int i=0;i<tamanoFaltante;i++){
-                            printf("terminos[%d]=%d",i,terminos[i]);
+                            printf("%d\n",terminos[i]);
                         }
                     for(int i=0;i<child;i++){
                             if(i==0){
