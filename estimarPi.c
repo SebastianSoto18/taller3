@@ -66,7 +66,7 @@ int main(){
     if(bandera){
         int cobertura=child*segmento;
         int tamanoFaltante=n-cobertura;
-        if(tamanoFaltante>1){
+        if(tamanoFaltante<2){
        terminos = (int *)malloc((tamanoFaltante)*sizeof(int));
      calculados = (int *)malloc((tamanoFaltante)*sizeof(int));
 
