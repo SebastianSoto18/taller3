@@ -201,11 +201,12 @@ void  *funcion_hilo_sin_asignar(void *param){
 
 
     pthread_barrier_wait(&barrera);
-    printf("Hilo %d\n",inicio);
+
 
         for(int i=0;i<tamanoFaltante;i++){
         pthread_mutex_lock(&mutex);
             if(calculados[i]==0){
+         pthread_mutex_unlock(&mutex);
                 if(i==0){
                     signoSerie=1;
                 }else{
@@ -213,17 +214,17 @@ void  *funcion_hilo_sin_asignar(void *param){
                 }
 
                 if(signoSerie==1){
-                   sumaHilo=sumaHilo + (double)1/(2*i+1);
+                   sumaHilo=sumaHilo + (double)1/(2*terminos[i]+1);
                 }else{
-                    sumaHilo=sumaHilo - (double)1/(2*i+1);
+                    sumaHilo=sumaHilo - (double)1/(2*terminos[i]+1);
                 }
                 calculados[i]=1;
             }else{
-             pthread_mutex_unlock(&mutex);
              continue;
             }
         }
         
+        printf("SumaHilo: %f\n",sumaHilo);
         
     pthread_mutex_lock(&mutex);
     resultado+=sumaHilo;
