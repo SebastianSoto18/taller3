@@ -5,7 +5,7 @@
 
 void *funcion_hilo(void *param);
 void *funcion_hilo_sin_asignar(void *param);
-
+pthread_barrier_t barrera;
 
 int potencia(int base,int exponente){
     int resultado=1;
@@ -65,7 +65,7 @@ int main(){
     pthread_t tid[child];
     struct segment  *d;
     d = (struct segment *)malloc(child*sizeof(struct segment));
-
+     pthread_barrier_init(&barrera, NULL, child);
     if(bandera){
        
         cobertura=child*segmento;
@@ -203,6 +203,7 @@ void  *funcion_hilo_sin_asignar(void *param){
     resultado+=sumaHilo;
     pthread_mutex_unlock(&mutex);
     printf("calculado segmento %d\n",inicio  );
+    pthread_barrier_wait(&barrera);
     while(1){
         pthread_mutex_lock(&mutex);
         if(calculados[j]==0){
