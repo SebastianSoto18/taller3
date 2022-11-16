@@ -224,7 +224,7 @@ void  *funcion_hilo_sin_asignar(void *param){
                 }
                 printf("sumaHilo: %f\n",sumaHilo);
                     j++;
-                    if(j==tamanoFaltante)break;
+                    if(j==tamanoFaltante) printf("sali\n"); break;
              }
         }
         printf("termine inicio %d fin %d\n",inicio,fin);
