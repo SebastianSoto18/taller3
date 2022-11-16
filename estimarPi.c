@@ -79,6 +79,7 @@ int main(){
                         for(int i=cobertura;i<n;i++){
                             terminos[i]=i;
                             calculados[i]=0;
+                            printf("%d\n",terminos[i]);
                         }
                         printf("%d",cobertura);
                         
