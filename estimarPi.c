@@ -6,7 +6,7 @@
 void *funcion_hilo(void *param);
 void *funcion_hilo_sin_asignar(void *param);
 pthread_barrier_t barrera;
-
+pthread_barrier_t barrera2;
 int potencia(int base,int exponente){
     int resultado=1;
     for(int i=0;i<exponente;i++){
@@ -66,6 +66,7 @@ int main(){
     struct segment  *d;
     d = (struct segment *)malloc(child*sizeof(struct segment));
      pthread_barrier_init(&barrera, NULL, child);
+        pthread_barrier_init(&barrera2, NULL, child);
     if(bandera){
        
         cobertura=child*segmento;
@@ -223,7 +224,7 @@ void  *funcion_hilo_sin_asignar(void *param){
              continue;
             }
         }
-        
+        pthread_barrier_wait(&barrera2);
         printf("SumaHilo: %f\n",sumaHilo);
         
     pthread_mutex_lock(&mutex);
