@@ -80,13 +80,13 @@ void *funcion_hilo(void *param){
     struct segment *d = (struct segment *)param;
     int inicio=d->inicio;
     int fin=d->fin;
-    int signoSerie;
+    int signoSerie=1;
     float  sumaHilo=0;
     for(int i=inicio;i<fin;i++){
         if(i==0){
             signoSerie=1;
         }else{
-            signoSerie=pow(-1,i);
+            //signoSerie=pow(-1,i);
         }
 
     if(signoSerie==1){
