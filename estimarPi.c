@@ -67,7 +67,7 @@ int main(){
         pthread_join(tid[i],NULL);
     }
 
-    printf("El valor de pi es: %f\n",4*(double)resultado/n);
+    printf("El valor de pi es: %f\n",4*(double)resultado);
     return 0;
 }
 
@@ -97,6 +97,7 @@ void *funcion_hilo(void *param){
 
     pthread_mutex_lock(&mutex);
     resultado+=sumaHilo;
+    printf("Resultado: %f\n",resultado);
     pthread_mutex_unlock(&mutex);
 
     pthread_exit(0);
