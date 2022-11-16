@@ -66,6 +66,7 @@ int main(){
     if(bandera){
         int cobertura=child*segmento;
         int tamanoFaltante=n-cobertura;
+        if(tamanoFaltante>1){
        terminos = (int *)malloc((tamanoFaltante)*sizeof(int));
      calculados = (int *)malloc((tamanoFaltante)*sizeof(int));
 
@@ -83,6 +84,20 @@ int main(){
             d[i].fin=d[i].inicio+segmento;
             pthread_create(&tid[i],NULL,funcion_hilo_sin_asignar,(void *)&d[i]);
     }
+        }else{
+             for(int i=0;i<child;i++){
+                    if(i==0){
+                        d[i].inicio=0;
+                    }else{
+                        d[i].inicio=i*segmento;
+                    }
+                    if(i==child-1){
+                        d[i].fin=d[i].inicio+segmento+1;
+                    }
+                    d[i].fin=d[i].inicio+segmento;
+       pthread_create(&tid[i],NULL,funcion_hilo,(void *)&d[i]);
+    }
+        }
 
     }else{
 
