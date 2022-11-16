@@ -80,9 +80,9 @@ int main(){
                                         int aux=0;
                         for(int i=0;i<tamanoFaltante;i++){
                             if(i==0){
-                                terminos[i]=1+cobertura;
+                                terminos[i]=cobertura;
                             }else{
-                            terminos[i]=(i+1)+cobertura;
+                            terminos[i]=i+cobertura;
                             }
                             calculados[i]=0;
                             printf("%d\n",terminos[i]);
@@ -185,6 +185,7 @@ void  *funcion_hilo_sin_asignar(void *param){
     int fin=d->fin;
     int signoSerie=1;
     double  sumaHilo=0;
+    double auxsumahilo=0;
     int j=0;
     printf("Inicio: %d Fin: %d\n",inicio,fin);
     for(int i=inicio;i<fin;i++){
