@@ -59,8 +59,19 @@ int main(){
         pthread_join(tid[i],NULL);
     }
 
+    printf("%d\n",potencia(2,2));
+
     printf("El valor de pi es: %f\n",4*(double)resultado/n);
     return 0;
+}
+
+
+int potencia(int base,int exponente){
+    int resultado=1;
+    for(int i=0;i<exponente;i++){
+        resultado=resultado*base;
+    }
+    return resultado;
 }
 
 void *funcion_hilo(void *param){
