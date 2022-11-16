@@ -210,7 +210,8 @@ void  *funcion_hilo_sin_asignar(void *param){
             if(calculados[j]==0){
                       calculados[j]=1;
                       printf("calculados[%d]=%d\n",j,calculados[j]);
-         int ter = terminos[j];
+                      int ter = terminos[j];
+                      printf("terminos[%d]=%d\n",j,terminos[j]);
                 if(j==0){
                     signoSerie=1;
                 }else{
