@@ -81,11 +81,10 @@ int main(){
                             if(i==0){
                                 terminos[i]=1+cobertura;
                             }else{
-                            terminos[i]=i+cobertura;
-
+                            terminos[i]=(i+1)+cobertura;
                             }
                             calculados[i]=0;
-                            printf("%d\n",terminos[aux]);
+                            printf("%d\n",terminos[i]);
                         }
                         printf("%d",cobertura);
                         
