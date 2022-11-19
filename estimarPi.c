@@ -217,7 +217,11 @@ void  *funcion_hilo_sin_asignar(void *param){
                 }
 
                             
-                    if(j==tamanoFaltante) break;
+                 pthread_mutex_lock(&mutex);
+              if(j==tamanoFaltante){
+                pthread_mutex_unlock(&mutex);
+                break;
+              }
              }
 
                  j++;
