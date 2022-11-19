@@ -39,7 +39,7 @@ int main(){
 
     for(int i=0;i<f;i++){
         for(int j=0;j<c;j++){
-            fscanf(archivo,"%d",&imagen[i][j]);
+            fscanf(file,"%d",&imagen[i][j]);
         }
     }
 
@@ -50,7 +50,7 @@ int main(){
         printf("\n");
     }
 
-    fclose(archivo);
+    fclose(file);
     free(imagen);
     free(imagenConFiltro);
     free(IsSobrante);
