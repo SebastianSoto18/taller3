@@ -11,6 +11,7 @@ struct data
 
 void *funcionHilo(void *param);
 void *funcionHiloSobrantes(void *param);
+float *calcularpos(int i, int j);
 
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
@@ -93,39 +94,48 @@ int main(){
     return 0;
 }
 
+
+float *calcularpos(int i, int j){
+    float pos=0.0;
+
+      if(i ==0 && j==0){
+                pos=(float)(imagen[i][j]+imagen[i][j+1]+imagen[i+1][j]+imagen[i+1][j+1])/4;
+        }
+            if(i==f-1 && j==0){
+                pos=(float)(imagen[i][j]+imagen[i][j+1]+imagen[i-1][j]+imagen[i-1][j+1])/4;
+            }
+            if(i==0 && j==c-1){
+                pos=(float)(imagen[i][j]+imagen[i][j-1]+imagen[i+1][j]+imagen[i+1][j-1])/4;
+            }
+            if(i==f-1 && j==c-1){
+                pos=(float)(imagen[i][j]+imagen[i][j-1]+imagen[i-1][j]+imagen[i-1][j-1])/4;
+            }
+            if(i==0 && j!=0 && j!=c-1){
+                pos=(imagen[i][j]+imagen[i][j-1]+imagen[i][j+1]+imagen[i+1][j]+imagen[i+1][j-1]+imagen[i+1][j+1])/6;
+            }
+            if(i==f-1 && j!=0 && j!=c-1){
+                pos=(imagen[i][j]+imagen[i][j-1]+imagen[i][j+1]+imagen[i-1][j]+imagen[i-1][j-1]+imagen[i-1][j+1])/6;
+            }
+            if(j==0 && i!=0 && i!=f-1){
+                pos=(imagen[i][j]+imagen[i-1][j]+imagen[i+1][j]+imagen[i][j+1]+imagen[i-1][j+1]+imagen[i+1][j+1])/6;
+            }
+            if(j==c-1 && i!=0 && i!=f-1){
+                pos=(imagen[i][j]+imagen[i-1][j]+imagen[i+1][j]+imagen[i][j-1]+imagen[i-1][j-1]+imagen[i+1][j-1])/6;
+            }
+            if(i!=0 && i!=f-1 && j!=0 && j!=c-1){
+                pos=(imagen[i][j]+imagen[i-1][j]+imagen[i+1][j]+imagen[i][j-1]+imagen[i][j+1]+imagen[i-1][j-1]+imagen[i-1][j+1]+imagen[i+1][j-1]+imagen[i+1][j+1])/9;
+            }
+
+    return pos;
+}
+
 void *funcionHilo(void *param){
     struct data *pixel=(struct data*)param;
 
     for(int i=pixel->inicio;i<pixel->fin;i++){
         for(int j=0;j<c;j++){
-            
-            if(i ==0 && j==0){
-                imagenConFiltro[i][j]=(float)(imagen[i][j]+imagen[i][j+1]+imagen[i+1][j]+imagen[i+1][j+1])/4;
-        }
-            if(i==f-1 && j==0){
-                imagenConFiltro[i][j]=(float)(imagen[i][j]+imagen[i][j+1]+imagen[i-1][j]+imagen[i-1][j+1])/4;
-            }
-            if(i==0 && j==c-1){
-                imagenConFiltro[i][j]=(float)(imagen[i][j]+imagen[i][j-1]+imagen[i+1][j]+imagen[i+1][j-1])/4;
-            }
-            if(i==f-1 && j==c-1){
-                imagenConFiltro[i][j]=(float)(imagen[i][j]+imagen[i][j-1]+imagen[i-1][j]+imagen[i-1][j-1])/4;
-            }
-            if(i==0 && j!=0 && j!=c-1){
-                imagenConFiltro[i][j]=(imagen[i][j]+imagen[i][j-1]+imagen[i][j+1]+imagen[i+1][j]+imagen[i+1][j-1]+imagen[i+1][j+1])/6;
-            }
-            if(i==f-1 && j!=0 && j!=c-1){
-                imagenConFiltro[i][j]=(imagen[i][j]+imagen[i][j-1]+imagen[i][j+1]+imagen[i-1][j]+imagen[i-1][j-1]+imagen[i-1][j+1])/6;
-            }
-            if(j==0 && i!=0 && i!=f-1){
-                imagenConFiltro[i][j]=(imagen[i][j]+imagen[i-1][j]+imagen[i+1][j]+imagen[i][j+1]+imagen[i-1][j+1]+imagen[i+1][j+1])/6;
-            }
-            if(j==c-1 && i!=0 && i!=f-1){
-                imagenConFiltro[i][j]=(imagen[i][j]+imagen[i-1][j]+imagen[i+1][j]+imagen[i][j-1]+imagen[i-1][j-1]+imagen[i+1][j-1])/6;
-            }
-            if(i!=0 && i!=f-1 && j!=0 && j!=c-1){
-                imagenConFiltro[i][j]=(imagen[i][j]+imagen[i-1][j]+imagen[i+1][j]+imagen[i][j-1]+imagen[i][j+1]+imagen[i-1][j-1]+imagen[i-1][j+1]+imagen[i+1][j-1]+imagen[i+1][j+1])/9;
-            }
+                imagenConFiltro[i][j]=calcularpos(i,j);
+         }
     }
-    }
+    pthread_exit(NULL);
 }
