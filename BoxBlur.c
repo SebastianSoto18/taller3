@@ -17,8 +17,8 @@ pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 int **imagen;
 int **imagenConFiltro;
 int canSobrantes=0 ;
-int columnas=0;
-int filas=0;
+int c=0;
+int f=0;
 int *IsSobrante;
 
 
