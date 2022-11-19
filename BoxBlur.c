@@ -169,6 +169,9 @@ void *funcionHiloSobrantes(void *param){
         }
 
     while(1){
+        if(h==canSobrantes){
+            break;
+        }
         pthread_mutex_lock(&mutex);
         if(IsSobrante[h]==0){
             IsSobrante[h]=1;
