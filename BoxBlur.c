@@ -26,7 +26,7 @@ int main(){
     FILE *file;
    file=fopen("test4.txt","r");
     fscanf(file,"%d",&f);
-   fscanf(file,"%d",&f);
+   fscanf(file,"%d",&c);
 
     printf("f: %d c: %d\n",f,c);
     int canHilos=0;
