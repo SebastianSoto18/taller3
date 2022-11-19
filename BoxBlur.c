@@ -67,10 +67,12 @@ int main(){
                 {
                    UnoMas=1;
                 }else{
+                    int aux=0;
                      IsSobrante=(int*)malloc(canSobrantes*sizeof(int));
-                    for (int i = 0; i < canSobrantes  ; i++)
+                    for (int i = f-canSobrantes ; i <f  ; i++)
                     {
-                        IsSobrante[i]=0;
+                        IsSobrante[aux]=i;
+                        aux++;
                     }
                 }  
             }else{
@@ -134,7 +136,7 @@ int main(){
 void *funcionHiloSobrantes(void *param){
         struct data *pixel=(struct data*)param;
         int h=0;
-
+        int copiaiter=0;
         for(int i=pixel->inicio;i<pixel->fin;i++){
         for(int j=0;j<c;j++){
             
@@ -169,13 +171,16 @@ void *funcionHiloSobrantes(void *param){
         }
 
     while(1){
-        if(h==canSobrantes){
+        if(h==canSobrantes-1){
             break;
         }
         pthread_mutex_lock(&mutex);
-        if(IsSobrante[h]==0){
-            IsSobrante[h]=1;
+        if(IsSobrante[h]!=0){
+            copiaiter=h;
+            h=IsSobrante[h];
+            IsSobrante[h]=0;
         pthread_mutex_unlock(&mutex);     
+
         for(int j=0;j<c;j++){
             
             if(h ==0 && j==0){
@@ -206,7 +211,8 @@ void *funcionHiloSobrantes(void *param){
                 imagenConFiltro[h][j]=(float)(imagen[h][j]+imagen[h-1][j]+imagen[h+1][j]+imagen[h][j-1]+imagen[h][j+1]+imagen[h-1][j-1]+imagen[h-1][j+1]+imagen[h+1][j-1]+imagen[h+1][j+1])/9;
             }
          }
-            if(h==canSobrantes)break;
+         h=copiaiter;
+            if(h==canSobrantes-1)break;
         }
          pthread_mutex_unlock(&mutex);
          printf(" %d \n",h);
