@@ -103,16 +103,16 @@ void *funcionHilo(void *param){
         for(int j=0;j<c;j++){
             
             if(i ==0 && j==0){
-                imagenConFiltro[i][j]=(float)(imagen[i][j]+imagen[i][j+1]+imagen[i+1][j]+imagen[i+1][j+1])/4;
+                imagenConFiltro[i][j]=(imagen[i][j]+imagen[i][j+1]+imagen[i+1][j]+imagen[i+1][j+1])/4;
         }
             if(i==f-1 && j==0){
-                imagenConFiltro[i][j]=(float)(imagen[i][j]+imagen[i][j+1]+imagen[i-1][j]+imagen[i-1][j+1])/4;
+                imagenConFiltro[i][j]=(imagen[i][j]+imagen[i][j+1]+imagen[i-1][j]+imagen[i-1][j+1])/4;
             }
             if(i==0 && j==c-1){
-                imagenConFiltro[i][j]=(float)(imagen[i][j]+imagen[i][j-1]+imagen[i+1][j]+imagen[i+1][j-1])/4;
+                imagenConFiltro[i][j]=(imagen[i][j]+imagen[i][j-1]+imagen[i+1][j]+imagen[i+1][j-1])/4;
             }
             if(i==f-1 && j==c-1){
-                imagenConFiltro[i][j]=(float)(imagen[i][j]+imagen[i][j-1]+imagen[i-1][j]+imagen[i-1][j-1])/4;
+                imagenConFiltro[i][j]=(imagen[i][j]+imagen[i][j-1]+imagen[i-1][j]+imagen[i-1][j-1])/4;
             }
             if(i==0 && j!=0 && j!=c-1){
                 imagenConFiltro[i][j]=(imagen[i][j]+imagen[i][j-1]+imagen[i][j+1]+imagen[i+1][j]+imagen[i+1][j-1]+imagen[i+1][j+1])/6;
