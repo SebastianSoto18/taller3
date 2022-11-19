@@ -28,8 +28,8 @@ int main(){
     archivo=fopen("test4.txt","r");
     int filas=0;
     int canHilos=0;
-    filas=fscanf(archivo,"%d",&filas);
-    columnas=fscanf(archivo,"%d",&columnas);
+    filas=atoi(fscanf(archivo,"%s",&filas));
+    columnas=atoi(fscanf(archivo,"%s",&columnas));
     printf("filas: %d columnas: %d\n",filas,columnas);
     imagen=(int**)malloc(filas*sizeof(int*));
     imagenConFiltro=(int**)malloc(filas*sizeof(int*));
