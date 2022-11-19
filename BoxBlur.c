@@ -176,7 +176,7 @@ void *funcionHiloSobrantes(void *param){
         for(int j=0;j<c;j++){
             
             if(h ==0 && j==0){
-                imagenConFiltro[i][j]=(imagen[h][j]+imagenh][j+1]+imagen[h+1][j]+imagen[h+1][j+1])/4;
+                imagenConFiltro[h][j]=(imagen[h][j]+imagen[h][j+1]+imagen[h+1][j]+imagen[h+1][j+1])/4;
         }
             if(h==f-1 && j==0){
                 imagenConFiltro[i][j]=(float)(imagen[h][j]+imagen[h][j+1]+imagen[h-1][j]+imagen[h-1][j+1])/4;
