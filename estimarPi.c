@@ -194,7 +194,10 @@ void  *funcion_hilo_sin_asignar(void *param){
 
         while(1){
              pthread_mutex_lock(&mutex);
-              if(j==tamanoFaltante)break;
+              if(j==tamanoFaltante){
+                pthread_mutex_unlock(&mutex);
+                break;
+              }
                 pthread_mutex_unlock(&mutex);
           pthread_mutex_lock(&mutex);
             if(calculados[j]==0){
@@ -215,10 +218,9 @@ void  *funcion_hilo_sin_asignar(void *param){
                             j++;
                     if(j==tamanoFaltante) break;
              }
-                             pthread_mutex_unlock(&mutex);
-                                       pthread_mutex_lock(&mutex);
-                                         j++;
-                                        pthread_mutex_unlock(&mutex);
+
+                 j++;
+                pthread_mutex_unlock(&mutex);
         }
 
         
