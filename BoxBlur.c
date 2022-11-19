@@ -24,7 +24,7 @@ int *IsSobrante;
 
 int main(){
     FILE *archivo;
-    archivo=fopen("test4.txt","r");
+    archivo=fopen("test.txt","r");
     int canHilos=0;
     f=fscanf(archivo,"%d",&f);
     c=fscanf(archivo,"%d",&c);
