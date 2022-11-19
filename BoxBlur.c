@@ -54,10 +54,11 @@ int main(){
     do{
         printf("Ingrese la cantidad de hilos: ");
         scanf("%d",&canHilos);
-        if(canHilos>f && f%canHilos!=0){
+        if(canHilos>f || f%canHilos!=0){
             printf("La cantidad de hilos no puede ser mayor a la cantidad de filas\n");
         }else{
             segmento=f/canHilos;
+            break;
         }
     }while(1);
 
