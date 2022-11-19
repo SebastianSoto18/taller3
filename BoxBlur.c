@@ -96,16 +96,16 @@ int main(){
 
 
 float *calcularpos(int i, int j){
-    float * pos=0.0;
+    float * pos=0;
 
       if(i ==0 && j==0){
                 pos=(float *)((imagen[i][j]+imagen[i][j+1]+imagen[i+1][j]+imagen[i+1][j+1])/4);
         }
             if(i==f-1 && j==0){
-                pos=(float *()(imagen[i][j]+imagen[i][j+1]+imagen[i-1][j]+imagen[i-1][j+1])/4);
+                pos=(float *)((imagen[i][j]+imagen[i][j+1]+imagen[i-1][j]+imagen[i-1][j+1])/4);
             }
             if(i==0 && j==c-1){
-                pos=(float *()(imagen[i][j]+imagen[i][j-1]+imagen[i+1][j]+imagen[i+1][j-1])/4);
+                pos=(float *)((imagen[i][j]+imagen[i][j-1]+imagen[i+1][j]+imagen[i+1][j-1])/4);
             }
             if(i==f-1 && j==c-1){
                 pos=(float *)((imagen[i][j]+imagen[i][j-1]+imagen[i-1][j]+imagen[i-1][j-1])/4);
