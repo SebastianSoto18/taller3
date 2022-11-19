@@ -30,7 +30,7 @@ int main(){
     int canHilos=0;
     filas=fscanf(archivo,"%d",&filas);
     columnas=fscanf(archivo,"%d",&columnas);
-
+    printf("filas: %d columnas: %d\n",filas,columnas);
     imagen=(int**)malloc(filas*sizeof(int*));
     imagenConFiltro=(int**)malloc(filas*sizeof(int*));
 
