@@ -31,11 +31,11 @@ int main(){
     printf("f: %d c: %d\n",f,c);
     int canHilos=0;
     imagen=(int**)malloc(f*sizeof(int*));
-    imagenConFiltro=(int**)malloc(f*sizeof(int*));
+    imagenConFiltro=(float**)malloc(f*sizeof(float*));
     int segmento=0;
     for(int i=0;i<f;i++){
         imagen[i]=(int*)malloc(c*sizeof(int));
-        imagenConFiltro[i]=(int*)malloc(c*sizeof(int));
+        imagenConFiltro[i]=(float*)malloc(c*sizeof(float));
     }
 
     for(int i=0;i<f;i++){
