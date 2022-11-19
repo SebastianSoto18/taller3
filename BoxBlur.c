@@ -82,7 +82,7 @@ int main(){
 }
 
 void *funcionHilo(void *param){
-    struct pixel *datos=(struct data*)param;
+    struct pixel *datos=(struct pixel*)param;
 
     for(int i=datos->inicio;i<datos->fin;i++){
         for(int j=0;j<c;j++){
