@@ -179,19 +179,19 @@ void *funcionHiloSobrantes(void *param){
                 imagenConFiltro[h][j]=(imagen[h][j]+imagen[h][j+1]+imagen[h+1][j]+imagen[h+1][j+1])/4;
         }
             if(h==f-1 && j==0){
-                imagenConFiltro[i][j]=(float)(imagen[h][j]+imagen[h][j+1]+imagen[h-1][j]+imagen[h-1][j+1])/4;
+                imagenConFiltro[h][j]=(float)(imagen[h][j]+imagen[h][j+1]+imagen[h-1][j]+imagen[h-1][j+1])/4;
             }
             if(h==0 && j==c-1){
-                imagenConFiltro[i][j]=(float)(imagen[h][j]+imagen[h][j-1]+imagen[h+1][j]+imagen[h+1][j-1])/4;
+                imagenConFiltro[h][j]=(float)(imagen[h][j]+imagen[h][j-1]+imagen[h+1][j]+imagen[h+1][j-1])/4;
             }
             if(h==f-1 && j==c-1){
-                imagenConFiltro[i][j]=(float)(imagen[h][j]+imagen[h][j-1]+imagen[h-1][j]+imagen[h-1][j-1])/4;
+                imagenConFiltro[h][j]=(float)(imagen[h][j]+imagen[h][j-1]+imagen[h-1][j]+imagen[h-1][j-1])/4;
             }
             if(h==0 && j!=0 && j!=c-1){
-                imagenConFiltro[i][j]=(float)(imagen[h][j]+imagen[h][j-1]+imagen[h][j+1]+imagen[h+1][j]+imagen[h+1][j-1]+imagen[h+1][j+1])/6;
+                imagenConFiltro[h][j]=(float)(imagen[h][j]+imagen[h][j-1]+imagen[h][j+1]+imagen[h+1][j]+imagen[h+1][j-1]+imagen[h+1][j+1])/6;
             }
             if(h==f-1 && j!=0 && j!=c-1){
-                imagenConFiltro[i][j]=(float)(imagen[h][j]+imagen[h][j-1]+imagen[h][j+1]+imagen[h-1][j]+imagen[h-1][j-1]+imagen[h-1][j+1])/6;
+                imagenConFiltro[h][j]=(float)(imagen[h][j]+imagen[h][j-1]+imagen[h][j+1]+imagen[h-1][j]+imagen[h-1][j-1]+imagen[h-1][j+1])/6;
             }
             if(j==0 && h!=0 && h!=f-1){
                 imagenConFiltro[h][j]=(float)(imagen[h][j]+imagen[h-1][j]+imagen[h+1][j]+imagen[h][j+1]+imagen[h-1][j+1]+imagen[h+1][j+1])/6;
