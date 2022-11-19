@@ -24,11 +24,11 @@ int *IsSobrante;
 
 int main(){
     FILE *archivo;
-    archivo=fopen("test.txt","r");
-    int canHilos=0;
+    archivo=fopen("test4.txt","r");
     f=fscanf(archivo,"%d",&f);
     c=fscanf(archivo,"%d",&c);
     printf("f: %d c: %d\n",f,c);
+    int canHilos=0;
     imagen=(int**)malloc(f*sizeof(int*));
     imagenConFiltro=(int**)malloc(f*sizeof(int*));
 
@@ -54,5 +54,5 @@ int main(){
     free(imagen);
     free(imagenConFiltro);
     free(IsSobrante);
-
+    return 0;
 }
