@@ -34,6 +34,7 @@ int main(){
     imagen=(int**)malloc(f*sizeof(int*));
     imagenConFiltro=(float**)malloc(f*sizeof(float*));
     int segmento=0;
+    int UnoMas=0;
     for(int i=0;i<f;i++){
         imagen[i]=(int*)malloc(c*sizeof(int));
         imagenConFiltro[i]=(float*)malloc(c*sizeof(float));
@@ -55,10 +56,27 @@ int main(){
     do{
         printf("Ingrese la cantidad de hilos: ");
         scanf("%d",&canHilos);
-        if(canHilos>f || f%canHilos!=0){
+        if(canHilos>f ){
             printf("La cantidad de hilos no puede ser mayor a la cantidad de filas\n");
         }else{
+            if(f%canHilos!=0){
+               float aux = (float)(f/canHilos);
+                segmento=(int)aux;
+                canSobrantes=f-canHilos;
+                if (canSobrantes<2)
+                {
+                   UnoMas=1;
+                }else{
+                     IsSobrante=(int*)malloc(canSobrantes*sizeof(int));
+                    for (int i = 0; i < canSobrantes  ; i++)
+                    {
+                        IsSobrante[i]=0;
+                    }
+                }  
+            }else{
+
             segmento=f/canHilos;
+            }
             break;
         }
     }while(1);
@@ -66,14 +84,20 @@ int main(){
     pthread_t hilos[canHilos];
     struct data *datos=(struct data*)malloc(canHilos*sizeof(struct data));
 
+    if(UnoMas){
     for(int i=0;i<canHilos;i++){
         if(i==0){
             datos[i].inicio=0;
         }else{
             datos[i].inicio=i*segmento;
         }
-        datos[i].fin=datos[i].inicio+ segmento;
+        if(i==canHilos-1){
+            datos[i].fin=f;
+        }else{
+           datos[i].fin=datos[i].inicio+ segmento;
+        }
         pthread_create(&hilos[i],NULL,funcionHilo,(void*)&datos[i]);
+    }
     }
 
     for(int i=0;i<canHilos;i++){
