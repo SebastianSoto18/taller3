@@ -108,7 +108,7 @@ int main(){
                         }
                         datos[i].fin=datos[i].inicio+ segmento;
                     
-                        pthread_create(&hilos[i],NULL,funcionHilo,(void*)&datos[i]);
+                        pthread_create(&hilos[i],NULL,funcionHiloSobrantes,(void*)&datos[i]);
             }
     }
 
