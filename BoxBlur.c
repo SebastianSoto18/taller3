@@ -134,7 +134,7 @@ void *funcionHilo(void *param){
 
     for(int i=pixel->inicio;i<pixel->fin;i++){
         for(int j=0;j<c;j++){
-                imagenConFiltro[i][j]=calcularpos(i,j);
+                imagenConFiltro[i][j]=calcularpos(&i,&j);
          }
     }
     pthread_exit(NULL);
