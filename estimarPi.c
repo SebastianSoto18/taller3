@@ -20,7 +20,7 @@ float resultado=0;
 int  *terminos;
 int *calculados;
 int tamanoFaltante;
-
+ int j=0;
 struct segment{
     int inicio;
     int fin;
@@ -176,7 +176,7 @@ void  *funcion_hilo_sin_asignar(void *param){
     int signoSerie=1;
     double  sumaHilo=0;
     double auxsumahilo=0;
-    int j=0;
+
 
     for(int i=inicio;i<fin;i++){
         if(i==0){
@@ -193,8 +193,9 @@ void  *funcion_hilo_sin_asignar(void *param){
     }
 
         while(1){
-
+             pthread_mutex_lock(&mutex);
               if(j==tamanoFaltante)break;
+                pthread_mutex_unlock(&mutex);
           pthread_mutex_lock(&mutex);
             if(calculados[j]==0){
                       calculados[j]=1;
@@ -215,7 +216,9 @@ void  *funcion_hilo_sin_asignar(void *param){
                     if(j==tamanoFaltante) break;
              }
                              pthread_mutex_unlock(&mutex);
+                                       pthread_mutex_lock(&mutex);
                                          j++;
+                                        pthread_mutex_unlock(&mutex);
         }
 
         
