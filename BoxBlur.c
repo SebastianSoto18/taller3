@@ -74,6 +74,17 @@ int main(){
         pthread_create(&hilos[i],NULL,funcionHilo,(void*)&datos[i]);
     }
 
+    for(int i=0;i<canHilos;i++){
+        pthread_join(hilos[i],NULL);
+    }
+
+    for(int i=0;i<f;i++){
+        for(int j=0;j<c;j++){
+           printf("%d ",imagenConFiltro[i][j]);
+        }
+        printf("\n");
+    }
+
     fclose(file);
     free(imagen);
     free(imagenConFiltro);
