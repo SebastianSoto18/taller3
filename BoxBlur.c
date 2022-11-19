@@ -81,7 +81,7 @@ int main(){
 
     for(int i=0;i<f;i++){
         for(int j=0;j<c;j++){
-           printf("%d ",imagenConFiltro[i][j]);
+           printf("%.2f ",imagenConFiltro[i][j]);
         }
         printf("\n");
     }
