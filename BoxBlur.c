@@ -15,7 +15,7 @@ void *funcionHiloSobrantes(void *param);
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 int **imagen;
-int **imagenConFiltro;
+float **imagenConFiltro;
 int canSobrantes=0 ;
 int c=0;
 int f=0;
