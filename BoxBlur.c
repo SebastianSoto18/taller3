@@ -20,16 +20,16 @@ int **imagen;
 int **imagenConFiltro;
 int canSobrantes=0 ;
 int columnas=0;
+int filas=0;
 int *IsSobrante;
 
 
 int main(){
     FILE *archivo;
     archivo=fopen("test4.txt","r");
-    int filas=0;
     int canHilos=0;
-    filas=atoi(fscanf(archivo,"%s",&filas));
-    columnas=atoi(fscanf(archivo,"%s",&columnas));
+    filas=fscanf(archivo,"%d",&filas);
+    columnas=fscanf(archivo,"%d",&columnas);
     printf("filas: %d columnas: %d\n",filas,columnas);
     imagen=(int**)malloc(filas*sizeof(int*));
     imagenConFiltro=(int**)malloc(filas*sizeof(int*));
