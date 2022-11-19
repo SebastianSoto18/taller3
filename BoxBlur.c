@@ -171,7 +171,7 @@ void *funcionHiloSobrantes(void *param){
         }
 
     while(1){
-        if(h==canSobrantes-1){
+        if(h==canSobrantes){
             break;
         }
         pthread_mutex_lock(&mutex);
@@ -211,7 +211,7 @@ void *funcionHiloSobrantes(void *param){
                 imagenConFiltro[h][j]=(float)(imagen[h][j]+imagen[h-1][j]+imagen[h+1][j]+imagen[h][j-1]+imagen[h][j+1]+imagen[h-1][j-1]+imagen[h-1][j+1]+imagen[h+1][j-1]+imagen[h+1][j+1])/9;
             }
          }
-         h=copiaiter;
+            h=copiaiter;
             if(h==canSobrantes-1)break;
         }
          pthread_mutex_unlock(&mutex);
