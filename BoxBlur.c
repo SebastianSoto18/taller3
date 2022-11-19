@@ -99,7 +99,7 @@ float *calcularpos(int i, int j){
     float * pos=0.0;
 
       if(i ==0 && j==0){
-                pos=(float)(imagen[i][j]+imagen[i][j+1]+imagen[i+1][j]+imagen[i+1][j+1])/4;
+                pos=(float *)(float)(imagen[i][j]+imagen[i][j+1]+imagen[i+1][j]+imagen[i+1][j+1])/4;
         }
             if(i==f-1 && j==0){
                 pos=(float)(imagen[i][j]+imagen[i][j+1]+imagen[i-1][j]+imagen[i-1][j+1])/4;
@@ -108,22 +108,22 @@ float *calcularpos(int i, int j){
                 pos=(float)(imagen[i][j]+imagen[i][j-1]+imagen[i+1][j]+imagen[i+1][j-1])/4;
             }
             if(i==f-1 && j==c-1){
-                pos=(float)(imagen[i][j]+imagen[i][j-1]+imagen[i-1][j]+imagen[i-1][j-1])/4;
+                pos=(float *)(float)(imagen[i][j]+imagen[i][j-1]+imagen[i-1][j]+imagen[i-1][j-1])/4;
             }
             if(i==0 && j!=0 && j!=c-1){
-                pos=(imagen[i][j]+imagen[i][j-1]+imagen[i][j+1]+imagen[i+1][j]+imagen[i+1][j-1]+imagen[i+1][j+1])/6;
+                pos=(float *)(imagen[i][j]+imagen[i][j-1]+imagen[i][j+1]+imagen[i+1][j]+imagen[i+1][j-1]+imagen[i+1][j+1])/6;
             }
             if(i==f-1 && j!=0 && j!=c-1){
-                pos=(imagen[i][j]+imagen[i][j-1]+imagen[i][j+1]+imagen[i-1][j]+imagen[i-1][j-1]+imagen[i-1][j+1])/6;
+                pos=(float *)(imagen[i][j]+imagen[i][j-1]+imagen[i][j+1]+imagen[i-1][j]+imagen[i-1][j-1]+imagen[i-1][j+1])/6;
             }
             if(j==0 && i!=0 && i!=f-1){
-                pos=(imagen[i][j]+imagen[i-1][j]+imagen[i+1][j]+imagen[i][j+1]+imagen[i-1][j+1]+imagen[i+1][j+1])/6;
+                pos=(float *)(imagen[i][j]+imagen[i-1][j]+imagen[i+1][j]+imagen[i][j+1]+imagen[i-1][j+1]+imagen[i+1][j+1])/6;
             }
             if(j==c-1 && i!=0 && i!=f-1){
-                pos=(imagen[i][j]+imagen[i-1][j]+imagen[i+1][j]+imagen[i][j-1]+imagen[i-1][j-1]+imagen[i+1][j-1])/6;
+                pos=(float *)(imagen[i][j]+imagen[i-1][j]+imagen[i+1][j]+imagen[i][j-1]+imagen[i-1][j-1]+imagen[i+1][j-1])/6;
             }
             if(i!=0 && i!=f-1 && j!=0 && j!=c-1){
-                pos=(imagen[i][j]+imagen[i-1][j]+imagen[i+1][j]+imagen[i][j-1]+imagen[i][j+1]+imagen[i-1][j-1]+imagen[i-1][j+1]+imagen[i+1][j-1]+imagen[i+1][j+1])/9;
+                pos=(float *)(imagen[i][j]+imagen[i-1][j]+imagen[i+1][j]+imagen[i][j-1]+imagen[i][j+1]+imagen[i-1][j-1]+imagen[i-1][j+1]+imagen[i+1][j-1]+imagen[i+1][j+1])/9;
             }
 
     return pos;
