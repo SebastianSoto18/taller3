@@ -32,7 +32,7 @@ int main(){
     int canHilos=0;
     imagen=(int**)malloc(f*sizeof(int*));
     imagenConFiltro=(int**)malloc(f*sizeof(int*));
-
+    int segmento=0;
     for(int i=0;i<f;i++){
         imagen[i]=(int*)malloc(c*sizeof(int));
         imagenConFiltro[i]=(int*)malloc(c*sizeof(int));
@@ -51,9 +51,69 @@ int main(){
         printf("\n");
     }
 
+    do{
+        printf("Ingrese la cantidad de hilos: ");
+        scanf("%d",&canHilos);
+        if(canHilos>f && f%canHilos!=0){
+            printf("La cantidad de hilos no puede ser mayor a la cantidad de filas\n");
+        }else{
+            segmento=f/canHilos;
+        }
+    }while(1);
+
+    pthread_t hilos[canHilos];
+    struct data *datos=(struct data*)malloc(canHilos*sizeof(struct data));
+
+    for(int i=0;i<canHilos;i++){
+        if(i==0){
+            datos[i].inicio=0;
+        }else{
+            datos[i].inicio=i*segmento;
+        }
+        datos[i].fin=datos[i].inicio+ segmento;
+        pthread_create(&hilos[i],NULL,funcionHilo,(void*)&datos[i]);
+    }
+
     fclose(file);
     free(imagen);
     free(imagenConFiltro);
     free(IsSobrante);
     return 0;
+}
+
+void *funcionHilo(void *param){
+    struct pixel *datos=(struct data*)param;
+
+    for(int i=datos->inicio;i<datos->fin;i++){
+        for(int j=0;j<c;j++){
+            
+            if(i ==0 && j==0){
+                imagenConFiltro[i][j]=(float)(imagen[i][j]+imagen[i][j+1]+imagen[i+1][j]+imagen[i+1][j+1])/4;
+        }
+            if(i==f-1 && j==0){
+                imagenConFiltro[i][j]=(float)(imagen[i][j]+imagen[i][j+1]+imagen[i-1][j]+imagen[i-1][j+1])/4;
+            }
+            if(i==0 && j==c-1){
+                imagenConFiltro[i][j]=(float)(imagen[i][j]+imagen[i][j-1]+imagen[i+1][j]+imagen[i+1][j-1])/4;
+            }
+            if(i==f-1 && j==c-1){
+                imagenConFiltro[i][j]=(float)(imagen[i][j]+imagen[i][j-1]+imagen[i-1][j]+imagen[i-1][j-1])/4;
+            }
+            if(i==0 && j!=0 && j!=c-1){
+                imagenConFiltro[i][j]=(imagen[i][j]+imagen[i][j-1]+imagen[i][j+1]+imagen[i+1][j]+imagen[i+1][j-1]+imagen[i+1][j+1])/6;
+            }
+            if(i==f-1 && j!=0 && j!=c-1){
+                imagenConFiltro[i][j]=(imagen[i][j]+imagen[i][j-1]+imagen[i][j+1]+imagen[i-1][j]+imagen[i-1][j-1]+imagen[i-1][j+1])/6;
+            }
+            if(j==0 && i!=0 && i!=f-1){
+                imagenConFiltro[i][j]=(imagen[i][j]+imagen[i-1][j]+imagen[i+1][j]+imagen[i][j+1]+imagen[i-1][j+1]+imagen[i+1][j+1])/6;
+            }
+            if(j==c-1 && i!=0 && i!=f-1){
+                imagenConFiltro[i][j]=(imagen[i][j]+imagen[i-1][j]+imagen[i+1][j]+imagen[i][j-1]+imagen[i-1][j-1]+imagen[i+1][j-1])/6;
+            }
+            if(i!=0 && i!=f-1 && j!=0 && j!=c-1){
+                imagenConFiltro[i][j]=(imagen[i][j]+imagen[i-1][j]+imagen[i+1][j]+imagen[i][j-1]+imagen[i][j+1]+imagen[i-1][j-1]+imagen[i-1][j+1]+imagen[i+1][j-1]+imagen[i+1][j+1])/9;
+            }
+    }
+    }
 }
