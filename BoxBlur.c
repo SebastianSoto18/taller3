@@ -86,18 +86,30 @@ int main(){
 
     if(UnoMas){
     for(int i=0;i<canHilos;i++){
-        if(i==0){
-            datos[i].inicio=0;
-        }else{
-            datos[i].inicio=i*segmento;
-        }
-        if(i==canHilos-1){
-            datos[i].fin=f;
-        }else{
-           datos[i].fin=datos[i].inicio+ segmento;
-        }
-        pthread_create(&hilos[i],NULL,funcionHilo,(void*)&datos[i]);
+                if(i==0){
+                    datos[i].inicio=0;
+                }else{
+                    datos[i].inicio=i*segmento;
+                }
+                if(i==canHilos-1){
+                    datos[i].fin=f;
+                }else{
+                datos[i].fin=datos[i].inicio+ segmento;
+                }
+                pthread_create(&hilos[i],NULL,funcionHilo,(void*)&datos[i]);
     }
+    }
+    if(!UnoMas){
+            for(int i=0;i<canHilos;i++){
+                        if(i==0){
+                            datos[i].inicio=0;
+                        }else{
+                            datos[i].inicio=i*segmento;
+                        }
+                        datos[i].fin=datos[i].inicio+ segmento;
+                    
+                        pthread_create(&hilos[i],NULL,funcionHilo,(void*)&datos[i]);
+            }
     }
 
     for(int i=0;i<canHilos;i++){
@@ -118,6 +130,87 @@ int main(){
     return 0;
 }
 
+
+void *funcionHiloSobrantes(void *param){
+        struct data *pixel=(struct data*)param;
+        int h=0;
+
+        for(int i=pixel->inicio;i<pixel->fin;i++){
+        for(int j=0;j<c;j++){
+            
+            if(i ==0 && j==0){
+                imagenConFiltro[i][j]=(imagen[i][j]+imagen[i][j+1]+imagen[i+1][j]+imagen[i+1][j+1])/4;
+        }
+            if(i==f-1 && j==0){
+                imagenConFiltro[i][j]=(float)(imagen[i][j]+imagen[i][j+1]+imagen[i-1][j]+imagen[i-1][j+1])/4;
+            }
+            if(i==0 && j==c-1){
+                imagenConFiltro[i][j]=(float)(imagen[i][j]+imagen[i][j-1]+imagen[i+1][j]+imagen[i+1][j-1])/4;
+            }
+            if(i==f-1 && j==c-1){
+                imagenConFiltro[i][j]=(float)(imagen[i][j]+imagen[i][j-1]+imagen[i-1][j]+imagen[i-1][j-1])/4;
+            }
+            if(i==0 && j!=0 && j!=c-1){
+                imagenConFiltro[i][j]=(float)(imagen[i][j]+imagen[i][j-1]+imagen[i][j+1]+imagen[i+1][j]+imagen[i+1][j-1]+imagen[i+1][j+1])/6;
+            }
+            if(i==f-1 && j!=0 && j!=c-1){
+                imagenConFiltro[i][j]=(float)(imagen[i][j]+imagen[i][j-1]+imagen[i][j+1]+imagen[i-1][j]+imagen[i-1][j-1]+imagen[i-1][j+1])/6;
+            }
+            if(j==0 && i!=0 && i!=f-1){
+                imagenConFiltro[i][j]=(float)(imagen[i][j]+imagen[i-1][j]+imagen[i+1][j]+imagen[i][j+1]+imagen[i-1][j+1]+imagen[i+1][j+1])/6;
+            }
+            if(j==c-1 && i!=0 && i!=f-1){
+                imagenConFiltro[i][j]=(float)(imagen[i][j]+imagen[i-1][j]+imagen[i+1][j]+imagen[i][j-1]+imagen[i-1][j-1]+imagen[i+1][j-1])/6;
+            }
+            if(i!=0 && i!=f-1 && j!=0 && j!=c-1){
+                imagenConFiltro[i][j]=(float)(imagen[i][j]+imagen[i-1][j]+imagen[i+1][j]+imagen[i][j-1]+imagen[i][j+1]+imagen[i-1][j-1]+imagen[i-1][j+1]+imagen[i+1][j-1]+imagen[i+1][j+1])/9;
+            }
+         }
+        }
+
+    while(1){
+        pthread_mutex_lock(&mutex);
+        if(IsSobrante[h]==0){
+            IsSobrante[h]=1;
+        pthread_mutex_unlock(&mutex);     
+        for(int j=0;j<c;j++){
+            
+            if(h ==0 && j==0){
+                imagenConFiltro[i][j]=(imagen[h][j]+imagenh][j+1]+imagen[h+1][j]+imagen[h+1][j+1])/4;
+        }
+            if(h==f-1 && j==0){
+                imagenConFiltro[i][j]=(float)(imagen[h][j]+imagen[h][j+1]+imagen[h-1][j]+imagen[h-1][j+1])/4;
+            }
+            if(h==0 && j==c-1){
+                imagenConFiltro[i][j]=(float)(imagen[h][j]+imagen[h][j-1]+imagen[h+1][j]+imagen[h+1][j-1])/4;
+            }
+            if(h==f-1 && j==c-1){
+                imagenConFiltro[i][j]=(float)(imagen[h][j]+imagen[h][j-1]+imagen[h-1][j]+imagen[h-1][j-1])/4;
+            }
+            if(h==0 && j!=0 && j!=c-1){
+                imagenConFiltro[i][j]=(float)(imagen[h][j]+imagen[h][j-1]+imagen[h][j+1]+imagen[h+1][j]+imagen[h+1][j-1]+imagen[h+1][j+1])/6;
+            }
+            if(h==f-1 && j!=0 && j!=c-1){
+                imagenConFiltro[i][j]=(float)(imagen[h][j]+imagen[h][j-1]+imagen[h][j+1]+imagen[h-1][j]+imagen[h-1][j-1]+imagen[h-1][j+1])/6;
+            }
+            if(j==0 && h!=0 && h!=f-1){
+                imagenConFiltro[h][j]=(float)(imagen[h][j]+imagen[h-1][j]+imagen[h+1][j]+imagen[h][j+1]+imagen[h-1][j+1]+imagen[h+1][j+1])/6;
+            }
+            if(j==c-1 &&h!=0 && h!=f-1){
+                imagenConFiltro[h][j]=(float)(imagen[h][j]+imagen[h-1][j]+imagen[h+1][j]+imagen[h][j-1]+imagen[h-1][j-1]+imagen[h+1][j-1])/6;
+            }
+            if(i!=0 && i!=f-1 && j!=0 && j!=c-1){
+                imagenConFiltro[h][j]=(float)(imagen[h][j]+imagen[h-1][j]+imagen[h+1][j]+imagen[h][j-1]+imagen[h][j+1]+imagen[h-1][j-1]+imagen[h-1][j+1]+imagen[h+1][j-1]+imagen[h+1][j+1])/9;
+            }
+         }
+            if(h==canSobrantes)break;
+        }
+         pthread_mutex_unlock(&mutex);
+         h++;
+    }
+
+        pthread_exit(NULL);
+}
 
 
 void *funcionHilo(void *param){
