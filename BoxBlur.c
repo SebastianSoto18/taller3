@@ -209,6 +209,7 @@ void *funcionHiloSobrantes(void *param){
             if(h==canSobrantes)break;
         }
          pthread_mutex_unlock(&mutex);
+         printf(" %d \n",h);
          h++;
     }
 
